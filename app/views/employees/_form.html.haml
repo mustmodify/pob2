@@ -1,0 +1,30 @@
+=simple_form_for @employee do |f|
+  .col-sm-6
+    =f.input :first_name
+    =f.input :middle_name
+    =f.input :last_name
+    =f.input :dob
+    =f.input :nationality
+    =f.input :ssn
+    =f.input :gsn, :label => 'GS #'
+    =f.input :transportation_needed, as: :select
+    =f.input :body_weight
+    =f.input :bag_weight
+    =f.input :eligible_for_rehire, as: :select
+
+    =f.button :submit, :class => 'btn btn-success'
+
+  .col-sm-6
+    %h3 Phone Numbers 
+
+    =f.input :cell_phone, label: 'Cell'
+    =f.input :home_phone, label: 'Home'
+    =f.input :alt_phone, label: 'Alt'
+
+    %h3 Address
+
+    =f.input :street1, label: 'Street'
+    =f.input :street2, label: false 
+    =f.input :city
+    =f.input :state
+    =f.input :zipcode
