@@ -7,8 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container-liquid">
 
-<%= yield %>
+
+    <header class="header black-bg">
+      <!--logo start-->
+      <a href="index.html" class="logo"><b>Mako POB manager</b></a>
+      <!--logo end-->
+
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li><a class="logout" href="login.html">Logout</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <%= yield %>
+  </div>
 
 </body>
 </html>
