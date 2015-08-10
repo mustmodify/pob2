@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'haml'
+gem 'paperclip'
 gem 'simple_form'
 
 # Use ActiveModel has_secure_password
