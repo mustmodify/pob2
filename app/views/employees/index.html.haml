@@ -3,8 +3,9 @@
 -content_for :options do
   =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
 
-Showing #{@employees.count} employees:
-
 -@employees.each do |employee|
-  .well
-    %h3=employee
+  .panel.panel-simple.col-sm-6
+    .panel-body
+      =render employee
+
+.clearfix

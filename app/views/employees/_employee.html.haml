@@ -1,0 +1,10 @@
+.employee
+  .thumb=image_tag employee.picture.url(:thumb)
+  .name=link_to employee.name, employee
+
+  -employee.phone_numbers.each do |label, number|
+    .line
+      %b=label
+      =": "
+      =number
+    
