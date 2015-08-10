@@ -10,7 +10,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'less-rails-bootstrap'
 gem 'jquery-rails'
-
+gem 'will_paginate-bootstrap'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
