@@ -11,41 +11,27 @@
 
     = csrf_meta_tags
   %body{class: [params['controller'], params['action']].join(' ')}
-    :css
-      body { background-color: #E7EFFF; }
     = render :partial => 'layouts/navigation'
     .container
       .row
-        .col-md-8.col-md-push-2
+        .col-md-9.col-md-push-3
           -if content_for? :page_title
             =yield :page_title
           -else
             %h1.page-title=page_title
           = render :partial => 'layouts/message'
-          .visible-xs=yield :mobile_ad
           = yield :outside
           -if content_for?(:layout)
             .panel
               .panel-body
                 = yield
-        .col-md-2.col-md-pull-8
+        .col-md-3.col-md-pull-9
           .hidden-xs.hidden-sm
             -if pad_options?
               %h1 &nbsp;
-              .spacer
-            .spacer
-            .spacer
           =yield :options
-        .col-md-2
-          .hidden-xs
-            -if pad_options?
-              %h1 &nbsp;
-              .spacer
-            .spacer
-            .spacer
-            =yield :skyscraper_ad
       .row
-        .col-md-8.col-md-offset-2
+        .col-md-9.col-md-offset-3
           #footer
             = render :partial => 'layouts/footer'
       =render :partial => 'layouts/scrap_modal'
