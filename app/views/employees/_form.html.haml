@@ -11,7 +11,10 @@
     =f.input :body_weight
     =f.input :bag_weight
     =f.input :eligible_for_rehire, as: :select
-
+    -if @employee.picture.file?
+      =image_tag @employee.picture.url(:thumb)
+    -else
+      =f.input :picture
     =f.button :submit, :class => 'btn btn-success'
 
   .col-sm-6
