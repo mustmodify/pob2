@@ -1,13 +1,10 @@
-.col-md-3
-  %br
-  %br
-  %br
-  =link_to "New Employee", new_employee_path, class: 'btn btn-default'
+-page_title 'Employee List'
 
-.col-md-9
-  %h1 Employee List
+-content_for :options do
+  =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
 
-  -@employees.each do |employee|
-    .well
-      %h3=employee
+Showing #{@employees.count} employees:
 
+-@employees.each do |employee|
+  .well
+    %h3=employee
