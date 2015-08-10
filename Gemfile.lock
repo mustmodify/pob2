@@ -106,6 +106,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    puma (2.12.3)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -191,6 +192,7 @@ DEPENDENCIES
   jquery-rails
   less-rails-bootstrap
   paperclip
+  puma
   rails (= 4.2.3)
   rspec-rails (~> 2.14.0)
   simple_form
