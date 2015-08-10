@@ -1,0 +1,18 @@
+-page_title @employee.name
+
+-content_for :options do
+  =link_to 'Edit', edit_employee_path( @employee ), :class => 'btn btn-block btn-primary'
+
+.row
+  .col-sm-4
+    =image_tag @employee.picture.url(:medium)
+  .col-sm-6
+    -@employee.phone_numbers.each do |label, value|
+      %h3 #{label}: #{value}
+
+    %h3
+    %table.table.striped
+      -tabular_atts(@employee).each do |n, v|
+        %tr
+          %th=n
+          %td=v
