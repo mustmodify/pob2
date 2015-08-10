@@ -1,12 +1,11 @@
 class CRUDController < ApplicationController
 
   def index
-#    set_records model.paginate(params[:page])
-    set_records model.all
+    set_records model.paginate(page: params[:page])
 
     respond_to do |format|
       format.html do
-        set_records( collection )
+        set_records( collection.paginate(:page => params[:page], :per_page => 15) )
       end
       format.json do
         render :json => collection
