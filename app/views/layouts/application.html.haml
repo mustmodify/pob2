@@ -1,0 +1,58 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "yes", :name => "mobile-web-app-capable"}/
+
+    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
+
+    = csrf_meta_tags
+  %body{class: [params['controller'], params['action']].join(' ')}
+    :css
+      body { background-color: #E7EFFF; }
+    = render :partial => 'layouts/navigation'
+    .container
+      .row
+        .col-md-8.col-md-push-2
+          -if content_for? :page_title
+            =yield :page_title
+          -else
+            %h1.page-title=page_title
+          = render :partial => 'layouts/message'
+          .visible-xs=yield :mobile_ad
+          = yield :outside
+          -if content_for?(:layout)
+            .panel
+              .panel-body
+                = yield
+        .col-md-2.col-md-pull-8
+          .hidden-xs.hidden-sm
+            -if pad_options?
+              %h1 &nbsp;
+              .spacer
+            .spacer
+            .spacer
+          =yield :options
+        .col-md-2
+          .hidden-xs
+            -if pad_options?
+              %h1 &nbsp;
+              .spacer
+            .spacer
+            .spacer
+            =yield :skyscraper_ad
+      .row
+        .col-md-8.col-md-offset-2
+          #footer
+            = render :partial => 'layouts/footer'
+      =render :partial => 'layouts/scrap_modal'
+
+    = javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery?
+    = javascript_include_tag 'application'
+    :javascript
+      window.Excipio = new Excipio({key: 'f23d3ffd53'});
+    = yield :payment_scripts
+    = yield :footer

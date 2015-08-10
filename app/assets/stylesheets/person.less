@@ -1,0 +1,65 @@
+.people.show {
+  font-weight: 300;
+
+  .person-glyph {
+    display: inline-block;
+    padding-right: 1.2em;
+  }
+
+  .person-name {
+    font-size: 36px;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+
+  .position, .organization, .department {
+    font-size: 24px;
+  }
+}
+
+.card.person{
+  .panel;
+  padding: 5px 15px;
+
+  display: inline-block;
+  border-color: @brand-secondary;
+  vertical-align: top;
+
+  .glyph {
+    font-size: 45px;
+    margin-left: -16px;
+    .pull-left;
+  }
+
+  .details {
+    margin-left: 3em;
+  }
+
+  .person-name {
+    font-weight: bold;
+    font-size: inherit;
+  }
+}
+
+@media( min-width: @screen-sm) {
+  .organizations.show {
+    .card.person {
+      width: 310px;
+      margin: 15px 22px;
+    }
+  }
+
+  .categories.show {
+    .card.person {
+      width: 270px;
+      margin: 15px 12px;
+    }
+  }
+}
+
+@media( max-width: @screen-xs-max) {
+  .card.person {
+    width: 100%;
+    margin: 5px 5px 10px;
+  }
+}
