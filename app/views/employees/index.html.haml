@@ -4,8 +4,9 @@
   =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
 
 -@employees.each do |employee|
-  .panel.panel-simple.col-sm-6
-    .panel-body
-      =render employee
+  .col-sm-6
+    .panel.panel-simple
+      .panel-body
+        =render employee
 
 .clearfix

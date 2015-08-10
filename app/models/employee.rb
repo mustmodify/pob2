@@ -4,6 +4,8 @@ class Employee < ActiveRecord::Base
   has_attached_file :picture, :styles => { :medium => "225x225>", :thumb => "100x100>" }, :default_url => "/missing_employee_picture/:style.png"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/ 
 
+  has_many :certs
+
   def phone_numbers
     {}.tap do |out|
       out['Home'] = self.home_phone if self.home_phone.not.blank?

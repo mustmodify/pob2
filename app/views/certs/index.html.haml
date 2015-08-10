@@ -1,0 +1,17 @@
+-page_title "#{@employee.name} Certs"
+
+-content_for :options do
+  =link_to 'Add Cert', new_employee_cert_path( @employee ), :class => 'btn btn-primary btn-block'
+
+-if @certs.empty?
+  .alert.alert-info No information about certs yet.
+-else
+  -@certs.each do |cert|
+    .col-sm-4
+      %a{href: employee_cert_path(@employee, cert)}
+        .panel.panel-info.panel-simple
+          .panel-heading
+            =cert.description
+          .panel-body
+            %center
+              =image_tag cert.image.url(:thumb)

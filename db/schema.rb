@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809002827) do
+ActiveRecord::Schema.define(version: 20150810192027) do
+
+  create_table "certs", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "description"
+    t.date     "expires_on"
+    t.string   "image_file_name"
+    t.string   "string"
+    t.string   "image_content_type"
+    t.string   "image_file_size"
+    t.string   "integer"
+    t.string   "image_updated_at"
+    t.string   "datetime"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string   "first_name"

@@ -1,10 +1,11 @@
-.employee
-  .thumb=image_tag employee.picture.url(:thumb)
-  .name=link_to employee.name, employee
+%a{href: employee_path(employee)}
+  .employee
+    .thumb=image_tag employee.picture.url(:thumb)
+    .name=employee.name
 
-  -employee.phone_numbers.each do |label, number|
-    .line
-      %b=label
-      =": "
-      =number
-    
+    -employee.phone_numbers.each do |label, number|
+      .line
+        %b=label
+        =": "
+        =number
+
