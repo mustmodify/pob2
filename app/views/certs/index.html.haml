@@ -1,6 +1,7 @@
 -page_title "#{@employee.name} Certs"
 
 -content_for :options do
+  =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
   =link_to 'Add Cert', new_employee_cert_path( @employee ), :class => 'btn btn-primary btn-block'
 
 -if @certs.empty?

@@ -1,5 +1,6 @@
 -page_title "#{@cert.description} for #{@employee.name}"
 -content_for :options do
   =link_to "Back to List", employee_certs_path( @employee ), :class => 'btn btn-default btn-block'
+  =link_to "Edit", edit_employee_cert_path(@employee, @cert), class: 'btn btn-block btn-primary'
   =link_to "Remove", employee_cert_path(@employee, @cert), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-block btn-warning'
 =image_tag @cert.image.url

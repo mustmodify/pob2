@@ -1,5 +1,12 @@
 -page_title @employee.name
 
+-content_for :outside do
+  -if @employee.expired_certs.size > 0
+    .alert.alert-warning
+      %h3 Expired Certs!
+      The following certifications are out of date.
+      -@employee.expired_certs.each do |cert|
+        %li=link_to cert.description, employee_cert_path(@employee, cert)
 -content_for :options do
   =link_to 'Edit', edit_employee_path( @employee ), :class => 'btn btn-block btn-primary'
   .spacer

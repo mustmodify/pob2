@@ -1,0 +1,5 @@
+-page_title "Edit #{@cert.description} for #{@employee.name}"
+-content_for :options do
+  =link_to "Back to List", employee_certs_path( @employee ), :class => 'btn btn-default btn-block'
+
+=render :partial => 'form'

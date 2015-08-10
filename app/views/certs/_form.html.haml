@@ -1,4 +1,4 @@
-=simple_form_for @cert, :url => employee_certs_path(@employee) do |f|
+=simple_form_for [@employee, @cert] do |f|
   =f.input :description
   =f.input :expires_on, as: 'string', hint: 'leave blank for "No Expiration"'
   =f.input :image
