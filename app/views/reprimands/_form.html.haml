@@ -1,0 +1,6 @@
+=simple_form_for [@employee, @reprimand] do |f|
+  =f.association :category
+  =f.input :date
+  =f.input :note
+
+  =f.button :submit

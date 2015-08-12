@@ -1,0 +1,6 @@
+-page_title "Edit Reprimand for #{@employee.name}"
+
+-content_for :options do
+  =link_to "Back to List", employee_reprimands_path( @employee ), :class => 'btn btn-primary btn-block'
+
+=render :partial => 'form'

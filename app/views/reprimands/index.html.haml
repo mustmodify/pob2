@@ -1,0 +1,23 @@
+-page_title "#{@employee.name} Reprimands"
+
+-content_for :options do
+  =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
+  =link_to 'Add Reprimand', new_employee_reprimand_path( @employee ), :class => 'btn btn-primary btn-block'
+
+-if @reprimands.empty?
+  .alert.alert-success No reprimands on file! 
+-else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Date
+        %th Category
+        %th Description
+        %th
+    %tbody
+      -@reprimands.each do |reprimand|
+        %tr
+          %td=reprimand.date
+          %td=reprimand.category
+          %td=simple_format reprimand.note
+          %td=link_to 'Edit', edit_employee_reprimand_path( @employee, reprimand ), :class => 'btn btn-xs btn-default'
