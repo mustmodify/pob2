@@ -1,0 +1,19 @@
+-page_title 'User List'
+
+-content_for :options do
+  = link_to 'New User', new_user_path, :class => 'btn btn-default btn-block'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th Name
+      %th Email
+      %th Last Seen
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-default btn-xs'
+        %td= h user.name
+        %td= h user.email
+        %td= h user.last_request_at.try(:to_date) || 'Never'

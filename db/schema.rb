@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810222527) do
+ActiveRecord::Schema.define(version: 20150812215327) do
 
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id"
@@ -67,6 +67,21 @@ ActiveRecord::Schema.define(version: 20150810222527) do
     t.text     "note"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "active",              limit: 1,   default: true
+    t.string   "password_digest",     limit: 255
+    t.string   "persistence_token",   limit: 255
+    t.string   "perishable_token",    limit: 255
+    t.string   "single_access_token", limit: 255
+    t.integer  "login_count",         limit: 4
+    t.datetime "last_request_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

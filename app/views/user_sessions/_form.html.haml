@@ -1,0 +1,22 @@
+.user-session-form
+  %h2.message Sign In
+
+  .spacer
+  =simple_form_for @user_session ||= UserSession.new, :url => '/user_session' do |form|
+    .form-group
+      .col-md-12
+        =form.input_field :email, :placeholder => 'email'
+
+    .form-group
+      .col-md-12
+        =form.input_field :password, :placeholder => 'password'
+
+    .spacer
+    .form-group
+      .col-sm-10
+        = form.button :submit, "Login", :class => 'btn btn-info'
+
+    .spacer
+    .form-group
+      .col-sm-10
+        =link_to 'Forgot Password', new_password_reset_path

@@ -1,0 +1,15 @@
+=simple_form_for @user do |f|
+  =f.input :first_name
+  =f.input :last_name
+  =f.input :email
+
+  -if @user.new_record?
+    =f.input :password
+    =f.input :password_confirmation, :label => 'Retype It'
+  -else
+    =f.input :active, :as => :select
+
+  .spacer
+  .form-group
+    .col-md-offset-2.col-md-10.col-xs-4
+      =f.button :submit, :class => 'btn btn-primary'
