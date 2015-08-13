@@ -1,0 +1,20 @@
+.col-sm-4
+  .contact
+    .name
+      %label Name
+      =contact.name
+    .relationship
+      %label Relationship
+      =contact.relationship
+    .phone
+      %label Home Phone
+      =contact.home_phone
+    .phone
+      %label Cell Phone
+      =contact.cell_phone
+    .phone
+      %label Alt Phone
+      =contact.alt_phone
+  
+    =link_to 'Edit', edit_employee_contact_path( contact.employee, contact ), :class => 'btn btn-default btn-sm btn-block'
+    =link_to 'Remove', employee_contact_path( contact.employee, contact ), :class => 'btn btn-warning btn-sm btn-block', :method => :delete, :data => {confirm: 'Are you sure?'}

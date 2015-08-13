@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812215327) do
+ActiveRecord::Schema.define(version: 20150813144037) do
 
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20150812215327) do
     t.string   "datetime"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.string   "name"
+    t.string   "relationship"
+    t.string   "home_phone"
+    t.string   "cell_phone"
+    t.string   "alt_phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "employees", force: :cascade do |t|

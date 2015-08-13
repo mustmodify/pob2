@@ -1,0 +1,6 @@
+-page_title "Edit #{model.name} for #{@employee.name}"
+
+-content_for :options do
+  =link_to "Back to List", polymorphic_path( [@employee, instance] ), :class => 'btn btn-primary btn-block'
+
+=render :partial => 'form'

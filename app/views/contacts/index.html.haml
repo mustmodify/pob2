@@ -1,0 +1,12 @@
+-page_title "#{@employee.name} Contacts"
+
+-content_for :options do
+  =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
+  =link_to 'Add Contact', new_employee_contact_path( @employee ), :class => 'btn btn-primary btn-block'
+
+-if @contacts.empty?
+  .alert.alert-warning
+    %h3
+      %b No contacts on file! 
+-else
+  =render @contacts

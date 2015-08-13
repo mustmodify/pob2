@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :employees do
     resources :certs
+    resources :contacts
     resources :reprimands
   end
 
