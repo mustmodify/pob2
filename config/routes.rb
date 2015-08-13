@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :certs
     resources :reprimands
   end
+
+  resources :notes
   resources :reprimands
   resources :user_sessions
   resources :users

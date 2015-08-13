@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20150812215327) do
     t.datetime "updated_at",                      null: false
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.text     "body"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reprimand_categories", force: :cascade do |t|
     t.string "name"
   end

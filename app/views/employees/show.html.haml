@@ -15,7 +15,16 @@
 
 .row
   .col-sm-4
-    =image_tag @employee.picture.url(:medium)
+    .text-center=image_tag @employee.picture.url(:medium)
+    .spacer
+    %h4 Notes
+    -if @employee.notes.any?
+      =render @employee.notes
+    -else
+      %i no notes yet
+    .spacer
+    .spacer
+    =render :partial => 'note_form'
   .col-sm-6
     -@employee.phone_numbers.each do |label, value|
       %h3 #{label}: #{value}
@@ -26,3 +35,6 @@
         %tr
           %th=n
           %td=v
+      %tr
+        %td Reprimands
+        %td=@employee.reprimands.count

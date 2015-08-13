@@ -1,0 +1,9 @@
+.note.panel.panel-info.panel-simple{ :id => "note_#{note.id}" }
+  .panel-body
+    = simple_format(note.body, class: "text-info")
+    .meta.text-muted
+      =note.author.try(:name)
+      =" @ "
+      =note.created_at.strftime('%m/%d/%Y %I:%M %p')
+    .clearfix
+

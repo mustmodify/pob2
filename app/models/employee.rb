@@ -5,6 +5,7 @@ class Employee < ActiveRecord::Base
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/ 
 
   has_many :certs
+  has_many :notes
   has_many :reprimands
   has_many :expired_certs, -> { where('expires_on < ?', Date.today) }, :class_name => 'Cert'
 
