@@ -1,0 +1,9 @@
+-page_title 'Yards' 
+
+-content_for :options do
+  =link_to 'New Yard', new_yard_path, :class => 'btn btn-primary btn-block'
+
+-@yards.each do |yard|
+  %li
+    =yard.name
+    =link_to 'edit', edit_yard_path( yard ), :class => 'btn btn-default btn-xs'

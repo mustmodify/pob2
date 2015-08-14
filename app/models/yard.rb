@@ -1,6 +1,5 @@
-class OilCo < ActiveRecord::Base
+class Yard < ActiveRecord::Base
   validates_presence_of :name
-
   default_scope -> {order(:name)}
 
   def to_s

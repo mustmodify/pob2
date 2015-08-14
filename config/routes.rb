@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :reprimands
   resources :user_sessions
   resources :users
+  resources :yards
 end

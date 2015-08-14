@@ -1,4 +1,5 @@
 class CRUDController < ApplicationController
+  helper_method :model, :instance
 
   def index
     set_records model.paginate(page: params[:page])
