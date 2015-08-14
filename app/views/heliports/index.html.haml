@@ -3,7 +3,15 @@
 -content_for :options do
   =link_to 'New Heliport', new_heliport_path, :class => 'btn btn-primary btn-block'
 
--@heliports.each do |heliport|
-  %li
-    =heliport.name
-    =link_to 'edit', edit_heliport_path( heliport ), :class => 'btn btn-default btn-xs'
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+  %tbody
+    -@heliports.each do |heliport|
+      %tr
+        %td
+          =link_to 'edit', edit_heliport_path( heliport ), :class => 'btn btn-default btn-xs'
+          &nbsp;
+          &nbsp;
+          =heliport.name
