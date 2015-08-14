@@ -10,6 +10,8 @@ class Employee < ActiveRecord::Base
   has_many :reprimands
   has_many :expired_certs, -> { where('expires_on < ?', Date.today) }, :class_name => 'Cert'
 
+  has_and_belongs_to_many :positions, :join_table => :competencies
+
   def phone_numbers
     {}.tap do |out|
       out['Home'] = self.home_phone if self.home_phone.not.blank?
@@ -20,5 +22,9 @@ class Employee < ActiveRecord::Base
 
   def name
     [first_name, middle_name, last_name].compact.join(' ')
+  end
+
+  def to_s
+    name
   end
 end

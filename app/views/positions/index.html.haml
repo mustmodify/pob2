@@ -1,0 +1,20 @@
+-page_title 'Positions'
+
+-content_for :options do
+  =link_to 'New Position', new_position_path, :class => 'btn btn-primary btn-block'
+
+%table.table.table-striped
+  %thead
+    %tr 
+      %td
+      %td Name
+      %td Rate
+      %td Employee Count
+
+  %tbody
+    -@positions.each do |position|
+      %tr
+        %td=link_to 'edit', edit_position_path( position ), :class => 'btn btn-xs btn-default'
+        %td=position.name
+        %td=number_to_currency( position.rate )
+        %td=position.employees.count

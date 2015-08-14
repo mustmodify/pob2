@@ -1,0 +1,5 @@
+-page_title "Competencies for Employee #{@employee.to_s}"
+
+=simple_form_for @employee do |f|
+  =f.association :positions, :as => :check_boxes
+  =f.button :submit

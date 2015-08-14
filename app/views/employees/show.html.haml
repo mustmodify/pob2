@@ -11,6 +11,7 @@
   =link_to 'Edit', edit_employee_path( @employee ), :class => 'btn btn-block btn-primary'
   .spacer
   =link_to 'Certs', employee_certs_path( @employee ), :class => 'btn btn-block btn-default'
+  =link_to 'Competencies', employee_competencies_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Contacts', employee_contacts_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Reprimands', employee_reprimands_path( @employee ), :class => 'btn btn-block btn-default'
 
@@ -36,6 +37,14 @@
         %tr
           %th=n
           %td=v
+      %tr
+        %td Competencies
+        %td
+          -if @employee.positions.empty?
+            .text-muted No positions set. Edit this employee to add some.
+          -else
+            -@employee.positions.each do |position|
+              %li=position.name
       %tr
         %td Reprimands
         %td=@employee.reprimands.count
