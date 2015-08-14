@@ -31,7 +31,8 @@
   .col-sm-6
     -@employee.phone_numbers.each do |label, value|
       %h3 #{label}: #{value}
-
+    -if @employee.email
+      %h3=link_to @employee.email, "mailto:#{@employee.email}"
     %h3
     %table.table.striped
       -tabular_atts(@employee).each do |n, v|

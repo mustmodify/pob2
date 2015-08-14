@@ -5,6 +5,7 @@
   =f.input :middle_name
   =f.input :last_name
   =f.input :dob, as: :string
+  =f.input :email
   =f.input :nationality
   =f.input :ssn
   =f.input :gsn, :label => 'GS #'
@@ -30,5 +31,12 @@
   =f.input :city
   =f.input :state
   =f.input :zipcode
+
+  %h3 Identification
+
+  =f.input :ident_issuer, :label => 'Issuer', :hint => 'Country or State'
+  =f.input :ident_number, :label => 'Number'
+  =f.input :ident_issue_date, :label => 'Date Issued', :as => :string
+  =f.input :ident_expiration_date, :label => 'Expiration Date', :as => :string
 
   =f.button :submit

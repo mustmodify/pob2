@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814191231) do
+ActiveRecord::Schema.define(version: 20150814194823) do
 
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150814191231) do
     t.string   "middle_name"
     t.string   "last_name"
     t.date     "dob"
+    t.string   "email"
     t.string   "nationality"
     t.string   "ssn"
     t.string   "gsn"
@@ -70,6 +71,10 @@ ActiveRecord::Schema.define(version: 20150814191231) do
     t.string   "city"
     t.string   "state",                 limit: 2
     t.string   "zipcode",               limit: 5
+    t.string   "ident_issuer"
+    t.string   "ident_number"
+    t.date     "ident_issue_date"
+    t.date     "ident_expiration_date"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
