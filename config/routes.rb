@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :competencies
     resources :contacts
     resources :reprimands
+    resources :restrictions
   end
 
   resources :notes

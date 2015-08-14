@@ -1,5 +1,5 @@
 class NestedCRUDController < ApplicationController
-  helper_method :model, :instance
+  helper_method :model, :instance, :parent_instance
 
   def index
     set_parent

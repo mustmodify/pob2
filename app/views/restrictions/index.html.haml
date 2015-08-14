@@ -1,0 +1,19 @@
+-page_title "Restrictions for #{@employee.name}"
+
+-content_for :options do
+  =link_to 'New Restriction', new_employee_restriction_path(@employee), :class => 'btn btn-primary btn-block'
+  =link_to 'Back to Employee', employee_path(@employee), :class => 'btn btn-default btn-block'
+
+-if @restrictions.empty?
+  .alert.alert-success
+    %h4
+      %b No restrictions
+-@restrictions.each do |restriction|
+  .col-md-4
+    .panel.panel-simple.panel-body.text-center
+      %h4=restriction.title
+      -if restriction.attachment.file?
+        =image_tag restriction.attachment.url(:thumb)
+        .spacer
+      =link_to 'edit', edit_employee_restriction_path( @employee, restriction ), :class => 'btn btn-default btn-xs btn-block'
+      =link_to 'delete', employee_restriction_path( @employee, restriction ), :class => 'btn btn-warning btn-xs btn-block', :method => :delete, :data => {:confirm => 'Are you sure?'}

@@ -8,6 +8,7 @@ class Employee < ActiveRecord::Base
   has_many :contacts
   has_many :notes
   has_many :reprimands
+  has_many :restrictions # isn't that always the way?
   has_many :expired_certs, -> { where('expires_on < ?', Date.today) }, :class_name => 'Cert'
 
   has_and_belongs_to_many :positions, :join_table => :competencies

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814182426) do
+ActiveRecord::Schema.define(version: 20150814191231) do
 
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id"
@@ -112,6 +112,17 @@ ActiveRecord::Schema.define(version: 20150814182426) do
     t.text     "note"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+  end
+
+  create_table "restrictions", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.date     "effective_date"
+    t.string   "title"
+    t.string   "description"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
