@@ -26,15 +26,22 @@
             %li
               =link_to 'Employees', employees_path
             %li
-              =link_to 'Heliports', heliports_path
-            %li
-              =link_to 'Positions', positions_path
-            %li
-              =link_to 'Oil Companies', oil_cos_path
-            %li
               =link_to 'Users', users_path
-            %li
-              =link_to 'Yards', yards_path
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Manage
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  =link_to 'Customers', customers_path
+                %li
+                  =link_to 'Heliports', heliports_path
+                %li
+                  =link_to 'Oil Companies', oil_cos_path
+                %li
+                  =link_to 'Positions', positions_path
+                %li
+                  =link_to 'Yards', yards_path
           %ul.nav.navbar-nav.navbar-right
             %li
               =link_to 'Logout', logout_path
