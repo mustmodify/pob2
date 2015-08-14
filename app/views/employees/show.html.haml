@@ -1,12 +1,15 @@
 -page_title @employee.name
 
 -content_for :outside do
-  -if @employee.expired_certs.size > 0
+  -eap = EmployeeAlertPresenter.new(@employee)
+
+  -if eap.alerts.not.empty?
     .alert.alert-warning
-      %h3 Expired Certs!
-      The following certifications are out of date.
-      -@employee.expired_certs.each do |cert|
-        %li=link_to cert.description, employee_cert_path(@employee, cert)
+      -eap.alerts.each do |alert|
+        %h3
+          %p
+            %b="#{alert[:title]}:"
+            =alert[:message]
 -content_for :options do
   =link_to 'Edit', edit_employee_path( @employee ), :class => 'btn btn-block btn-primary'
   .spacer
