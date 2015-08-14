@@ -1,0 +1,10 @@
+-page_title 'Oil Companies'
+
+-content_for :options do
+  =link_to 'New Company', new_oil_co_path, :class => 'btn btn-primary btn-block'
+
+-@oil_cos.each do |oil_co|
+  %li
+    =oil_co.name
+    =link_to 'edit', edit_oil_co_path( oil_co ), :class => 'btn btn-default btn-xs'
+

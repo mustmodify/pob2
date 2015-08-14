@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :notes
+  resources :oil_cos
   resources :positions
   resources :reprimands
   resources :user_sessions
