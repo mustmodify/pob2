@@ -1,0 +1,9 @@
+-page_title 'Heliports' 
+
+-content_for :options do
+  =link_to 'New Heliport', new_heliport_path, :class => 'btn btn-primary btn-block'
+
+-@heliports.each do |heliport|
+  %li
+    =heliport.name
+    =link_to 'edit', edit_heliport_path( heliport ), :class => 'btn btn-default btn-xs'
