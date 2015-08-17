@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817173447) do
+ActiveRecord::Schema.define(version: 20150817175746) do
 
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id"
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 20150817173447) do
 
   create_table "positions", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "rate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
