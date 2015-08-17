@@ -13,6 +13,7 @@ class Employee < ActiveRecord::Base
 
   has_and_belongs_to_many :positions, :join_table => :competencies
 
+  scope :alphabetical, -> {order(:last_name, :first_name)}
   def phone_numbers
     {}.tap do |out|
       out['Home'] = self.home_phone if self.home_phone.not.blank?

@@ -6,7 +6,7 @@ class CRUDController < ApplicationController
 
     respond_to do |format|
       format.html do
-        set_records( collection.paginate(:page => params[:page], :per_page => 15) )
+        set_records( collection.paginate(:page => params[:page], :per_page => 10) )
       end
       format.json do
         render :json => collection
