@@ -56,3 +56,15 @@ if DepartureSite.count == 0
   DepartureSite.create(name: 'Haliburton', category: 'Dock')
   DepartureSite.create(name: 'Offshore Support Services', category: 'Dock')
 end
+
+if Customer.count == 0
+  Customer.create(name: 'GulfMark')
+  Customer.create(name: 'Tidewater')
+  Customer.create(name: 'Aries Marine')
+  Customer.create(name: 'Adriatic Marine')
+  Customer.create(name: 'Mid South Rentals & Completions')
+  Customer.create(name: 'Baker Hughes: Broussard')
+  Customer.create(name: 'AFS PetroLogix')
+  Customer.create(name: 'Seacor Marine')
+  Customer.create(name: 'SeaTran')
+end
