@@ -68,3 +68,17 @@ if Customer.count == 0
   Customer.create(name: 'Seacor Marine')
   Customer.create(name: 'SeaTran')
 end
+
+if OilCo.count == 0
+  OilCo.create(name: 'Anadarko')
+  OilCo.create(name: 'Hess')
+  OilCo.create(name: 'BP')
+  OilCo.create(name: 'Marubeni')
+  OilCo.create(name: 'Chevron')
+  OilCo.create(name: 'Shell')
+  OilCo.create(name: 'LLOG')
+  OilCo.create(name: 'W&T')
+  OilCo.create(name: 'Energy XXI')
+  OilCo.create(name: 'McMoran')
+  OilCo.create(name: 'Exxon')
+end
