@@ -36,3 +36,12 @@ if Position.count == 0
   Position.create(name: 'Crane Operator')
   Position.create(name: 'Rigger')
 end
+
+if WorkSite.count == 0
+  WorkSite.create(name: 'Fourchon')
+  WorkSite.create(name: 'Galveston')
+  WorkSite.create(name: 'GulfMark Youngsville')
+  WorkSite.create(name: 'Halliburton Lafayette')
+  WorkSite.create(name: 'Houma Reclamation Field', :details => "112 Main St.\nHouma, LA 70363")
+  WorkSite.create(name: 'Mid-South Rental and Completions')
+end

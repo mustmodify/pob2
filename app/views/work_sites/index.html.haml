@@ -1,0 +1,19 @@
+-page_title 'Work Sites'
+
+-content_for :options do
+  =link_to 'New Work Site', new_work_site_path, :class => 'btn btn-primary btn-block'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Details
+  %tbody
+    -@work_sites.each do |work_site|
+      %tr
+        %td
+          =link_to 'edit', edit_work_site_path( work_site ), :class => 'btn btn-default btn-xs'
+          &nbsp;
+          &nbsp;
+          =work_site.name
+        %td=simple_format work_site.details
