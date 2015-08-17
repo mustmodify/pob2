@@ -1,0 +1,14 @@
+=simple_form_for instance do |f|
+  =f.input :name
+  %legend Major Players
+  =f.association :customer
+  =f.association :oil_co
+  %legend Locations
+  =f.association :departure_site
+  =f.association :work_site
+  %legend Dates
+  =f.input :start_date, as: :string
+  =f.input :end_date, as: :string
+  .spacer
+  .spacer
+  =f.button :submit

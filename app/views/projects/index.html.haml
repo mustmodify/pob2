@@ -1,0 +1,19 @@
+-page_title 'Projects'
+
+-content_for :options do
+  =link_to 'New Project', new_project_path, :class => 'btn btn-primary btn-block'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Details
+  %tbody
+    -@projects.each do |project|
+      %tr
+        %td
+          =link_to 'edit', edit_project_path( project ), :class => 'btn btn-default btn-xs'
+          &nbsp;
+          &nbsp;
+          =project.name
+        %td=simple_format project.details

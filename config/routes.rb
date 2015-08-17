@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :notes
   resources :oil_cos
   resources :positions
+  resources :projects
   resources :reprimands
   resources :user_sessions
   resources :users
