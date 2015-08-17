@@ -1,0 +1,21 @@
+-page_title 'Departure Sites' 
+
+-content_for :options do
+  =link_to 'New Departure Site', new_departure_site_path, :class => 'btn btn-primary btn-block'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Category
+      %th Details
+  %tbody
+    -@departure_sites.each do |departure_site|
+      %tr
+        %td
+          =link_to 'edit', edit_departure_site_path( departure_site ), :class => 'btn btn-default btn-xs'
+          &nbsp;
+          &nbsp;
+          =departure_site.name
+        %td=departure_site.category
+        %td=simple_format departure_site.details

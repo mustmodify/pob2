@@ -1,0 +1,5 @@
+=simple_form_for instance do |f|
+  =f.input :name
+  =f.input :category, :collection => DepartureSite::CATEGORIES, :as => :radio_buttons
+  =f.input :details, hint: 'address, directions, special instructions'
+  =f.button :submit

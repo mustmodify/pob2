@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'logout' => 'user_sessions#destroy'
 
   resources :customers
-  resources :heliports
+  resources :departure_sites
 
   resources :employees do
     resources :certs

@@ -45,3 +45,14 @@ if WorkSite.count == 0
   WorkSite.create(name: 'Houma Reclamation Field', :details => "112 Main St.\nHouma, LA 70363")
   WorkSite.create(name: 'Mid-South Rental and Completions')
 end
+
+if DepartureSite.count == 0
+  DepartureSite.create(name: 'South New Rhodes Heliport', category: 'Heliport')
+  DepartureSite.create(name: 'North New Rhodes Heliport', category: 'Heliport')
+  DepartureSite.create(name: 'ERA', category: 'Heliport')
+  DepartureSite.create(name: 'C-Port 1, Slip 1', category: 'Dock')
+  DepartureSite.create(name: 'C-Port 1, Slip 5', category: 'Dock')
+  DepartureSite.create(name: 'C-Terminal', category: 'Dock')
+  DepartureSite.create(name: 'Haliburton', category: 'Dock')
+  DepartureSite.create(name: 'Offshore Support Services', category: 'Dock')
+end
