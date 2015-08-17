@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # named routes
   get 'logout' => 'user_sessions#destroy'
 
+  resources :crew_changes
   resources :customers
   resources :departure_sites
 

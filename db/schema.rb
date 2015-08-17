@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817175746) do
+ActiveRecord::Schema.define(version: 20150817180450) do
 
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20150817175746) do
     t.string   "alt_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "crew_changes", force: :cascade do |t|
+    t.date    "date"
+    t.integer "project_id"
+    t.string  "action"
+    t.integer "employee_id"
+    t.integer "position_id"
+    t.decimal "rate"
+    t.text    "note"
   end
 
   create_table "customers", force: :cascade do |t|
