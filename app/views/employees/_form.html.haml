@@ -4,7 +4,7 @@
   =f.input :first_name
   =f.input :middle_name
   =f.input :last_name
-  =f.input :dob, as: :string
+  =f.input :dob, as: :string, input_html: {'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd', 'data-date-autoclose' => true}
   =f.input :email
   =f.input :nationality
   =f.input :ssn
@@ -36,7 +36,7 @@
 
   =f.input :ident_issuer, :label => 'Issuer', :hint => 'Country or State'
   =f.input :ident_number, :label => 'Number'
-  =f.input :ident_issue_date, :label => 'Date Issued', :as => :string
-  =f.input :ident_expiration_date, :label => 'Expiration Date', :as => :string
+  =f.input :ident_issue_date, :label => 'Date Issued', :as => :string, input_html: {'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd', 'data-date-autoclose' => true}
+  =f.input :ident_expiration_date, :label => 'Expiration Date', :as => :string, input_html: {'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd', 'data-date-autoclose' => true}
 
   =f.button :submit

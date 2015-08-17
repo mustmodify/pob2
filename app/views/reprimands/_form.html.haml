@@ -1,6 +1,6 @@
 =simple_form_for [@employee, @reprimand] do |f|
   =f.association :category
-  =f.input :date
+  =f.input :date, input_html: {'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd', 'data-date-autoclose' => true}
   =f.input :note
 
   =f.button :submit

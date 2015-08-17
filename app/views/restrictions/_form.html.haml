@@ -2,7 +2,7 @@
   =f.input :title
   =f.input :description
   
-  =f.input :effective_date, as: :string
+  =f.input :effective_date, as: :string, input_html: {'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd', 'data-date-autoclose' => true}
   =f.input :attachment
 
   =f.button :submit
