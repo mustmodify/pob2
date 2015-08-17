@@ -6,4 +6,7 @@ class Project < ActiveRecord::Base
   belongs_to :departure_site
   belongs_to :work_site
 
+  def to_s
+    name
+  end
 end

@@ -6,14 +6,22 @@
 %table.table.table-striped
   %thead
     %tr
+      %th
       %th Name
-      %th Details
+      %th Oil Co 
+      %th Customer 
+      %th Departure Site
+      %th Work Site
+      %th Start Date
+      %th End Date
   %tbody
     -@projects.each do |project|
       %tr
-        %td
-          =link_to 'edit', edit_project_path( project ), :class => 'btn btn-default btn-xs'
-          &nbsp;
-          &nbsp;
-          =project.name
-        %td=simple_format project.details
+        %td=link_to 'edit', edit_project_path( project ), :class => 'btn btn-default btn-xs'
+        %th=project.name
+        %td=project.oil_co
+        %td=project.customer
+        %td=project.departure_site
+        %td=project.work_site
+        %td=project.start_date
+        %td=project.end_date
