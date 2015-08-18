@@ -24,11 +24,11 @@ if ReprimandCategory.count == 0
 end
 
 if User.count == 0
-  User.create(email: 'jw@mustmodify.com',
+  User.new(email: 'jw@mustmodify.com',
          first_name: 'Johnathon',
           last_name: 'Wright',
              active: true,
-    password_digest: "$2a$10$UsNvFntrm/cD15bHy/2LZ.4biQ0izM80Eij0ivPni42uC0ZUZSQbO")
+    password_digest: "$2a$10$UsNvFntrm/cD15bHy/2LZ.4biQ0izM80Eij0ivPni42uC0ZUZSQbO").save(validate: false)
 end
 
 if Position.count == 0
