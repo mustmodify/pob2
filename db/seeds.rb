@@ -82,3 +82,7 @@ if OilCo.count == 0
   OilCo.create(name: 'McMoran')
   OilCo.create(name: 'Exxon')
 end
+
+if Employee.count == 0
+  load Rails.root + 'db/seed_employees.rb'
+end
