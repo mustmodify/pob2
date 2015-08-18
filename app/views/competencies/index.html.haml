@@ -1,5 +1,27 @@
--page_title "Competencies for Employee #{@employee.to_s}"
+-page_title "Competencies for #{@employee.to_s}"
 
-=simple_form_for @employee do |f|
-  =f.association :positions, :as => :check_boxes
-  =f.button :submit
+-content_for :options do
+  =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
+
+=form_for @employee do |f|
+  %table.table.table-striped
+    %thead
+      %th Position
+      %th Rate
+      %th
+
+    =f.fields_for :competencies do |cf|
+      %tr
+        %td
+          =cf.hidden_field :id
+          =cf.hidden_field :position_id
+          =cf.object.try(&:position)
+        %td=cf.text_field :rate
+        %td
+          -if cf.object.id
+            %label
+              =cf.check_box '_destroy'
+              Remove
+
+  .col-sm-offset-2
+    =f.button :submit, :class => 'btn btn-success'

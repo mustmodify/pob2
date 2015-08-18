@@ -11,6 +11,9 @@ class Employee < ActiveRecord::Base
   has_many :restrictions # isn't that always the way?
   has_many :expired_certs, -> { where('expires_on < ?', Date.today) }, :class_name => 'Cert'
 
+  has_many :competencies
+  accepts_nested_attributes_for :competencies, allow_destroy: true, reject_if: proc { |attributes| attributes['rate'].blank? }
+
   has_and_belongs_to_many :positions, :join_table => :competencies
 
   scope :alphabetical, -> {order(:last_name, :first_name)}

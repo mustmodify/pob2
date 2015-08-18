@@ -48,8 +48,10 @@
           -if @employee.positions.empty?
             .text-muted No positions set.
           -else
-            -@employee.positions.each do |position|
-              %li=position.name
+            -@employee.competencies.each do |competency|
+              %li
+                =competency.position.name
+                ="(#{number_to_currency(competency.rate)})"
       %tr
         %td Reprimands
         %td=@employee.reprimands.count
