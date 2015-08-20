@@ -7,6 +7,7 @@
   %h1 &nbsp;
   =link_to 'Edit', edit_project_path( @project ), :class => 'btn btn-primary btn-block'
   =link_to 'Add Crew Change', new_crew_change_path(crew_change: {project_id: @project.id}), :class => 'btn btn-default btn-block'
+  =link_to 'Crew Change Log', project_crew_changes_path(@project), :class => 'btn btn-default btn-block'
 
 .row
   .col-sm-6
@@ -32,10 +33,4 @@
           %th End Date
           %td=@project.end_date
   .col-sm-6
-    %h3 Recent Crew Changes
-    %table.table.table-striped
-      -@project.crew_changes.each do |crew_change|
-        %tr
-          %td=crew_change.date
-          %td=crew_change.employee
-          %td=crew_change.action
+

@@ -1,8 +1,15 @@
--page_title 'Crew Changes'
+-page_title "Crew Changes for #{@project.name}"
 
 -content_for :options do
   =link_to 'New Crew Change', new_crew_change_path, :class => 'btn btn-primary btn-block'
 
 %table.table.table-striped
   -@crew_changes.each do |crew_change|
-    =render crew_change
+    %tr.crew_change
+      %td=crew_change.date
+      %td=crew_change.action
+      %td=crew_change.employee
+      %td=crew_change.position
+      %td=link_to 'edit', edit_crew_change_path( crew_change ), :class => 'btn btn-xs btn-default'
+
+=will_paginate @crew_changes, :renderer => BootstrapPagination::Rails

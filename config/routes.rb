@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   resources :notes
   resources :oil_cos
   resources :positions
-  resources :projects
+  resources :projects do
+    resources :crew_changes
+  end
+
   resources :reprimands
   resources :user_sessions
   resources :users
