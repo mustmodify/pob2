@@ -5,6 +5,7 @@ class Employee < ActiveRecord::Base
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/ 
 
   has_many :certs
+  has_many :compliments
   has_many :contacts
   has_many :notes
   has_many :reprimands

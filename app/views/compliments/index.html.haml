@@ -1,0 +1,23 @@
+-page_title "#{@employee.name} Compliments"
+
+-content_for :options do
+  =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
+  =link_to 'Add Compliment', new_employee_compliment_path( @employee ), :class => 'btn btn-primary btn-block'
+
+-if @compliments.empty?
+  .alert.alert-success
+    %h3
+      %b No compliments on file!
+-else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Date
+        %th Description
+        %th
+    %tbody
+      -@compliments.each do |compliment|
+        %tr
+          %td=compliment.date
+          %td=simple_format compliment.note
+          %td=link_to 'Edit', edit_employee_compliment_path( @employee, compliment ), :class => 'btn btn-xs btn-default'
