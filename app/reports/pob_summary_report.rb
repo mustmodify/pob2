@@ -2,16 +2,19 @@ class POBSummaryReport < Valuable
 
   has_value :start_date, :klass => Date, :parse_with => :parse
   has_value :end_date, :klass => Date, :parse_with => :parse
+  has_value :employee_id
 
   def onboardings
     scope = CrewChange.where(action: 'In')
     scope = scope.where('date >= ?', start_date) if start_date
     scope = scope.where('date <= ?', end_date) if end_date
+    scope = scope.where(employee_id: employee_id) if employee_id
     scope
   end
 
   def early_overlaps
     candidates = CrewChange.where('date >= ?', start_date).order('date asc').group('employee_id')
+    candidates = candidates.where(employee_id: employee_id) if employee_id
 
     candidates.select do |candidate|
       candidate.action == 'Out'

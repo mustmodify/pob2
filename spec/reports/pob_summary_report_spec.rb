@@ -75,4 +75,17 @@ describe POBSummaryReport do
     POBSummaryReport.new(end_date: '2015-07-03').data.values.first.should == [Date.parse('2015-07-01'), Date.parse('2015-07-02'), Date.parse('2015-07-03')]
   end
 
+  it 'filters by employee' do
+    ed = FactoryGirl.create(:employee)
+    ned = FactoryGirl.create(:employee)
+    fred = FactoryGirl.create(:project)
+
+    start1 = Date.parse('2015-07-01')
+    end1 = Date.parse('2015-07-10')
+
+    FactoryGirl.create(:crew_change, employee: ed, date: start1, action: 'In', project: fred)
+    FactoryGirl.create(:crew_change, employee: ed, date: end1, action: 'Out', project: fred)
+
+    POBSummaryReport.new(employee_id: ned.id).data.should be_empty
+  end
 end
