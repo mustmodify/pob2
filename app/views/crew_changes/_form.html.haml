@@ -1,5 +1,5 @@
 =simple_form_for instance do |f|
-  =f.input :date, as: :string, input_html: {'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd', 'data-date-autoclose' => true}
+  =f.input :date, as: :dated
   =f.association :project
   =f.input :action, collection: ['In', 'Out']
   =f.association :employee 

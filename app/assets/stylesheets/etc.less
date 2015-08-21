@@ -14,6 +14,13 @@ html {
   }
 }
 
+.navbar-static-top {
+  z-index: 999 !important; /* calendar works poorly under menu */
+}
+
+.datepicker.datepicker-dropdown {
+  z-index: 1000 !important;
+}
 
 .employees {
   .note_body {
