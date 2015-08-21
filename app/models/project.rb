@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
 
   has_many :crew_changes
 
+  validates_presence_of :name
+
   def to_s
     name
   end
