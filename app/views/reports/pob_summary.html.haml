@@ -4,7 +4,27 @@
   =f.input :start_date, as: :dated, required: false
   =f.input :end_date, as: :dated, required: false
   =f.input :employee_id, collection: Employee.alphabetical, required: false
+  =f.button :submit, 'Build Report'
 
--@pob_summary.data.each do |employee, dates|
-  %h2=employee.name
-  =dates.map(&:to_s).join(', ')
+.spacer
+.spacer
+
+%table.table
+  %thead
+    %tr
+      %th Employee
+      %th Project
+      %th Position
+      %th Dates
+      %th Days
+  %tbody
+    -@pob_summary.data.each do |datum|
+      %tr
+        %td=datum.employee.name
+        %td=datum.project.name
+        %td=datum.position.name
+        %td
+          =datum.start_date.to_s(:friendly)
+          to
+          =datum.end_date.to_s(:friendly)
+        %td=datum.days

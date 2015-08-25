@@ -18,9 +18,10 @@ describe POBSummaryReport do
     out2 = FactoryGirl.create(:crew_change, employee: ed, date: end2, action: 'Out', project: fred)
 
     data = POBSummaryReport.new.data
-    data.keys.should have(1).entry
-    data.keys.first.should == ed
-    data.values.first.should == ((start1..end1).to_a + (start2..end2).to_a)
+    data.should have(2).entry
+    data.first.employee.should == ed
+    data.first.start_date.should == start1
+    data.first.end_date.should == end1
   end
 
   it 'excludes by start date' do
@@ -38,15 +39,19 @@ describe POBSummaryReport do
 
   it 'includes entries where POB overlaps the start date' do
     ed = FactoryGirl.create(:employee)
-    fred = FactoryGirl.create(:project)
+    rig = FactoryGirl.create(:project)
 
     start1 = Date.parse('2015-07-01')
     end1 = Date.parse('2015-07-10')
 
-    in1 = FactoryGirl.create(:crew_change, employee: ed, date: start1, action: 'In', project: fred)
-    out1 = FactoryGirl.create(:crew_change, employee: ed, date: end1, action: 'Out', project: fred)
+    in1 = FactoryGirl.create(:crew_change, employee: ed, date: start1, action: 'In', project: rig)
+    out1 = FactoryGirl.create(:crew_change, employee: ed, date: end1, action: 'Out', project: rig)
 
-    POBSummaryReport.new(start_date: '2015-07-08').data.values.first.should == [Date.parse('2015-07-08'), Date.parse('2015-07-09'), Date.parse('2015-07-10')]
+    datum = POBSummaryReport.new(start_date: '2015-07-08').early_overlaps.should have(1).item
+    datum = POBSummaryReport.new(start_date: '2015-07-08').data.first
+    datum.should_not be_blank
+    datum.start_date.should == Date.parse('2015-07-08')
+    datum.end_date.should == Date.parse('2015-07-10')
   end
 
   it 'excludes by end date' do
@@ -72,7 +77,9 @@ describe POBSummaryReport do
     in1 = FactoryGirl.create(:crew_change, employee: ed, date: start1, action: 'In', project: fred)
     out1 = FactoryGirl.create(:crew_change, employee: ed, date: end1, action: 'Out', project: fred)
 
-    POBSummaryReport.new(end_date: '2015-07-03').data.values.first.should == [Date.parse('2015-07-01'), Date.parse('2015-07-02'), Date.parse('2015-07-03')]
+    datum = POBSummaryReport.new(end_date: '2015-07-03').data.first
+    datum.start_date.should == Date.parse('2015-07-01')
+    datum.end_date.should == Date.parse('2015-07-03')
   end
 
   it 'filters by employee' do
