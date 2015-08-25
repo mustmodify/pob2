@@ -1,4 +1,9 @@
 class EmployeesController < CRUDController
+  def index
+    @search = EmployeeSearch.new(params[:employee_search])
+    @employees = @search.results.paginate(page: params[:page])
+  end
+
   def model
     Employee.alphabetical
   end
