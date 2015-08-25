@@ -24,6 +24,21 @@ describe POBSummaryReport do
     data.first.end_date.should == end1
   end
 
+  it 'filters by project' do
+    ed = FactoryGirl.create(:employee)
+    fred = FactoryGirl.create(:project)
+
+    end2 = Date.parse('2015-07-24')
+
+    FactoryGirl.create(:crew_change, employee: ed, date: '2015-07-20', action: 'In', project: fred)
+    FactoryGirl.create(:crew_change, employee: ed, date: '2015-07-26', action: 'Out', project: fred)
+
+    data = POBSummaryReport.new(project_id: fred.id + 1).data
+    data.should have(0).entries
+    data = POBSummaryReport.new(project_id: fred.id).data
+    data.should have(1).entries
+  end
+
   it 'excludes by start date' do
     ed = FactoryGirl.create(:employee)
     fred = FactoryGirl.create(:project)

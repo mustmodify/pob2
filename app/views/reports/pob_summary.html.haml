@@ -4,6 +4,7 @@
   =f.input :start_date, as: :dated, required: false
   =f.input :end_date, as: :dated, required: false
   =f.input :employee_id, collection: Employee.alphabetical, required: false
+  =f.input :project_id, collection: Project.all, required: false
   =f.button :submit, 'Build Report'
 
 .spacer

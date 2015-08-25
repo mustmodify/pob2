@@ -17,6 +17,7 @@ class POBSummaryReport < Valuable
   has_value :start_date, :klass => Date, :parse_with => :parse
   has_value :end_date, :klass => Date, :parse_with => :parse
   has_value :employee_id, :klass => :integer
+  has_value :project_id, :klass => :integer
   has_value :require_params, :default => false
 
   def onboardings
@@ -24,6 +25,7 @@ class POBSummaryReport < Valuable
     scope = scope.where('date >= ?', start_date) if start_date
     scope = scope.where('date <= ?', end_date) if end_date
     scope = scope.where(employee_id: employee_id) if employee_id
+    scope = scope.where(project_id: project_id) if project_id
     scope = scope.where('1 = 0') unless show_results
     scope
   end
@@ -40,11 +42,17 @@ class POBSummaryReport < Valuable
         c1 = nil
       end
 
-      c2 = "action = 'Out'"
+      if project_id
+        c2 = "project_id = #{project_id}"
+      else
+        c1 = nil
+      end
 
-      c3 = %|date = ( select MIN(t2.date) FROM crew_changes t2 WHERE t1.employee_id = t2.employee_id AND t2.date >= '#{start_date}' )|
+      c3 = "action = 'Out'"
 
-      sql = %|select t1.id FROM crew_changes t1 WHERE #{[c1, c2, c3].compact.join(' AND ')}|
+      c4 = %|date = ( select MIN(t2.date) FROM crew_changes t2 WHERE t1.employee_id = t2.employee_id AND t2.date >= '#{start_date}' )|
+
+      sql = %|select t1.id FROM crew_changes t1 WHERE #{[c1, c2, c3, c4].compact.join(' AND ')}|
 puts sql
       results = ActiveRecord::Base.connection.select_values sql
 
