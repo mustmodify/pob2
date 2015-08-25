@@ -9,6 +9,9 @@ class POBSummaryReport < Valuable
     has_value :start_date
     has_value :end_date
 
+    has_value :onboarding_date
+    has_value :offboarding_date
+
     def days
       ((end_date - start_date) + 1).to_i
     end
@@ -53,7 +56,6 @@ class POBSummaryReport < Valuable
       c4 = %|date = ( select MIN(t2.date) FROM crew_changes t2 WHERE t1.employee_id = t2.employee_id AND t2.date >= '#{start_date}' )|
 
       sql = %|select t1.id FROM crew_changes t1 WHERE #{[c1, c2, c3, c4].compact.join(' AND ')}|
-puts sql
       results = ActiveRecord::Base.connection.select_values sql
 
       candidates = CrewChange.where(id: results)
@@ -94,7 +96,9 @@ puts sql
         :project => onboarding.project,
         :position => onboarding.position,
         :start_date => [onboarding.date, self.start_date].compact.max,
-        :end_date => [offboarding.date, self.end_date].compact.min
+        :end_date => [offboarding.date, self.end_date].compact.min,
+        :onboarding_date => onboarding.date,
+        :offboarding_date => offboarding.date,
       )
     end.sort_by{|datum| [datum.employee.id, datum.start_date] }
   end

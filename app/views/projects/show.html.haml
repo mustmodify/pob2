@@ -9,28 +9,5 @@
   =link_to 'Add Crew Change', new_crew_change_path(crew_change: {project_id: @project.id}), :class => 'btn btn-default btn-block'
   =link_to 'Crew Change Log', project_crew_changes_path(@project), :class => 'btn btn-default btn-block'
 
-.row
-  .col-sm-6
-    %h3 Details
-    %h4
-      %table.table.table-striped
-        %tr
-          %th Oil Co
-          %td=@project.oil_co
-        %tr
-          %th Customer
-          %td=@project.customer
-        %tr
-          %th Departure Site
-          %td=@project.departure_site
-        %tr
-          %th Work Site
-          %td=@project.work_site
-        %tr
-          %th Start Date
-          %td=@project.start_date
-        %tr
-          %th End Date
-          %td=@project.end_date
-  .col-sm-6
+=render @project
 

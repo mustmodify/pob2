@@ -1,0 +1,37 @@
+.row
+  .col-sm-6
+    %h2 Today's POB Info
+    %h4 Onboard
+
+    -POBSummaryReport.new(start_date: Date.today, end_date: Date.today).data.each do |datum|
+      %p
+        %b=datum.employee.name
+        =datum.onboarding_date.to_s(:friendly)
+        to
+        =datum.offboarding_date.to_s(:friendly)
+
+    %h4 Offboard
+    %i In Progress
+
+  .col-sm-6
+    %h4 Details
+    %table.table.table-striped
+      %tr
+        %th Oil Co
+        %td=project.oil_co
+      %tr
+        %th Customer
+        %td=project.customer
+      %tr
+        %th Departure Site
+        %td=project.departure_site
+      %tr
+        %th Work Site
+        %td=project.work_site
+      %tr
+        %th Start Date
+        %td=project.start_date
+      %tr
+        %th End Date
+        %td=project.end_date
+
