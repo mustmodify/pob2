@@ -1,11 +1,22 @@
--page_title "Crew Changes for #{@project.name}"
+-page_title "Crew Changes"
 
 -content_for :options do
   =link_to 'New Crew Change', new_crew_change_path, :class => 'btn btn-primary btn-block'
 
 %table.table.table-striped
+  %thead
+    %tr
+      -if !@project
+        %th Project
+      %th Date
+      %th Action
+      %th Employee
+      %th Position
+      %th
   -@crew_changes.each do |crew_change|
     %tr.crew_change
+      -if !@project
+        %td=crew_change.project.name
       %td=crew_change.date
       %td=crew_change.action
       %td=crew_change.employee

@@ -1,8 +1,8 @@
 class CrewChangesController < CRUDController
 
   def index
-    @project = Project.find( params[:project_id] )
-    @crew_changes = @project.crew_changes.order('date desc')
+    @crew_changes = CrewChange.order('date asc')
+    @crew_changes = @crew_changes.where(project_id: params[:project_id]) if params[:project_id]
 
     respond_to do |format|
       format.json { }
