@@ -88,4 +88,18 @@ describe POBSummaryReport do
 
     POBSummaryReport.new(employee_id: ned.id).data.should be_empty
   end
+
+  it 'shows no results if require_parameters is set and no OTHER parameters are set' do
+    ed = FactoryGirl.create(:employee)
+    ned = FactoryGirl.create(:employee)
+    fred = FactoryGirl.create(:project)
+
+    start1 = Date.parse('2015-07-01')
+    end1 = Date.parse('2015-07-10')
+
+    FactoryGirl.create(:crew_change, employee: ed, date: start1, action: 'In', project: fred)
+    FactoryGirl.create(:crew_change, employee: ed, date: end1, action: 'Out', project: fred)
+
+    POBSummaryReport.new(require_params: true).data.should be_empty
+  end
 end

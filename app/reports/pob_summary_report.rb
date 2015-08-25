@@ -1,23 +1,35 @@
 class POBSummaryReport < Valuable
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
 
   has_value :start_date, :klass => Date, :parse_with => :parse
   has_value :end_date, :klass => Date, :parse_with => :parse
   has_value :employee_id
+  has_value :require_params, :default => false
 
   def onboardings
     scope = CrewChange.where(action: 'In')
     scope = scope.where('date >= ?', start_date) if start_date
     scope = scope.where('date <= ?', end_date) if end_date
     scope = scope.where(employee_id: employee_id) if employee_id
+    scope = scope.where('1 = 0') unless show_results
     scope
   end
 
-  def early_overlaps
-    candidates = CrewChange.where('date >= ?', start_date).order('date asc').group('employee_id')
-    candidates = candidates.where(employee_id: employee_id) if employee_id
+  def show_results
+    !( require_params && [start_date, end_date, employee_id].compact.size == 0 )
+  end
 
-    candidates.select do |candidate|
-      candidate.action == 'Out'
+  def early_overlaps
+    if show_results
+      candidates = CrewChange.where('date >= ?', start_date).order('date asc').group('employee_id')
+      candidates = candidates.where(employee_id: employee_id) if employee_id
+
+      candidates.select do |candidate|
+        candidate.action == 'Out'
+      end
+    else
+      []
     end
   end
 
@@ -52,5 +64,9 @@ class POBSummaryReport < Valuable
         out[on.employee] += days_worked(on, off)
       end
     end
+  end
+
+  def persisted?
+    false
   end
 end

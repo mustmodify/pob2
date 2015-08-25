@@ -1,0 +1,10 @@
+-page_title 'POB Summary'
+
+=simple_form_for @pob_summary, :url => '/reports/pob_summary' do |f|
+  =f.input :start_date, as: :dated, required: false
+  =f.input :end_date, as: :dated, required: false
+  =f.input :employee_id, collection: Employee.alphabetical, required: false
+
+-@pob_summary.data.each do |employee, dates|
+  %h2=employee.name
+  =dates.map(&:to_s).join(', ')
