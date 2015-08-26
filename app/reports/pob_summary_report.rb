@@ -23,6 +23,14 @@ class POBSummaryReport < Valuable
   has_value :project_id, :klass => :integer
   has_value :require_params, :default => false
 
+  def employee
+    Employee.find_by_id( self.employee_id )
+  end
+
+  def project
+    Project.find_by_id( self.project_id )
+  end
+
   def onboardings
     scope = CrewChange.where(action: 'In')
     scope = scope.where('date >= ?', start_date) if start_date

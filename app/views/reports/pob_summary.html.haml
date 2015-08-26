@@ -1,12 +1,19 @@
 -page_title 'POB Summary'
 
-=simple_form_for @pob_summary, :url => '/reports/pob_summary' do |f|
-  =f.input :start_date, as: :dated, required: false
-  =f.input :end_date, as: :dated, required: false
-  =f.input :employee_id, collection: Employee.alphabetical, required: false
-  =f.input :project_id, collection: Project.all, required: false
-  =f.button :submit, 'Build Report'
+-content_for :options do
+  .panel.panel-info
+    .panel-body
+      =simple_form_for @pob_summary, :url => '/reports/pob_summary', wrapper: :vertical_form do |f|
+        =f.input :start_date, as: :dated, required: false
+        =f.input :end_date, as: :dated, required: false
+        =f.input :employee_id, collection: Employee.alphabetical, required: false
+        =f.input :project_id, collection: Project.all, required: false
+        =f.button :submit, 'Build Report'
 
+  .spacer
+
+  -if @pob_summary.show_results
+    =link_to "Get PDF", url_for(params.merge(:controller => 'reports', :action => 'pob_summary')), class: 'btn btn-primary btn-block'
 .spacer
 .spacer
 

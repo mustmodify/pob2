@@ -1,0 +1,68 @@
+-page_title 'POB Summary'
+
+.row
+  .col-xs-6
+    .panel.panel-default.panel-body
+      %h4 Report Criteria
+      %table.table
+        %tr
+          %th Start Date
+          %td=@pob_summary.start_date 
+        %tr
+          %th End Date
+          %td=@pob_summary.end_date 
+        %tr
+          %th Project 
+          %td=@pob_summary.project || 'All'
+        %tr
+          %th Employee 
+          %td=@pob_summary.employee || 'All'
+  .col-xs-6
+    -if @pob_summary.project
+      .panel.panel-default.panel-body
+        %h4 Project
+        %table.table
+          %tr
+            %th Customer
+            %td=@pob_summary.project.customer
+          %tr
+            %th Project
+            %td=@pob_summary.project.name
+          %tr
+            %th Oil Co 
+            %td=@pob_summary.project.oil_co
+          %tr
+            %th Departure Site 
+            %td=@pob_summary.project.departure_site
+          %tr
+            %th Work Site 
+            %td=@pob_summary.project.work_site
+  .col-xs-4
+%table.table
+  %thead
+    %tr
+      %th Employee
+      %th Project
+      %th Position
+      %th Dates
+      %th Days
+  %tbody
+    -@pob_summary.data.each do |datum|
+      %tr
+        %td=datum.employee.name
+        %td=datum.project.name
+        %td=datum.position.name
+        %td
+          =datum.start_date.to_s(:friendly)
+          to
+          =datum.end_date.to_s(:friendly)
+        %td=datum.days
+
+.col-xs-6.col-xs-offset-3
+  .panel.panel-info
+    .panel-body
+      .text-muted For office use only
+      %h4 
+        Comments
+      .spacer{style: 'height: 4em'}
+      %i Approved by:

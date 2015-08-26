@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title AA Bail
+    = wicked_pdf_stylesheet_link_tag "application.pdf", media: "all"
+    = csrf_meta_tags
+    %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=Edge,chrome=1'}
+    %meta{:charset => 'utf-8'}
+
+  %body
+    .container
+      .row
+        .col-xs-3
+          =wicked_pdf_image_tag 'logo.png', style: 'width: 90%; vertical-align: left;'
+        .col-xs-9
+          -if content_for :page_title
+            =yield :page_title
+          -elsif page_title.not.blank?
+            %h1.page-title=page_title
+      .clearfix
+      %p 
+
+      =yield :outside
+      =yield
