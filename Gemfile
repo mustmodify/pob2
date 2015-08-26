@@ -19,6 +19,7 @@ gem 'paperclip'
 gem 'simple_form'
 gem 'valuable'
 gem 'warden'
+gem 'wicked_pdf' # html2pdf
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
