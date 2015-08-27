@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820183341) do
+ActiveRecord::Schema.define(version: 20150827134013) do
 
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id",        limit: 4
@@ -127,13 +127,17 @@ ActiveRecord::Schema.define(version: 20150820183341) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string  "name",              limit: 255
-    t.integer "oil_co_id",         limit: 4
-    t.integer "customer_id",       limit: 4
-    t.integer "departure_site_id", limit: 4
-    t.integer "work_site_id",      limit: 4
-    t.date    "start_date"
-    t.date    "end_date"
+    t.string   "name",              limit: 255
+    t.integer  "oil_co_id",         limit: 4
+    t.integer  "customer_id",       limit: 4
+    t.integer  "departure_site_id", limit: 4
+    t.integer  "work_site_id",      limit: 4
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "email",             limit: 255
+    t.string   "phone",             limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reprimand_categories", force: :cascade do |t|

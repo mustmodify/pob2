@@ -29,6 +29,20 @@
         %th Work Site
         %td=project.work_site
       %tr
+        %th Phone
+        %td
+          -if project.phone.not.blank?
+            =project.phone
+          -else
+            .text-muted No Phone Provided
+      %tr
+        %th Email
+        %td
+          -if project.email.not.blank?
+            =link_to project.email, "mailto: #{project.email}"
+          -else
+            .text-muted No Email Provided
+      %tr
         %th Start Date
         %td=project.start_date
       %tr
