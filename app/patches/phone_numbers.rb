@@ -5,7 +5,7 @@ module ARPhoneNumber
     end
 
     define_method(field) do
-      PhoneNumber.new(read_attribute(field))
+      PhoneNumber.new(read_attribute(field)).to_s
     end
   end
 end

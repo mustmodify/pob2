@@ -1,5 +1,5 @@
-=simple_form_for @employee do |f|
-  %h3 Details
+=simple_form_for @employee, wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
+  %legend Details
 
   =f.input :first_name
   =f.input :middle_name
@@ -7,7 +7,7 @@
   =f.input :dob, as: :dated
   =f.input :email
   =f.input :nationality
-  =f.input :ssn
+  =f.input :ssn, label: 'SSN'
   =f.input :gsn, :label => 'GS #'
   =f.input :transportation_needed, as: :select
   =f.input :body_weight
@@ -18,13 +18,13 @@
   -else
     =f.input :picture
 
-  %h3 Phone Numbers
+  %legend Phone Numbers
 
   =f.input :cell_phone, label: 'Cell'
   =f.input :home_phone, label: 'Home'
   =f.input :alt_phone, label: 'Alt'
 
-  %h3 Address
+  %legend Address
 
   =f.input :street1, label: 'Street'
   =f.input :street2, label: 'Apt, etc.'
@@ -32,7 +32,7 @@
   =f.input :state
   =f.input :zipcode
 
-  %h3 Identification
+  %legend Identification
 
   =f.input :ident_issuer, :label => 'Issuer', :hint => 'Country or State'
   =f.input :ident_number, :label => 'Number'
