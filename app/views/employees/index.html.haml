@@ -1,11 +1,12 @@
 -page_title 'Employee List'
 
 -content_for :options do
+  .panel.panel-body
+    =simple_form_for @search, method: :get, url: employees_path do |f|
+      =f.input :cert_expiration_period, :collection => {nil => nil, '30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}
+      =f.submit :search, :class => 'btn btn-info'
   =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
 
-  .panel.panel-default
-    =simple_form_for @search, url: employees_path do |f|
-      =f.input :cert_expiration_period, :collection => {nil => nil, '30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}
 .list
   -@employees.each do |employee|
     .col-sm-6.employee-block

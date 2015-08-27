@@ -3,7 +3,7 @@ class NestedCRUDController < ApplicationController
 
   def index
     set_parent
-    set_records model.paginate(page: params[:page])
+    set_records model.all
 
     respond_to do |format|
       format.html do

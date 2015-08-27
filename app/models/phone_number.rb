@@ -16,7 +16,7 @@ class PhoneNumber < String
   end
 
   def self.strip( input )
-    input.gsub(/[^\d]*/, '')
+    input && input.gsub(/[^\d]*/, '')
   end
 
   def to_s

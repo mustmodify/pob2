@@ -18,7 +18,7 @@
     -@projects.each do |project|
       %tr
         %td=link_to 'edit', edit_project_path( project ), :class => 'btn btn-default btn-xs'
-        %th=project.name
+        %th=link_to project.name, project
         %td=project.oil_co
         %td=project.customer
         %td=project.departure_site
