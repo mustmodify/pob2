@@ -5,9 +5,7 @@
   =link_to 'Add Reprimand', new_employee_reprimand_path( @employee ), :class => 'btn btn-primary btn-block'
 
 -if @reprimands.empty?
-  .alert.alert-success
-    %h3
-      %b No reprimands on file!
+  .text-muted No reprimands on file!
 -else
   %table.table.table-striped
     %thead

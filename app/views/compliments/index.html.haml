@@ -5,9 +5,7 @@
   =link_to 'Add Compliment', new_employee_compliment_path( @employee ), :class => 'btn btn-primary btn-block'
 
 -if @compliments.empty?
-  .alert.alert-success
-    %h3
-      %b No compliments on file!
+  .text-muted No compliments on file!
 -else
   %table.table.table-striped
     %thead

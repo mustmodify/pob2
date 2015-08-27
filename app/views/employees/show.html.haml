@@ -60,9 +60,7 @@
     %h2 Restrictions
     %h4
       -if @employee.restrictions.empty?
-        .alert.alert-success
-          %h4
-            %b No restrictions
+        .text-muted No restrictions
       -else
         -@employee.restrictions.each do |restriction|
           %li

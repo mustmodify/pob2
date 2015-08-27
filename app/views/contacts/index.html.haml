@@ -5,8 +5,6 @@
   =link_to 'Add Contact', new_employee_contact_path( @employee ), :class => 'btn btn-primary btn-block'
 
 -if @contacts.empty?
-  .alert.alert-warning
-    %h3
-      %b No contacts on file! 
+  .text-muted No contacts on file!
 -else
   =render @contacts

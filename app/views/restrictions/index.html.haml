@@ -5,9 +5,7 @@
   =link_to 'Back to Employee', employee_path(@employee), :class => 'btn btn-default btn-block'
 
 -if @restrictions.empty?
-  .alert.alert-success
-    %h4
-      %b No restrictions
+  .text-muted No restrictions
 -@restrictions.each do |restriction|
   .col-md-4
     .panel.panel-simple.panel-body.text-center

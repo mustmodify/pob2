@@ -5,9 +5,7 @@
   =link_to 'Add Cert', new_employee_cert_path( @employee ), :class => 'btn btn-primary btn-block'
 
 -if @certs.empty?
-  .alert.alert-info
-    %h3
-      %b No information about certs yet.
+  .text-muted No information about certs yet.
 -else
   -@certs.each do |cert|
     .col-sm-4
