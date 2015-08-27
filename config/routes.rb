@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'employees#index'
 
+  get 'calendar' => 'reports#calendar'
   # named routes
   get 'logout' => 'user_sessions#destroy'
 

@@ -11,6 +11,7 @@
 
     = csrf_meta_tags
   %body{class: [params['controller'], params['action']].join(' ')}
+    = render :partial => 'layouts/navigation'
     .container
       = yield
   %footer
@@ -20,3 +21,6 @@
           = render :partial => 'layouts/footer'
 
     = javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery?
+    = javascript_include_tag 'application'
+    =yield :footer
+    =yield :scripts
