@@ -7,8 +7,11 @@ class Project < ActiveRecord::Base
   belongs_to :work_site
 
   has_many :crew_changes
-
+  has_many :assignments
+  has_many :employees, through: :assignments
   validates_presence_of :name
+
+  has_phone_number :phone
 
   def to_s
     name

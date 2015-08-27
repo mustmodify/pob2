@@ -17,6 +17,10 @@ class Employee < ActiveRecord::Base
 
   has_and_belongs_to_many :positions, :join_table => :competencies
 
+  has_phone_number :cell_phone
+  has_phone_number :home_phone
+  has_phone_number :alt_phone
+
   scope :alphabetical, -> {order(:last_name, :first_name)}
   def phone_numbers
     {}.tap do |out|

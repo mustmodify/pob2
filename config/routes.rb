@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :oil_cos
   resources :positions
   resources :projects do
+    resources :assignments
     resources :crew_changes
   end
 
