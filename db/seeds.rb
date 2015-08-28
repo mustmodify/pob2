@@ -86,3 +86,46 @@ end
 if Employee.count == 0
   load Rails.root + 'db/seed_employees.rb'
 end
+
+if Project.count == 0
+  Project.create(
+    name: 'Betty Phanku',
+    oil_co: OilCo.find_by_name('Hess'),
+    customer: Customer.find_by_name('Aries Marine'),
+    departure_site: DepartureSite.find_by_name('C-Terminal'),
+    work_site: WorkSite.find_by_name('Fourchon'),
+    start_date: '2013-06-01',
+    end_date: '2016-06-01'
+  )
+
+  Project.create(
+    name: 'Elsa Leigh',
+    oil_co: OilCo.find_by_name('Anadarko'),
+    customer: Customer.find_by_name('Aries Marine'),
+    departure_site: DepartureSite.find_by_name('C-Port 1, Slip 5'),
+    work_site: WorkSite.find_by_name('Fourchon'),
+    start_date: '2013-06-01',
+    end_date: '2016-06-01'
+  )
+
+  Project.create(
+    name: 'Kylie Williams',
+    oil_co: OilCo.find_by_name('Hess'),
+    customer: Customer.find_by_name('Aries Marine'),
+    departure_site: DepartureSite.find_by_name('C-Terminal'),
+    work_site: WorkSite.find_by_name('Fourchon'),
+    start_date: '2013-06-01',
+    end_date: '2016-06-01'
+  )
+
+  Project.create(
+    name: 'Ram Challenger',
+    oil_co: OilCo.find_by_name('McMoran'),
+    customer: Customer.find_by_name('Aries Marine'),
+    departure_site: DepartureSite.find_by_name('C-Terminal'),
+    work_site: WorkSite.find_by_name('Fourchon'),
+    start_date: '2013-06-01',
+    start_date: '2016-06-01'
+  )
+end
+
