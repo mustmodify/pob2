@@ -2,7 +2,7 @@
 # from https://github.com/rafaelfranca/simple_form-bootstrap/blob/master/config/initializers/simple_form_bootstrap.rb
 SimpleForm.setup do |config|
   config.error_notification_class = 'alert alert-danger'
-  config.button_class = 'btn btn-default form-button-offset'
+  config.button_class = 'btn btn-default'
   config.boolean_label_class = nil
 
   config.wrappers :vertical_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
