@@ -12,4 +12,11 @@ describe EmployeeSearch do
     EmployeeSearch.new(cert_expiration_period: 30.days.to_i).results.should_not include(jen)
     EmployeeSearch.new(cert_expiration_period: 60.days.to_i).results.should include(jen)
   end
+
+  it 'filters by assignment' do
+    jen = FactoryGirl.create(:employee)
+    project = FactoryGirl.create(:project)
+
+    EmployeeSearch.new(project_id: project.id).results.should_not include(jen)
+  end
 end

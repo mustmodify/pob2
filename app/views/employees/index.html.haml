@@ -3,7 +3,8 @@
 -content_for :options do
   .panel.panel-body
     =simple_form_for @search, method: :get, url: employees_path do |f|
-      =f.input :cert_expiration_period, :collection => {nil => nil, '30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}
+      =f.input :cert_expiration_period, :collection => {nil => nil, '30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}, required: false
+      =f.input :project_id, :collection => Project.all.order('name').map{|project| [project.name, project.id]}, required: false
       =f.submit :search, :class => 'btn btn-info'
   =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
 
