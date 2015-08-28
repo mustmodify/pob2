@@ -32,6 +32,10 @@ class Employee < ActiveRecord::Base
     end
   end
 
+  def date_of_last_screening
+    screenings.order('date').last.try(&:date)
+  end
+
   def name
     [first_name, middle_name, last_name].compact.join(' ')
   end

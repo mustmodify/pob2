@@ -9,3 +9,10 @@
         =": "
         =number
 
+
+    %p.last-screening
+      %b Last Screening:
+      -if employee.date_of_last_screening
+        =employee.date_of_last_screening
+      -else
+        %span.text-muted not on file
