@@ -1,20 +1,41 @@
+-presenter = POBTodayPresenter.new(date: params[:date], project: project)
+
 .row
   .col-sm-6
-    %h2 Today's POB Info
-    %h4 Onboard
+    %h2=presenter.title
+    %h3 Changes
+    -if presenter.changes.empty?
+      .text-muted No changes today.
+    -else
+      -presenter.changes.each do |datum|
+        %li
+          %b=link_to datum.employee.name, datum.employee
+          -if datum.action == 'Off'
+            %span.label.label-default Off
+          -else
+            %span.label.label-success On
 
-    -POBSummaryReport.new(start_date: Date.today, end_date: Date.today).data.each do |datum|
-      %p
-        %b=datum.employee.name
-        =datum.onboarding_date.to_s(:friendly)
-        to
-        =datum.offboarding_date.to_s(:friendly)
+          %span.text-muted
+            =datum.onboarding_date.to_s(:md)
+            to
+            =datum.offboarding_date.to_s(:md)
 
-    %h4 Offboard
-    %i In Progress
+    %h3 Onboard
+    -presenter.onboard.each do |datum|
+      %li
+        %b=link_to datum.employee.name, datum.employee
+        %span.text-muted
+          =datum.onboarding_date.to_s(:md)
+          to
+          =datum.offboarding_date.to_s(:md)
+
+    %h3 Offboard
+    -presenter.offboard.each do |emp|
+      %li
+        %b=link_to emp.name, emp
 
   .col-sm-6
-    %h4 Details
+    %h3 Details
     %table.table.table-striped
       %tr
         %th Oil Co

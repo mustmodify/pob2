@@ -12,6 +12,16 @@ class POBSummaryReport < Valuable
     has_value :onboarding_date
     has_value :offboarding_date
 
+    def action
+      if self.onboarding_date.today?
+        'On'
+      elsif self.offboarding_date.today?
+        'Off'
+      else
+        nil
+      end
+    end
+
     def days
       ((end_date - start_date) + 1).to_i
     end
