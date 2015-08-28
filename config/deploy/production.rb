@@ -7,7 +7,8 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-
+server 'esoteric.mustmodify.com', user: 'production', roles: %w{app db web}
+set :deploy_to, '/home/production/mako2'
 
 # role-based syntax
 # ==================
