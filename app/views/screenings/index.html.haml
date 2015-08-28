@@ -1,0 +1,27 @@
+-page_title "#{@employee.name} Screenings"
+
+-content_for :options do
+  =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
+  =link_to 'Add Screening', new_employee_screening_path( @employee ), :class => 'btn btn-primary btn-block'
+
+-if @screenings.empty?
+  .text-muted No screenings on file!
+-else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Date
+        %th Result 
+        %th
+        %th
+    %tbody
+      -@screenings.each do |screening|
+        %tr
+          %td=screening.date
+          %td=screening.outcome
+          %td
+            -if screening.image
+              =link_to 'View Image', screening.image.url, :class => 'btn btn-xs btn-info'
+            -else
+              .text-muted no image
+          %td=link_to 'Edit', edit_employee_screening_path( @employee, screening ), :class => 'btn btn-xs btn-default'

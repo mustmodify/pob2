@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :contacts
     resources :reprimands
     resources :restrictions
+    resources :screenings
   end
 
   resources :notes
