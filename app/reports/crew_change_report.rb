@@ -29,6 +29,7 @@ class CrewChangeReport < Valuable
       title: "#{self.project.name} +#{count_in} -#{count_out}",
       allDay: true,
       start: date.to_date.to_s(:db),
+      url: "/projects/#{self.project.id}?date=#{date.to_date.to_s(:db)}"
     }
   end
 end

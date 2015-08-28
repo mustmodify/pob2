@@ -12,10 +12,10 @@ class POBSummaryReport < Valuable
     has_value :onboarding_date
     has_value :offboarding_date
 
-    def action
-      if self.onboarding_date.today?
+    def action(date = Date.today)
+      if self.onboarding_date == date
         'On'
-      elsif self.offboarding_date.today?
+      elsif self.offboarding_date == date
         'Off'
       else
         nil

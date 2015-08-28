@@ -10,7 +10,7 @@
       -presenter.changes.each do |datum|
         %li
           %b=link_to datum.employee.name, datum.employee
-          -if datum.action == 'Off'
+          -if datum.action(presenter.date) == 'Off'
             %span.label.label-default Off
           -else
             %span.label.label-success On
