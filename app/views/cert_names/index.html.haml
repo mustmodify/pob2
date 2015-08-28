@@ -1,0 +1,8 @@
+-page_title 'Cert Names' 
+
+-content_for :options do
+  =link_to 'New Kind of Cert', new_cert_name_path, :class => 'btn btn-primary btn-block'
+
+-@cert_names.each do |cert_name|
+  %li
+    =cert_name.name

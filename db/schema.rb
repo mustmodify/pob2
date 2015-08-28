@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828172019) do
+ActiveRecord::Schema.define(version: 20150828173438) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "project_id",  limit: 4
@@ -22,9 +22,13 @@ ActiveRecord::Schema.define(version: 20150828172019) do
 
   add_index "assignments", ["project_id", "employee_id", "position_id"], name: "index_assignments_on_project_id_and_employee_id_and_position_id", using: :btree
 
+  create_table "cert_names", force: :cascade do |t|
+    t.string "name", limit: 255
+  end
+
   create_table "certs", force: :cascade do |t|
     t.integer  "employee_id",        limit: 4
-    t.string   "description",        limit: 255
+    t.integer  "cert_name_id",       limit: 4
     t.date     "expires_on"
     t.string   "image_file_name",    limit: 255
     t.string   "string",             limit: 255
