@@ -6,6 +6,7 @@
       =f.input :cert_expiration_period, :collection => {nil => nil, '30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}, required: false
       =f.input :project_id, :collection => Project.all.order('name').map{|project| [project.name, project.id]}, required: false
       =f.input :position_id, :collection => Position.all.map{|position| [position.name, position.id]}, required: false, hint: 'based on assignments, not competence'
+      =f.input :include_those_needing_transport, as: :radio_buttons
       =f.submit :search, :class => 'btn btn-info'
   =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
 

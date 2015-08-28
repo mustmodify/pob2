@@ -5,6 +5,7 @@ class EmployeeSearch < Valuable
   has_value :cert_expiration_period, :klass => :integer
   has_value :project_id, :klass => :integer
   has_value :position_id, :klass => :integer
+  has_value :include_those_needing_transport, :parse_with => lambda {|x| x == true || x == "true"}, default: true
 
   def results
     scope = Employee.where('1=1')
@@ -18,6 +19,10 @@ class EmployeeSearch < Valuable
     if self.cert_expiration_period
       scope = scope.joins(:certs)
       scope = scope.where('certs.expires_on < ?', Time.now + cert_expiration_period)
+    end
+
+    if !self.include_those_needing_transport
+      scope = scope.where('transportation_needed = ? OR transportation_needed IS NULL', false)
     end
 
     scope

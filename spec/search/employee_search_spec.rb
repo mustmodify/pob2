@@ -30,4 +30,13 @@ describe EmployeeSearch do
 
     EmployeeSearch.new(position_id: clown.id).results.should_not include(jen)
   end
+
+  it 'filters by whether transport is required' do
+    jen = FactoryGirl.create(:employee, transportation_needed: true)
+    EmployeeSearch.new(include_those_needing_transport: false).results.should_not include(jen)
+  end
+
+  it 'accepts transportation message' do
+    EmployeeSearch.new("include_those_needing_transport"=>"false").include_those_needing_transport.should == false
+  end
 end
