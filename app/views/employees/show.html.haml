@@ -19,6 +19,7 @@
   =link_to 'Reprimands', employee_reprimands_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Compliments', employee_compliments_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Restrictions', employee_restrictions_path( @employee ), :class => 'btn btn-block btn-default'
+  =link_to 'Screenings', employee_screenings_path( @employee ), :class => 'btn btn-block btn-default'
 
 .row
   .col-sm-4
@@ -32,7 +33,8 @@
     .spacer
     .spacer
     =render :partial => 'note_form'
-  .col-sm-6
+  .col-sm-8
+    %h2 Summary
     -@employee.phone_numbers.each do |label, value|
       %h3 #{label}: #{value}
     -if @employee.email
@@ -56,13 +58,32 @@
       %tr
         %td Reprimands
         %td=@employee.reprimands.count
+      %tr
+        %td Last Screening
+        %td
+          -if @employee.date_of_last_screening
+            =time_ago_in_words( @employee.date_of_last_screening )
+            ago
+          -else
+            .text-muted No screenings on file
+      %tr
+        %td Restrictions
+        %td
+          -if @employee.restrictions.empty?
+            .text-muted No restrictions
+          -else
+            -@employee.restrictions.each do |restriction|
+              %li
+                %b=restriction.title
+                =restriction.description
 
-    %h2 Restrictions
-    %h4
-      -if @employee.restrictions.empty?
-        .text-muted No restrictions
-      -else
-        -@employee.restrictions.each do |restriction|
-          %li
-            %b=restriction.title
-            =restriction.description
+    %h2 Crew Changes:
+    %table.table
+      -POBSummaryReport.new(employee_id: @employee.id, :start_date => Date.today).data.each do |datum|
+        %tr
+          %td=datum.project.name
+          %td=datum.position.name
+          %td
+            =datum.onboarding_date.to_s(:md)
+            to
+            =datum.offboarding_date.to_s(:md)
