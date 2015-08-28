@@ -5,15 +5,19 @@
     =simple_form_for @search, method: :get, url: employees_path do |f|
       =f.input :cert_expiration_period, :collection => {nil => nil, '30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}, required: false
       =f.input :project_id, :collection => Project.all.order('name').map{|project| [project.name, project.id]}, required: false
+      =f.input :position_id, :collection => Position.all.map{|position| [position.name, position.id]}, required: false, hint: 'based on assignments, not competence'
       =f.submit :search, :class => 'btn btn-info'
   =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
 
-.list
-  -@employees.each do |employee|
-    .col-sm-6.employee-block
-      .panel.panel-simple
-        .panel-body
-          =render employee
+-if @employees.empty?
+  .text-muted No employees matched your criteria.
+-else
+  .list
+    -@employees.each do |employee|
+      .col-sm-6.employee-block
+        .panel.panel-simple
+          .panel-body
+            =render employee
 
 .clearfix
 
