@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827151237) do
+ActiveRecord::Schema.define(version: 20150828170608) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "project_id",  limit: 4
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150827151237) do
     t.boolean  "transportation_needed"
     t.integer  "body_weight",           limit: 4
     t.integer  "bag_weight",            limit: 4
+    t.string   "status",                limit: 15,  default: "Active"
     t.boolean  "eligible_for_rehire"
     t.string   "cell_phone",            limit: 255
     t.string   "home_phone",            limit: 255
@@ -113,8 +114,8 @@ ActiveRecord::Schema.define(version: 20150827151237) do
     t.string   "picture_content_type",  limit: 255
     t.integer  "picture_file_size",     limit: 4
     t.datetime "picture_updated_at"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   create_table "notes", force: :cascade do |t|

@@ -6,6 +6,7 @@ class EmployeeSearch < Valuable
   has_value :project_id, :klass => :integer
   has_value :position_id, :klass => :integer
   has_value :include_those_needing_transport, :parse_with => lambda {|x| x == true || x == "true"}, default: true
+  has_value :status
 
   def results
     scope = Employee.where('1=1')
@@ -23,6 +24,10 @@ class EmployeeSearch < Valuable
 
     if !self.include_those_needing_transport
       scope = scope.where('transportation_needed = ? OR transportation_needed IS NULL', false)
+    end
+
+    if self.status.not.blank?
+      scope = scope.where(status: self.status)
     end
 
     scope
