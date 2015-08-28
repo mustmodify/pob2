@@ -24,18 +24,6 @@ class CrewChangeReport < Valuable
     changes.select{|c| c.action == 'Out'}.size
   end
 
-  def sr
-    @status_report ||= StatusReport.new(project: self.project)
-  end
-
-  def onboard
-    sr.onboard
-  end
-
-  def offboard
-    sr.offboard
-  end
-
   def as_json(options = {})
     {
       title: "#{self.project.name} +#{count_in} -#{count_out}",
