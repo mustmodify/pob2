@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828173438) do
+ActiveRecord::Schema.define(version: 20150831204534) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "project_id",  limit: 4
@@ -68,16 +68,6 @@ ActiveRecord::Schema.define(version: 20150828173438) do
     t.datetime "updated_at"
   end
 
-  create_table "crew_changes", force: :cascade do |t|
-    t.date    "date"
-    t.integer "project_id",  limit: 4
-    t.string  "action",      limit: 255
-    t.integer "employee_id", limit: 4
-    t.integer "position_id", limit: 4
-    t.decimal "rate",                      precision: 10
-    t.text    "note",        limit: 65535
-  end
-
   create_table "customers", force: :cascade do |t|
     t.string "name", limit: 255
   end
@@ -120,6 +110,18 @@ ActiveRecord::Schema.define(version: 20150828173438) do
     t.datetime "picture_updated_at"
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer  "project_id",       limit: 4
+    t.integer  "employee_id",      limit: 4
+    t.integer  "position_id",      limit: 4
+    t.decimal  "daily_rate",                     precision: 10
+    t.date     "onboarding_date"
+    t.date     "offboarding_date"
+    t.text     "note",             limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "notes", force: :cascade do |t|

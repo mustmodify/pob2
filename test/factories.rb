@@ -21,18 +21,17 @@ FactoryGirl.define do
     rate 100
   end
 
-  factory :crew_change do
-    association :project
-    association :employee
-    date { 3.days.ago }
-    association :position
-    action 'In'
-    rate 100
-  end
-
   factory :employee do
     first_name 'John'
     last_name 'Watzke'
+  end
+
+  factory :job do
+    association :project
+    association :employee
+    association :position
+    onboarding_date { 3.days.ago }
+    offboarding_date { 3.days.ago }
   end
 
   factory :position do

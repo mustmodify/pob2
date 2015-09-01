@@ -2,11 +2,20 @@
   =javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js'
   =javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.min.js'
   =stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.min.css'
-  =stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.print.css'
+  =stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.print.css', media: 'print'
 
 :css
   .fc-row tr {
       height: 50px;
+  }
+
+  .fc-view-container {
+    background-color: white;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
   }
 
 #calendar
@@ -15,7 +24,15 @@
 -content_for :scripts do
   :javascript
     $(function() {
-      $('#calendar').fullCalendar({
+      $('#calendar').fullCalendar(
+      {
+        header:
+        {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,basicWeek,basicDay'
+        },
+        defaultView: 'month',
         events: '/calendar.json'
         // put your options and callbacks here
       })

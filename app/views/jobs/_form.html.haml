@@ -1,0 +1,15 @@
+=simple_form_for instance, wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
+
+  =f.association :project
+  =f.association :employee 
+  =f.association :position
+  =f.input :daily_rate, hint: 'leave blank to use the normal rate'
+
+  %legend Dates
+  =f.input :onboarding_date, as: :dated
+  =f.input :offboarding_date, as: :dated, hint: "Don't know? Just guestimate. That way the dates will appear on the calendar and report."
+
+  %legend Notes
+  =f.input :note
+
+  =f.button :submit

@@ -1,0 +1,26 @@
+-page_title "Jobs"
+
+-content_for :options do
+  =link_to 'Add Job', new_job_path, :class => 'btn btn-primary btn-block'
+
+%table.table.table-striped
+  %thead
+    %tr
+      -if !@project
+        %th Project
+      %th Employee
+      %th Position
+      %th Onboard
+      %th Offboard 
+      %th
+  -@jobs.each do |job|
+    %tr.job
+      -if !@project
+        %td=job.project.name
+      %td=job.employee
+      %td=job.position
+      %td=job.onboarding_date
+      %td=job.offboarding_date
+      %td=link_to 'edit', edit_job_path( job ), :class => 'btn btn-xs btn-default'
+
+=will_paginate @jobs, :renderer => BootstrapPagination::Rails
