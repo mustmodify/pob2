@@ -19,7 +19,7 @@
     -@projects.each do |project|
       %tr
         %td=link_to 'edit', edit_project_path( project ), :class => 'btn btn-default btn-xs'
-        %td=link_to 'Daily', project_path( project ), :class => 'btn btn-info btn-xs'
+        %td=link_to 'view', project_path( project ), :class => 'btn btn-info btn-xs'
         %th=link_to project.name, project
         %td=project.oil_co
         %td=project.customer
