@@ -10,6 +10,8 @@ class Project < ActiveRecord::Base
   has_many :employees, through: :assignments
   has_many :jobs
 
+  scope :visible, -> { where('start_date <= ?', 1.month.from_now).where('end_date >= ?', 1.month.ago)}
+
   validates_presence_of :name
 
   has_phone_number :phone

@@ -1,0 +1,52 @@
+-presenter = POBTodayPresenter.new(date: params[:date], project: project)
+
+%h2=project.name
+.row
+  .col-sm-6
+    %h4 Changes
+    -if presenter.changes.empty?
+      .text-muted No changes today.
+    -else
+      -presenter.changes.each do |datum|
+        %li
+          %b=link_to datum.employee.name, datum.employee
+          -if datum.action(presenter.date) == 'Off'
+            %span.label.label-default Off
+          -else
+            %span.label.label-success On
+    
+          %span.text-muted
+            =datum.onboarding_date.to_s(:md)
+            to
+            =datum.offboarding_date.to_s(:md)
+    %h4 Status
+    =presenter.onboard.count
+    employees onboard.
+  .col-sm-6
+    %table.table
+      %tr
+        %th Oil Co
+        %td=project.oil_co
+      %tr
+        %th Customer
+        %td=project.customer
+      %tr
+        %th Departure Site
+        %td=project.departure_site
+      %tr
+        %th Work Site
+        %td=project.work_site
+      %tr
+        %th Phone
+        %td
+          -if project.phone.not.blank?
+            =project.phone
+          -else
+            .text-muted No Phone Provided
+      %tr
+        %th Email
+        %td
+          -if project.email.not.blank?
+            =link_to project.email, "mailto: #{project.email}"
+          -else
+            .text-muted No Email Provided

@@ -10,5 +10,8 @@
   =link_to 'Add Job', new_job_path(job: {project_id: @project.id}), :class => 'btn btn-default btn-block'
   =link_to 'Job Log', project_jobs_path(@project), :class => 'btn btn-default btn-block'
 
-=render @project
-
+.row
+  .col-sm-6
+    =render :partial => 'projects/daily', :locals => {project: @project}
+  .col-sm-6
+    =render @project

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'employees#index'
+  root to: 'pages#dashboard'
 
   get 'calendar' => 'reports#calendar'
   # named routes
