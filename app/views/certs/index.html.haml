@@ -13,7 +13,10 @@
       %a{href: employee_cert_path(@employee, cert)}
         .panel.panel-info.panel-simple
           .panel-heading
-            =cert.cert_name
+            %b=cert.cert_name
           .panel-body
             %center
               =image_tag cert.image.url(:thumb)
+              -if cert.expires_on
+                .spacer
+                ="expires on #{cert.expires_on.to_s}"
