@@ -1,0 +1,16 @@
+-page_title "Send certs for #{@employee.to_s} by email"
+:css
+  .checkbox {
+    padding-left: 20px;
+  }
+
+  .checkbox label {
+    padding-left: 0;
+  }
+
+=simple_form_for @presenter, url: employee_cert_email_path(@employee) do |f|
+  =f.input :employee_id, as: :hidden
+  =f.input :recipient, as: :string
+  =f.input :cert_ids, collection: @employee.certs, as: :check_boxes, :label_method => :cert_name
+
+  =f.submit "Deliver", class: 'btn btn-success', 'onclick' => "this.disabled=true;this.value='Submitting...'; this.form.submit();"

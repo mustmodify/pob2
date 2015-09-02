@@ -2,6 +2,7 @@
 
 -content_for :options do
   =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
+  =link_to 'Send By Email', new_employee_cert_email_path( @employee ), :class => 'btn btn-info btn-block'
   =link_to 'Add Cert', new_employee_cert_path( @employee ), :class => 'btn btn-primary btn-block'
 
 -if @certs.empty?

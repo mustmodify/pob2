@@ -1,0 +1,9 @@
+%h1 Certifications for #{@employee.name}
+
+%p Attached, please find #{@list.count} certifications for this employee:
+%ul
+  -@list.each do |cert|
+    %li
+      =cert.cert_name
+      -if cert.expires_on
+        ( expires #{cert.expires_on} )

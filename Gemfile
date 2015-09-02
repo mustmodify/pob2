@@ -15,6 +15,7 @@ gem 'will_paginate-bootstrap'
 gem 'turbolinks'
 
 gem 'haml'
+gem 'mail', github: 'mikel/mail', branch: 'master'
 gem 'paperclip'
 gem 'simple_form'
 gem 'valuable'

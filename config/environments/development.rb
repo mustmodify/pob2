@@ -36,6 +36,17 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.action_mailer.smtp_settings = {
+    enable_startls_auto: true,
+    address: 'smtp.gmail.com',
+    port: 587,
+    authentication: 'plain',
+    domain: 'makounlimited.com',
+    user_name: 'operations@makounlimited.com',
+    password: 'm@koops1'
+  }
+
+  ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
