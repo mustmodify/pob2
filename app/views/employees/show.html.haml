@@ -1,4 +1,9 @@
 -page_title @employee.name
+:css
+  .employee-status .label {
+    width: 100%;
+    display: block;
+  }
 
 -content_for :outside do
   -eap = EmployeeAlertPresenter.new(@employee)
@@ -24,6 +29,17 @@
 .row
   .col-sm-4
     .text-center=image_tag @employee.picture.url(:medium)
+    %h1.employee-status
+      -if @employee.status == 'Active'
+        .label.label-success Active
+      -elsif @employee.status == 'Prospect'
+        .label.label-info Prospect
+      -else
+        .label.label-warning Terminated
+        -if @employee.eligible_for_rehire
+          .label.label-default Can Rehire
+        -else
+          .label.label-danger DO NOT Rehire
     .spacer
     %h4 Notes
     -if @employee.notes.any?
