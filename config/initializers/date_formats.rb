@@ -1,4 +1,5 @@
 Date::DATE_FORMATS.merge!(
+  default: "%m/%d/%Y",
   md: "%b %d",
   db: "%Y-%m-%d",
   friendly: "%A %m/%d",
