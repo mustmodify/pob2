@@ -1,0 +1,7 @@
+-page_title "Change hours worked for #{@change.job.employee.name} on a job from #{@change.job.onboarding_date} to #{@change.job.offboarding_date}"
+=simple_form_for @change, path: '/changes' do |f|
+  =f.input :job_id, as: :hidden
+  =f.input :date, as: :dated
+  =f.input :hours_worked, as: :integer
+  =f.input :note, as: :text
+  =f.button :submit

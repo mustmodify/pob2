@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831204534) do
+ActiveRecord::Schema.define(version: 20150901212607) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "project_id",  limit: 4
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20150831204534) do
     t.integer  "employee_id",      limit: 4
     t.integer  "position_id",      limit: 4
     t.decimal  "daily_rate",                     precision: 10
+    t.decimal  "hours_per_day",                  precision: 10
     t.date     "onboarding_date"
     t.date     "offboarding_date"
     t.text     "note",             limit: 65535

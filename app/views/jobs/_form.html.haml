@@ -4,6 +4,7 @@
   =f.association :employee 
   =f.association :position
   =f.input :daily_rate, hint: 'leave blank to use the normal rate'
+  =f.input :hours_per_day, default: 12
 
   %legend Dates
   =f.input :onboarding_date, as: :dated

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   match '/reports/:action', to: 'reports', via: [:get, :post]
 
   resources :cert_names
+  resources :changes
   resources :customers
   resources :departure_sites
 
@@ -21,7 +22,10 @@ Rails.application.routes.draw do
     resources :screenings
   end
 
-  resources :jobs
+  resources :jobs do
+    resources :change
+  end
+
   resources :notes
   resources :oil_cos
   resources :positions
