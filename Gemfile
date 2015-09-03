@@ -14,6 +14,7 @@ gem 'will_paginate-bootstrap'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+gem 'american_date'
 gem 'haml'
 gem 'mail', github: 'mikel/mail', branch: 'master'
 gem 'paperclip'
