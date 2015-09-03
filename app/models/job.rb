@@ -6,6 +6,14 @@ class Job < ActiveRecord::Base
   validates_presence_of :onboarding_date, :offboarding_date
   validates_presence_of :project_id, :employee_id, :position_id
 
+  def assignment
+    Assignment.where(employee_id: self.employee_id, position_id: self.position_id, project_id: self.project_id).first
+  end
+
+  def competency
+    Competency.where(employee_id: self.employee_id, position_id: self.position_id).first
+  end
+
   def dates
     (onboarding_date..offboarding_date) if offboarding_date
   end

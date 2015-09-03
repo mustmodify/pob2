@@ -18,4 +18,8 @@ class ReportsController < ApplicationController
       format.json { render :json => CrewChangeReport.search(params[:start], params[:end]).to_json }
     end
   end
+
+  def timesheet
+    @timesheet = TimesheetPresenter.new( params[:timesheet_presenter] )
+  end
 end
