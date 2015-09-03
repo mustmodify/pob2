@@ -9,13 +9,10 @@
         =": "
         =number
 
-
-    %p.last-screening
-      %b Last Screening:
-      -if employee.date_of_last_screening
-        =employee.date_of_last_screening
-      -else
-        %span.text-muted not on file
+    -if employee.positions.empty?
+      .text-muted No competencies set up
+    -else
+      =employee.positions.map(&:to_s).join(', ')
     %p.availability
       -if employee.status == 'Terminated'
         .label.label-warning Terminated
@@ -23,3 +20,9 @@
         .label.label-default Prospect
       -else
         =render employee.next_availability
+    %p.last-screening
+      %b Last Screening:
+      -if employee.date_of_last_screening
+        =employee.date_of_last_screening
+      -else
+        %span.text-muted not on file
