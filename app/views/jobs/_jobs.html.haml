@@ -5,6 +5,7 @@
     -if !@employee
       %td=job.employee.name
     %td=job.position
+    %td=job.hours_per_day
     %td=job.onboarding_date
     %td=job.offboarding_date
     %td=link_to 'edit', edit_job_path( job ), :class => 'btn btn-xs btn-default'

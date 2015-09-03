@@ -1,18 +1,18 @@
 class JobsController < CRUDController
   def index
-    @employee = Employee.find_by_id( params[:employee_id] )
-    @project = Project.find_by_id( params[:project_id] )
+    @parent = @employee =Employee.find_by_id( params[:employee_id] )
+    @parent = @project = Project.find_by_id( params[:project_id] )
 
-    @recent_jobs = @employee.jobs.where('offboarding_date > ?', 1.month.ago).where('offboarding_date < ?', Date.today)
-    @current_job = @employee.jobs.where('onboarding_date <= ?', Date.today).where('offboarding_date >= ?', Date.today).first
-    @upcoming_jobs = @employee.jobs.where('onboarding_date > ?', Date.today)
+    @recent_jobs = @parent.jobs.where('offboarding_date > ?', 1.month.ago).where('offboarding_date < ?', Date.today)
+    @current_job = @parent.jobs.where('onboarding_date <= ?', Date.today).where('offboarding_date >= ?', Date.today).first
+    @upcoming_jobs = @parent.jobs.where('onboarding_date > ?', Date.today)
   end
 
   def target_on_create
     if params[:employee_id]
-      employee_path( params[:employee_id] )
+      employee_jobs_path( params[:employee_id] )
     else
-      project_path( @job.project )
+      project_jobs_path( @job.project )
     end
   end
 
@@ -22,6 +22,6 @@ class JobsController < CRUDController
   end
 
   def local_params
-    params.fetch(:job, {}).permit(:onboarding_date, :offboarding_date, :project_id, :employee_id, :position_id, :daily_rate, :note)
+    params.fetch(:job, {}).permit(:onboarding_date, :offboarding_date, :project_id, :employee_id, :position_id, :daily_rate, :hours_per_day, :note)
   end
 end

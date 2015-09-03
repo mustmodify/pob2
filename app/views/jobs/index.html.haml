@@ -1,4 +1,4 @@
--page_title "Jobs for #{@employee.name}"
+-page_title "Jobs for #{@parent.name}"
 
 -content_for :options do
   =link_to 'Add Job', new_job_path(job: {employee_id: params[:employee_id]}), :class => 'btn btn-primary btn-block'
@@ -11,6 +11,7 @@
       -if !@employee
         %th Employee
       %th Position
+      %th Hours / Day
       %th Onboard
       %th Offboard
       %th
