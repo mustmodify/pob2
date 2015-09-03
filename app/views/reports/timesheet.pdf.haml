@@ -1,5 +1,10 @@
 -page_title "Timesheet Report"
 
+:css
+  body {
+    font-size: 11px;
+  }
+
 -content_for :options do
   .panel.panel-info
     .panel-body
@@ -10,6 +15,13 @@
         =f.input :project_id, collection: Project.all, required: false
         =f.button :submit, 'Build Report'
 
-  -if @timesheet.show_results
-    =link_to "Get PDF", url_for(params.merge(:controller => 'reports', :action => 'timesheet', format: :pdf)), class: 'btn btn-primary btn-block'
 =render :partial => 'reports/timesheet_table'
+
+.col-xs-6.col-xs-offset-3
+  .panel.panel-info
+    .panel-body
+      .text-muted For office use only
+      %h4
+        Comments
+      .spacer{style: 'height: 4em'}
+      %i Approved by:

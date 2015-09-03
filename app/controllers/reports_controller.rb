@@ -21,5 +21,12 @@ class ReportsController < ApplicationController
 
   def timesheet
     @timesheet = TimesheetPresenter.new( params[:timesheet_presenter] )
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'timesheet', layout: 'application.pdf'
+      end
+    end
   end
 end

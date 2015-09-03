@@ -15,12 +15,12 @@ class TimesheetPresenter < Valuable
     self.project.try(&:id)
   end
 
-  def sufficient_params?
+  def show_results
     self.start_date && self.end_date
   end
 
   def jobs
-    if sufficient_params?
+    if show_results
       POBSummaryReport.new(
         :employee_id => self.employee.try(&:id),
         :project_id => self.project.try(&:id),

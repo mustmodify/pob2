@@ -1,0 +1,26 @@
+%table.table
+  %thead
+    %tr
+      %th Project
+      %th Position
+      %th Employee 
+      %th Date 
+      %th Hours 
+      %th Rate per Day
+  %tbody
+    -@timesheet.jobs.each do |job|
+      -job.dates.each do |day|
+        %tr
+          %td=job.project
+          %td=job.position
+          %td=job.employee
+          %td=day
+          %td=job.hours_per_day
+          %td=job.rate_per_day
+      /%tr
+      /  %td=job.project
+      /  %td=job.position
+      /  %td=job.employee
+      /  %td=job.days
+      /  %td=job.hours_per_day
+      /  %td=job.rate_per_day
