@@ -1,27 +1,42 @@
--page_title "Jobs"
+-page_title "Jobs for #{@employee.name}"
 
 -content_for :options do
-  =link_to 'Add Job', new_job_path, :class => 'btn btn-primary btn-block'
+  =link_to 'Add Job', new_job_path(job: {employee_id: params[:employee_id]}), :class => 'btn btn-primary btn-block'
 
 %table.table.table-striped
   %thead
     %tr
       -if !@project
         %th Project
-      %th Employee
+      -if !@employee
+        %th Employee
       %th Position
       %th Onboard
-      %th Offboard 
+      %th Offboard
       %th
-  -@jobs.each do |job|
-    %tr.job
-      -if !@project
-        %td=job.project.name
-      %td=job.employee
-      %td=job.position
-      %td=job.onboarding_date
-      %td=job.offboarding_date
-      %td=link_to 'edit', edit_job_path( job ), :class => 'btn btn-xs btn-default'
-      %td=link_to 'change', new_job_change_path( job ), :class => 'btn btn-xs btn-warning'
+      %th
 
-=will_paginate @jobs, :renderer => BootstrapPagination::Rails
+  -if @recent_jobs.not.empty?
+    %thead
+      %tr
+        %th{colspan: 6}
+          %h4 Recent Jobs
+    %tbody
+      =render :partial => 'jobs/jobs', locals:  {jobs: @recent_jobs}
+
+  -if @current_job
+    %thead
+      %tr
+        %th{colspan: 6}
+          %h4 Current Job
+    %tbody
+      =render :partial => 'jobs/jobs', locals:  {jobs: [@current_job]}
+
+  -if @upcoming_jobs.not.empty?
+    %thead
+      %tr
+        %th{colspan: 6}
+          %h4  Upcoming Jobs
+    %tbody
+      =render :partial => 'jobs/jobs', locals:  {jobs: @upcoming_jobs}
+

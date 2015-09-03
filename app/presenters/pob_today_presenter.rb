@@ -36,6 +36,6 @@ class POBTodayPresenter
   end
 
   def offboard
-    @project.employees - onboard.map(&:employee) 
+    @project.employees.active - onboard.map(&:employee)
   end
 end

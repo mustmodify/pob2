@@ -8,6 +8,7 @@ class Employee < ActiveRecord::Base
   has_many :certs
   has_many :compliments
   has_many :contacts
+  has_many :jobs
   has_many :notes
   has_many :reprimands
   has_many :restrictions # isn't that always the way?
@@ -24,6 +25,8 @@ class Employee < ActiveRecord::Base
   has_phone_number :alt_phone
 
   scope :alphabetical, -> {order(:last_name, :first_name)}
+  scope :active, -> {where(status: 'Active')}
+
   def phone_numbers
     {}.tap do |out|
       out['Home'] = self.home_phone if self.home_phone.not.blank?

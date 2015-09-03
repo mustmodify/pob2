@@ -11,6 +11,10 @@ class Change < Valuable
   has_value :hours_worked, :klass => :decimal
   has_value :note
 
+  def employee_id
+    self.job.employee_id
+  end
+
   def fire
     date_ranges = []
     job_dates = job.dates.to_a

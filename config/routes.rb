@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :competencies
     resources :compliments
     resources :contacts
+    resources :jobs
     resources :reprimands
     resources :restrictions
     resources :screenings

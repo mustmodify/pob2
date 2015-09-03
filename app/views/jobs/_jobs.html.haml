@@ -1,0 +1,11 @@
+-jobs.each do |job|
+  %tr.job
+    -if !@project
+      %td=job.project.name
+    -if !@employee
+      %td=job.employee.name
+    %td=job.position
+    %td=job.onboarding_date
+    %td=job.offboarding_date
+    %td=link_to 'edit', edit_job_path( job ), :class => 'btn btn-xs btn-default'
+    %td=link_to 'change', new_job_change_path( job ), :class => 'btn btn-xs btn-warning'
