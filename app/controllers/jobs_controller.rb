@@ -1,7 +1,7 @@
 class JobsController < CRUDController
   def index
     @parent = @employee =Employee.find_by_id( params[:employee_id] )
-    @parent = @project = Project.find_by_id( params[:project_id] )
+    @parent ||= @project = Project.find_by_id( params[:project_id] )
 
     @recent_jobs = @parent.jobs.where('offboarding_date > ?', 1.month.ago).where('offboarding_date < ?', Date.today)
     @current_job = @parent.jobs.where('onboarding_date <= ?', Date.today).where('offboarding_date >= ?', Date.today).first
