@@ -1,9 +1,11 @@
 class ChangeController < ApplicationController
   def new
+    @job = Job.find params[:job_id]
     @change = Change.new(local_params)
   end
 
   def create
+    @job = Job.find params[:job_id]
     @change = Change.new(local_params)
 
     if @change.valid?

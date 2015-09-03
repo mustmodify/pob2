@@ -6,7 +6,7 @@ class Change < Valuable
   validate :must_have_job_with_ending
   validate :must_have_date_in_range
 
-  has_value :job, :klass => Job, :parse_with => :find
+  has_value :job, :klass => Job, :parse_with => :find, :alias => :job_id
   has_value :date, :klass => Date, :parse_with => :parse
   has_value :hours_worked, :klass => :decimal
   has_value :note
@@ -48,6 +48,10 @@ class Change < Valuable
         note: self.note
       )
     end
+  end
+
+  def job_id
+    self.job.id
   end
 
   def must_have_job_with_ending
