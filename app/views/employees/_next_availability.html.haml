@@ -1,0 +1,6 @@
+-if next_availability.immediate?
+  .label.label-success=next_availability.to_s
+-elsif next_availability.known?
+  .label.label-info=next_availability.to_s
+-else
+  .label.label-warning=next_availability.to_s

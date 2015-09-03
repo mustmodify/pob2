@@ -27,7 +27,8 @@
       to
       =datum.offboarding_date.to_s(:md)
 
-%h3 Offboard
+%h3 Employee Availability
 -presenter.offboard.each do |emp|
   %li
     %b=link_to emp.name, emp
+    =render emp.next_availability

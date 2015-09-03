@@ -43,6 +43,10 @@ class Employee < ActiveRecord::Base
     [first_name, middle_name, last_name].compact.join(' ')
   end
 
+  def next_availability
+    @next_availability ||= NextAvailabilityPresenter.new(employee: self)
+  end
+
   def to_s
     name
   end
