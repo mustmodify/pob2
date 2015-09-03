@@ -33,7 +33,7 @@
       -if @employee.status == 'Active'
         .label.label-success Active
       -elsif @employee.status == 'Prospect'
-        .label.label-info Prospect
+        .label.label-default Prospect
       -else
         .label.label-warning Terminated
         -if @employee.eligible_for_rehire

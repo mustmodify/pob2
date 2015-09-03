@@ -17,4 +17,9 @@
       -else
         %span.text-muted not on file
     %p.availability
-      =render employee.next_availability
+      -if employee.status == 'Terminated'
+        .label.label-warning Terminated
+      -elsif employee.status == 'Prospect'
+        .label.label-default Prospect
+      -else
+        =render employee.next_availability
