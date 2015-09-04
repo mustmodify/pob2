@@ -8,7 +8,7 @@
   .row.employee
     .col-sm-4
       .thumb.xs-hidden=image_tag employee.picture.url(:thumb)
-      .clearfix.availability.label-full
+      .availability.label-full
         -if employee.status == 'Terminated'
           .label.label-warning Terminated
         -elsif employee.status == 'Prospect'

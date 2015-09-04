@@ -2,11 +2,14 @@ html {
   overflow-y: scroll;
 }
 
+.label-full .label {
+  white-space: initial !important;
+}
+
 .employee {
-  .thumb {
-    padding-right: 10px;
-    padding-bottom: 10px;
-    float: left;
+  .thumb img {
+    padding: 0 0 10px;
+    width: 100%;
   }
 
   .name {
@@ -30,6 +33,7 @@ html {
 
   .employee {
     height: 155px;
+    overflow-y: auto;
   }
 
   .list .employee-block {
