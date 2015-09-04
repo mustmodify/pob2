@@ -45,7 +45,9 @@ describe Change do
     original.offboarding_date.should == Date.parse('2012-02-14')
     jobs.first.onboarding_date.should == Date.parse('2012-02-15')
     jobs.first.offboarding_date.should == Date.parse('2012-02-15')
+    jobs.first.hours_per_day.should == 8
     jobs.last.onboarding_date.should == Date.parse('2012-02-16')
     jobs.last.offboarding_date.should == Date.parse('2012-02-20')
+    jobs.last.hours_per_day.should == 12
   end
 end

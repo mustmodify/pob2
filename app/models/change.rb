@@ -35,23 +35,27 @@ class Change < Valuable
     self.job.offboarding_date = original_dates.last
     self.job.save
 
-    date_ranges.each do |date_list|
-      onb = date_list.first
-      offb = date_list.last
-
-      Job.create!(
-        project_id: job.project_id,
-        employee_id: job.employee_id,
-        position_id: job.position_id,
-        daily_rate: job.daily_rate,
-        hours_per_day: self.hours_worked,
-
-        onboarding_date: onb, 
-        offboarding_date: offb,
-
-        note: self.note
-      )
+    date_ranges.each_with_index do |date_list, i|
+      create_job( date_list, i == 0 ? self.hours_worked : job.hours_per_day )
     end
+  end
+
+  def create_job(date_list, hours)
+    onb = date_list.first
+    offb = date_list.last
+
+    Job.create!(
+      project_id: job.project_id,
+      employee_id: job.employee_id,
+      position_id: job.position_id,
+      daily_rate: job.daily_rate,
+      hours_per_day: hours,
+
+      onboarding_date: onb,
+      offboarding_date: offb,
+
+      note: self.note
+    )
   end
 
   def job_id
