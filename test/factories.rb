@@ -9,10 +9,14 @@ FactoryGirl.define do
 
   factory :cert do
     association :employee
-    description 'This cert comes from the factory'
+    association :cert_name
     image_file_name 'text.png'
     image_content_type 'image/png'
     image_file_size '1024'
+  end
+
+  factory :cert_name do
+    name 'This cert comes from the factory'
   end
 
   factory :competency do
