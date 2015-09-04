@@ -96,7 +96,7 @@
 
     %h2 Jobs:
     %table.table
-      -POBSummaryReport.new(employee_id: @employee.id, :start_date => Date.today).data.each do |datum|
+      -POBSummaryReport.new(employee_id: @employee.id, :start_date => 1.month.ago.to_date).data.each do |datum|
         %tr
           %td=datum.project.name
           %td=datum.position.name
