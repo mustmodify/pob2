@@ -10,7 +10,7 @@ class ChangeController < ApplicationController
 
     if @change.valid?
       @change.fire
-      redirect_to employee_path(@change.employee_id), notice: 'Change has been made.'
+      redirect_to employee_jobs_path(@change.employee_id), notice: 'Change has been made.'
     else
       render action: 'new'
     end
