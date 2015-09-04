@@ -3,9 +3,9 @@ class JobsController < CRUDController
     @parent = @employee =Employee.find_by_id( params[:employee_id] )
     @parent ||= @project = Project.find_by_id( params[:project_id] )
 
-    @recent_jobs = @parent.jobs.where('offboarding_date > ?', 1.month.ago).where('offboarding_date < ?', Date.today)
+    @recent_jobs = @parent.jobs.where('offboarding_date > ?', 1.month.ago).where('offboarding_date < ?', Date.today).order('onboarding_date')
     @current_job = @parent.jobs.where('onboarding_date <= ?', Date.today).where('offboarding_date >= ?', Date.today).first
-    @upcoming_jobs = @parent.jobs.where('onboarding_date > ?', Date.today)
+    @upcoming_jobs = @parent.jobs.where('onboarding_date > ?', Date.today).order('onboarding_date')
   end
 
   def target_on_create

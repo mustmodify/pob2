@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
 
   has_many :assignments
   has_many :employees, through: :assignments
-  has_many :jobs
+  has_many :jobs, -> { order('onboarding_date') }
 
   scope :visible, -> { where('start_date <= ?', 1.month.from_now).where('end_date >= ?', 1.month.ago)}
 
