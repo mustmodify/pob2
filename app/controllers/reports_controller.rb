@@ -29,4 +29,8 @@ class ReportsController < ApplicationController
       end
     end
   end
+
+  def year_end
+    @report = YearEndReport.new( params[:year_end_report] )
+  end
 end

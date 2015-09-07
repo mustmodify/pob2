@@ -1,0 +1,25 @@
+-page_title "Year End Report"
+
+-content_for :options do
+  .panel.panel-info
+    .panel-body
+      =simple_form_for @report, :url => '/reports/year_end', wrapper: :vertical_form do |f|
+        =f.input :year, collection: ((Date.today.year - 3)..(Date.today.year)).to_a, required: true
+        =f.input :employee_id, collection: Employee.alphabetical, required: false
+        =f.input :project_id, collection: Project.all, required: false
+        =f.button :submit, 'Build Report'
+
+%table.table
+  %thead
+    %tr
+      %th Project
+      %th Employee 
+      %th Total Days 
+      %th Total Hours 
+  %tbody
+    -@report.data.each do |datum|
+      %tr
+        %td=datum.project
+        %td=datum.employee
+        %td=datum.days
+        %td=datum.hours
