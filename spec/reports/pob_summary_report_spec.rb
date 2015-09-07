@@ -123,4 +123,14 @@ describe POBSummaryReport do
 
     POBSummaryReport.new(require_params: true).data.should be_empty
   end
+
+  describe POBSummaryReport::Datum do
+    it 'counts the last day as a worked day if it is not the offboarding date' do
+      POBSummaryReport::Datum.new(start_date: 3.days.ago.to_date, end_date: 1.day.ago.to_date, offboarding_date: 3.days.from_now.to_date).days.should == 3
+    end
+
+    it 'does not count offboarding days as a worked day' do
+      POBSummaryReport::Datum.new(start_date: 3.days.ago.to_date, end_date: 1.day.ago.to_date, offboarding_date: 1.day.ago.to_date).days.should == 2
+    end
+  end
 end

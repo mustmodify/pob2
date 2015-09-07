@@ -30,7 +30,11 @@ class POBSummaryReport < Valuable
     end
 
     def days
-      ((end_date - start_date) + 1).to_i
+      if( end_date == offboarding_date )
+        (end_date - start_date).to_i
+      else
+        (end_date - start_date + 1).to_i
+      end
     end
   end
 

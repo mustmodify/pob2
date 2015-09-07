@@ -15,19 +15,18 @@ class Change < Valuable
     self.job.employee_id
   end
 
+  def remove_invalid_entries!( list )
+    list.reject!{|list| list.size < 2}
+  end
+
   def fire
     date_ranges = []
     job_dates = job.dates.to_a
 
     i = job_dates.index(self.date)
 
-    if( i == 0 )
-      date_ranges = [[self.date], job_dates[1..-1]].reject(&:empty?)
-    elsif( i == job_dates.size - 1 )
-      date_ranges = [job_dates[0..-2], [self.date]].reject(&:empty?)
-    else
-      date_ranges = [job_dates[0...i], job_dates[i..i], job_dates[(i+1)..-1]]
-    end
+    date_ranges = [job_dates[0..i], job_dates[i..i+1], job_dates[(i+1)..-1]]
+    remove_invalid_entries!( date_ranges )
 
     original_dates = date_ranges.shift
 

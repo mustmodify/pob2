@@ -18,6 +18,10 @@ class Job < ActiveRecord::Base
     (onboarding_date..offboarding_date) if offboarding_date
   end
 
+  def days
+    (offboarding_date - onboarding_date).to_i if offboarding_date
+  end
+
   def to_s
     "#{employee.to_s} from #{onboarding_date.to_s} to #{offboarding_date.to_s}"
   end
