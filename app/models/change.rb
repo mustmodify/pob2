@@ -35,7 +35,7 @@ class Change < Valuable
     self.job.save
 
     date_ranges.each_with_index do |date_list, i|
-      create_job( date_list, i == 0 ? self.hours_worked : job.hours_per_day )
+      create_job( date_list, i.even? ? self.hours_worked : job.hours_per_day )
     end
   end
 
