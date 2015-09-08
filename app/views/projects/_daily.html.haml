@@ -29,6 +29,8 @@
 
 %h3 Employee Availability
 -presenter.offboard.each do |emp|
-  %li
-    %b=link_to emp.name, emp
+  %p.employee-status
+    .line
+      %b=link_to emp.name, emp
+    .line=emp.positions.map(&:name).join(', ')
     =render emp.next_availability

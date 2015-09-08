@@ -8,6 +8,8 @@ class AssignmentsController < NestedCRUDController
   end
 
   def create
+    @project = Project.find( params[:project_id] )
+
     @assignment = Assignment.new( local_params )
     @assignment.check_competence!
 
