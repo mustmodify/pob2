@@ -11,6 +11,8 @@
 
     = csrf_meta_tags
   %body{class: [params['controller'], params['action']].join(' ')}
+    .visible-xs
+      .mobile
     = render :partial => 'layouts/navigation'
     .container
       .row

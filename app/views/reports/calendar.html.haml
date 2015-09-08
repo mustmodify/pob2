@@ -5,13 +5,28 @@
   =stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.print.css', media: 'print'
 
 :css
-  .fc-row tr {
-      height: 50px;
-  }
-
   .fc-view-container {
     background-color: white;
   }
+
+  @media (min-width: 768px)
+  {
+    .fc-row tr {
+        height: 50px;
+    }
+
+    .fc-day-grid-container {
+      height: inherit !important;
+    }
+  }
+
+:javascript
+  setInterval(function(){
+    if($('.mobile').length == 1)
+    {
+      $('.fc-day-grid-container').css('height', '');
+    }
+  }, 200);
 
 #calendar
 
