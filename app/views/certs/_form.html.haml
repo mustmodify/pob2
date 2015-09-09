@@ -1,6 +1,6 @@
 =simple_form_for [@employee, @cert], wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
   =f.association :cert_name, collection: CertName.order(:name)
-  =f.input :expires_on, as: 'string', hint: 'leave blank for "No Expiration"'
+  =f.input :expires_on, as: 'dated', hint: 'leave blank for "No Expiration"'
   =f.input :image
 
   =f.button :submit
