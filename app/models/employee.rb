@@ -24,7 +24,7 @@ class Employee < ActiveRecord::Base
   has_phone_number :home_phone
   has_phone_number :alt_phone
 
-  scope :alphabetical, -> {order(:last_name, :first_name)}
+  scope :alphabetical, -> {order(:first_name, :last_name)}
   scope :active, -> {where(status: 'Active')}
 
   def phone_numbers

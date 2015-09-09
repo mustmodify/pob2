@@ -16,7 +16,7 @@
         %th Normal Rate
         %th 
     %tbody
-      -@assignments.each do |assignment|
+      -@assignments.sort_by{|ass| ass.employee.first_name}.each do |assignment|
         %tr 
           %th=assignment.employee
           %td=assignment.position
