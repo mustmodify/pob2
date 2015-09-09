@@ -11,7 +11,7 @@
   -@certs.each do |cert|
     .col-sm-4
       %a{href: employee_cert_path(@employee, cert)}
-        .panel.panel-info.panel-simple
+        .panel.panel-info.panel-simple.certificate
           .panel-heading
             %b=cert.cert_name
           .panel-body
@@ -20,3 +20,4 @@
               -if cert.expires_on
                 .spacer
                 ="expires on #{cert.expires_on.to_s}"
+  .clearfix
