@@ -23,3 +23,9 @@
         %td=datum.employee
         %td=datum.days
         %td=datum.hours
+  -if @report.data.not.empty?
+    %tfoot
+      %tr
+        %th{colspan: 2} Totals
+        %td=@report.total_days
+        %td=@report.total_hours
