@@ -1,2 +1,5 @@
 -page_title "Edit Employee: #{@employee.name}"
+-content_for :options do
+  =link_to 'Back to Employee', employee_path(@employee), class: 'btn btn-primary btn-block'
+
 =render :partial => 'form'
