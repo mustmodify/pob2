@@ -1,8 +1,8 @@
 -page_title "Jobs for #{@parent.name}"
 
 -content_for :options do
-  =link_to 'Back to Employee', employee_path(@employee), class: 'btn btn-default btn-block'
-  =link_to 'Add Job', new_job_path(job: {employee_id: params[:employee_id]}), :class => 'btn btn-primary btn-block'
+  =link_to "Back to #{@parent.name}", @parent, :class => 'btn btn-default btn-block'
+  =link_to 'Add Job', new_job_path(job: {employee_id: params[:employee_id], project_id: params[:project_id]}), :class => 'btn btn-primary btn-block'
 
 %table.table.table-striped
   %thead
