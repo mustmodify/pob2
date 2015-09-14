@@ -1,6 +1,6 @@
 -presenter = POBTodayPresenter.new(date: params[:date], project: project)
 
-%h2=project.name
+%h2=link_to project.name, project
 .row
   .col-sm-6
     %h4 Changes
