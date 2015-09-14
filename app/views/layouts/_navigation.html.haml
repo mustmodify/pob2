@@ -7,21 +7,13 @@
       %span.icon-bar
 
     .container
-      /#navbar-search-area.pull-right
-      /  =form_for Search.new(term: params[:term]), url: search_path, method: "get", html: { class: 'navbar-form site-search' } do |f|
-
-      /    .form-group
-      /      .icon-addon.addon-sm
-      /        =f.text_field :term, :id => 'search', :placeholder => 'search', 'input-html' => 'col-xs-5 col-sm-3 col-md-4'
-      /        %label.glyphicon.glyphicon-search{rel: 'tooltip', title: 'search'}
-
       .navbar-header
         .hidden-xs
           =link_to 'MAKO POB Manager', root_path, class: 'navbar-brand'
         .visible-xs
           =link_to 'MAKO', root_path, class: 'navbar-brand'
-      .navigation
-        #navbar-section-1.collapse.navbar-collapse.header-collapse
+      .navigation.collapse.navbar-collapse
+        #navbar-section-1.navbar-left
           %ul.nav.navbar-nav
             %li
               =link_to 'Calendar', "/reports/calendar" 
@@ -61,6 +53,14 @@
                   =link_to 'Timesheets', '/reports/timesheet'
                 %li
                   =link_to 'Year End Report', '/reports/year_end'
-          %ul.nav.navbar-nav.navbar-right
+
+        #navbar-section-2.navbar-right
+          %ul.nav.navbar-nav
             %li
               =link_to 'Logout', logout_path
+        =form_for Search.new(params[:search]), url: search_path, method: "get", html: { class: 'navbar-form site-search' } do |f|
+
+          .form-group
+            .icon-addon.addon-sm
+              =f.text_field :term, :id => 'search', :placeholder => 'search', 'input-html' => 'col-xs-5 col-sm-3 col-md-4'
+              %label.glyphicon.glyphicon-search{rel: 'tooltip', title: 'search'}

@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   end
 
   resources :reprimands
+  resource :search
   resources :user_sessions
   resources :users
   resources :work_sites
