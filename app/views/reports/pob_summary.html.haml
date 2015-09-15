@@ -4,8 +4,8 @@
   .panel.panel-info
     .panel-body
       =simple_form_for @pob_summary, :url => '/reports/pob_summary', wrapper: :vertical_form do |f|
-        =f.input :start_date, as: :dated, required: false
-        =f.input :end_date, as: :dated, required: false
+        =f.input :start_date, as: :dated, required: true
+        =f.input :end_date, as: :dated, required: true
         =f.input :employee_id, collection: Employee.alphabetical, required: false
         =f.input :project_id, collection: Project.all, required: false
         =f.button :submit, 'Build Report'
