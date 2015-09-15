@@ -9,7 +9,7 @@ class EmployeeSearch < Valuable
   has_value :status, default: 'Active'
 
   def results
-    scope = Employee.where('1=1')
+    scope = Employee.where('1=1').group('employees.id')
 
     if self.project_id || self.position_id
       scope = scope.joins(:assignments)

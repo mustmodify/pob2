@@ -13,6 +13,13 @@ describe EmployeeSearch do
     EmployeeSearch.new(cert_expiration_period: 60.days.to_i).results.should include(jen)
   end
 
+  it 'does not duplicate employee who has two expiring certs' do
+    jen = FactoryGirl.create(:employee)
+    FactoryGirl.create(:cert, :expires_on => 15.days.from_now, :employee => jen)
+    FactoryGirl.create(:cert, :expires_on => 25.days.from_now, :employee => jen)
+    EmployeeSearch.new(cert_expiration_period: 30.days.to_i).results.length.should == 1
+  end
+
   it 'filters by assigned project' do
     jen = FactoryGirl.create(:employee)
     project = FactoryGirl.create(:project)
