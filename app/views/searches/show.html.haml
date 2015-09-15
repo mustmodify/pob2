@@ -1,4 +1,5 @@
 -page_title 'Search Results'
 
 -@search.results.each do |result|
-  =render result
+  =render :partial => result.class.name.underscore, :object => result
+  %hr
