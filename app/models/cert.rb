@@ -10,4 +10,13 @@ class Cert < ActiveRecord::Base
   def description
     self.cert_name.to_s
   end
+
+  def extension
+    #http://stackoverflow.com/questions/16803389/rails-how-to-get-a-file-extension-postfix-based-on-the-mime-type
+    Rack::Mime::MIME_TYPES.invert[self.image.content_type]
+  end
+
+  def to_filename
+    "#{description.to_key}#{extension}"
+  end
 end
