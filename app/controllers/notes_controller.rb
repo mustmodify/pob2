@@ -4,6 +4,10 @@ class NotesController < CRUDController
     employee_path( @note.employee )
   end
 
+  def target_on_destroy
+    @note.employee
+  end
+
   def local_params
     params.require(:note).permit(:body, :employee_id).merge(:author_id => current_user.id)
   end

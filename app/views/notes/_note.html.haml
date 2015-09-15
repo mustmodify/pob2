@@ -1,5 +1,8 @@
 .note.panel.panel-info.panel-simple{ :id => "note_#{note.id}" }
   .panel-body
+    .pull-right
+      =link_to note_path( note ), method: :delete, data: {confirm: 'Are you sure you want to delete this note? This action can not be undone.'} do
+        %span.text-muted.glyphicon.glyphicon-trash
     = simple_format(note.body, class: "text-info")
     .meta.text-muted
       =note.author.try(:name)
