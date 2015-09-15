@@ -6,9 +6,9 @@ class Project < ActiveRecord::Base
   belongs_to :departure_site
   belongs_to :work_site
 
-  has_many :assignments
+  has_many :assignments, dependent: :destroy
   has_many :employees, through: :assignments
-  has_many :jobs, -> { order('onboarding_date') }
+  has_many :jobs, -> { order('onboarding_date') }, dependent: :destroy
 
   scope :visible, -> { where('start_date <= ?', 1.month.from_now).where('end_date >= ?', 1.month.ago)}
 
