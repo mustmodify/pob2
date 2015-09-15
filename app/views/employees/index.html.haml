@@ -5,6 +5,8 @@
     margin-left: 0px !important;
   }
 -content_for :options do
+  =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
+  .spacer
   .panel.panel-info
     .panel-heading
       Search Criteria
@@ -15,8 +17,7 @@
         =f.input :position_id, :collection => Position.all.map{|position| [position.name, position.id]}, required: false, hint: 'based on assignments, not competence'
         =f.input :status, collection: ['Prospect', 'Active', 'Terminated'], required: false
         =f.input :include_those_needing_transport, as: :radio_buttons
-        =f.submit :search, :class => 'btn btn-info'
-  =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
+        =f.submit :search, :class => 'btn btn-info btn-block'
 
 -if @employees.empty?
   .text-muted No employees matched your criteria.
