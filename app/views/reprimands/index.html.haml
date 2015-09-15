@@ -14,6 +14,7 @@
         %th Category
         %th Description
         %th
+        %th
     %tbody
       -@reprimands.each do |reprimand|
         %tr
@@ -21,3 +22,4 @@
           %td=reprimand.category
           %td=simple_format reprimand.note
           %td=link_to 'Edit', edit_employee_reprimand_path( @employee, reprimand ), :class => 'btn btn-xs btn-default'
+          %td=link_to 'Delete', employee_reprimand_path(@employee, reprimand), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'}, :class => 'btn btn-xs btn-danger'

@@ -8,10 +8,20 @@
   .text-muted No restrictions
 -@restrictions.each do |restriction|
   .col-md-4
-    .panel.panel-simple.panel-body.text-center
-      %h4=restriction.title
-      -if restriction.attachment.file?
-        =image_tag restriction.attachment.url(:thumb)
+    .panel.panel-simple.panel-info
+      .panel-heading
+        .pull-right
+          =link_to employee_restriction_path(@employee, restriction), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'} do
+            %span.text-muted.glyphicon.glyphicon-trash
+        .pull-right
+          =link_to edit_employee_restriction_path(@employee, restriction) do
+            %span.text-muted.glyphicon.glyphicon-wrench
+            &nbsp;
+        %b=restriction.title
+      .panel-body.text-center
+        -if restriction.attachment.file?
+          =image_tag restriction.attachment.url(:thumb)
         .spacer
-      =link_to 'edit', edit_employee_restriction_path( @employee, restriction ), :class => 'btn btn-default btn-xs btn-block'
-      =link_to 'delete', employee_restriction_path( @employee, restriction ), :class => 'btn btn-warning btn-xs btn-block', :method => :delete, :data => {:confirm => 'Are you sure?'}
+        -if restriction.effective_date
+          Effective
+          =restriction.effective_date

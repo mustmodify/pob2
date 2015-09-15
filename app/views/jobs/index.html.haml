@@ -2,7 +2,8 @@
 
 -content_for :options do
   =link_to "Back to #{@parent.name}", @parent, :class => 'btn btn-default btn-block'
-  =link_to 'Add Job', new_job_path(job: {employee_id: params[:employee_id], project_id: params[:project_id]}), :class => 'btn btn-primary btn-block'
+  =link_to 'Add Job', new_job_path(job: {employee_id: params[:employee_id], project_id: params[:project_id]}, then: polymorphic_path( [ @parent, 'jobs' ] )), :class => 'btn btn-primary btn-block'
+
 
 %table.table.table-striped
   %thead
@@ -18,11 +19,12 @@
       %th Offboard
       %th
       %th
+      %th
 
   -if @recent_jobs.not.empty?
     %thead
       %tr
-        %th{colspan: 8}
+        %th{colspan: 9}
           %h4 Recent Jobs
     %tbody
       =render :partial => 'jobs/jobs', locals:  {jobs: @recent_jobs}
@@ -30,7 +32,7 @@
   -if @current_job
     %thead
       %tr
-        %th{colspan: 8}
+        %th{colspan: 9}
           %h4 Current Job
     %tbody
       =render :partial => 'jobs/jobs', locals:  {jobs: [@current_job]}
@@ -38,7 +40,7 @@
   -if @upcoming_jobs.not.empty?
     %thead
       %tr
-        %th{colspan: 8}
+        %th{colspan: 9}
           %h4  Upcoming Jobs
     %tbody
       =render :partial => 'jobs/jobs', locals:  {jobs: @upcoming_jobs}

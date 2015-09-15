@@ -6,4 +6,8 @@ class Restriction < ActiveRecord::Base
 
   has_attached_file :attachment, :styles => { :medium => "800x800>", :thumb => "200x350>" }
   validates_attachment_content_type :attachment, :content_type => /\Aimage\/.*\Z/ 
+
+  def to_s
+    "#{title} for #{employee.to_s}"
+  end
 end

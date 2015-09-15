@@ -13,6 +13,14 @@
       %a{href: employee_cert_path(@employee, cert)}
         .panel.panel-info.panel-simple.certificate
           .panel-heading
+            .pull-right
+              =link_to employee_cert_path(@employee, cert), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'} do
+                %span.text-muted.glyphicon.glyphicon-trash
+            .pull-right
+              =link_to edit_employee_cert_path(@employee, cert) do
+                %span.text-muted.glyphicon.glyphicon-wrench
+                &nbsp;
+
             %b=cert.cert_name
           .panel-body
             %center

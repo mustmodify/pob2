@@ -14,6 +14,7 @@
         %th Result 
         %th
         %th
+        %th
     %tbody
       -@screenings.each do |screening|
         %tr
@@ -25,3 +26,4 @@
             -else
               .text-muted no image
           %td=link_to 'Edit', edit_employee_screening_path( @employee, screening ), :class => 'btn btn-xs btn-default'
+          %td=link_to 'Delete', employee_screening_path(@employee, screening), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'}, :class => 'btn btn-xs btn-danger'

@@ -9,11 +9,15 @@ class JobsController < CRUDController
   end
 
   def target_on_create
-    if params[:employee_id]
-      employee_jobs_path( params[:employee_id] )
+    if params[:then]
+      params[:then]
     else
       project_jobs_path( @job.project )
     end
+  end
+
+  def target_on_destroy
+    params[:then] || root_path
   end
 
   def new
