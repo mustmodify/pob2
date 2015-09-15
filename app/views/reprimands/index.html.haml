@@ -15,11 +15,17 @@
         %th Description
         %th
         %th
+        %th
     %tbody
       -@reprimands.each do |reprimand|
         %tr
           %td=reprimand.date
           %td=reprimand.category
           %td=simple_format reprimand.note
+          %td
+            -if reprimand.image.file?
+              =link_to 'View Image', reprimand.image.url(:original), :class => 'btn btn-xs btn-info'
+            -else
+              .text-muted No Image Available
           %td=link_to 'Edit', edit_employee_reprimand_path( @employee, reprimand ), :class => 'btn btn-xs btn-default'
           %td=link_to 'Delete', employee_reprimand_path(@employee, reprimand), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'}, :class => 'btn btn-xs btn-danger'
