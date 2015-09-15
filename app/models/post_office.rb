@@ -1,5 +1,5 @@
 class PostOffice < ActionMailer::Base
-  default from: 'MAKO - Do Not Reply <operations@makounlimited.com>'
+  default from: 'MAKO Unlimited <operations@makounlimited.com>'
 
   def certs( recipient, employee, list )
     @list= list
