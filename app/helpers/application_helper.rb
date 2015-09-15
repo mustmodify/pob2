@@ -12,14 +12,23 @@ module ApplicationHelper
   end
 
   def tabular_atts( employee )
-    employee.attributes.slice('dob', 'ssn', 'nationality', 'gsn', 'transportation_needed', 'body_weight', 'bag_weight', 'eligible_for_rehire').reject{|x, y| y == nil || y == ''}.map do |name, value|
-      if value === false
-        [name.titleize, 'No']
-      elsif value === true
-        [name.titleize, 'Yes']
-      else
-        [name.titleize, value]
+    atts = [:dob, :ssn, :nationality, :gsn, :transportation_needed, :body_weight, :bag_weight, :eligible_for_rehire]
+    atts.map{|att| [att.to_s, employee.send(att)] }.
+      reject{|x, y| y == nil || y == ''}.
+      map do |name, value|
+        if name == 'ssn' || name == 'dob' || name == 'gsn'
+          name = name.upcase
+        else
+          name = name.titleize
+        end
+
+        if value === false
+          [name, 'No']
+        elsif value === true
+          [name, 'Yes']
+        else
+          [name, value]
+        end
       end
-    end
   end
 end

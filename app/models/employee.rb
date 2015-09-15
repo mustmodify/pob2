@@ -35,6 +35,20 @@ class Employee < ActiveRecord::Base
     end
   end
 
+  def ssn=(value)
+    if value.blank?
+      write_attribute(:ssn, nil)
+    else
+      write_attribute(:ssn, value.to_s.gsub(/[^\d]/, ''))
+    end
+  end
+
+  def ssn
+    x = read_attribute(:ssn)
+
+    "#{x.to_s[0..2]}-#{x.to_s[3..4]}-#{x.to_s[5..8]}" unless x.blank?
+  end
+
   def date_of_last_screening
     screenings.order('date').last.try(&:date)
   end
