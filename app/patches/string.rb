@@ -9,7 +9,7 @@ class String
   end
 
   def to_key
-    self.tableize.gsub(/[^\w]/, '_')
+    self.tableize.gsub(/[^\w]/, '_').gsub(/__*/, '_')
   end
 
   def sanitize
