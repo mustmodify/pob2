@@ -1,6 +1,6 @@
 =simple_form_for [parent_instance, instance], wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
   =f.association :project
-  =f.association :employee
+  =f.association :employee, :collection => Employee.active.alphabetical
   =f.association :position
   =f.input :daily_rate
   =f.button :submit

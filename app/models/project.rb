@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   belongs_to :departure_site
   belongs_to :work_site
 
-  has_many :assignments, dependent: :destroy
+  has_many :assignments, -> { joins(:employee).order('employees.first_name, employees.last_name') }, dependent: :destroy
   has_many :employees, through: :assignments
   has_many :jobs, -> { order('onboarding_date') }, dependent: :destroy
 
