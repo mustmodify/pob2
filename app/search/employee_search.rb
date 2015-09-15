@@ -6,7 +6,7 @@ class EmployeeSearch < Valuable
   has_value :project_id, :klass => :integer
   has_value :position_id, :klass => :integer
   has_value :include_those_needing_transport, :parse_with => lambda {|x| x == true || x == "true"}, default: true
-  has_value :status
+  has_value :status, default: 'Active'
 
   def results
     scope = Employee.where('1=1')
