@@ -9,8 +9,8 @@
       %th.hidden-xs.hidden-sm
       %th
       %th Name
-      %th.hidden-xs.hidden-sm Company
       %th.hidden-xs.hidden-sm Customer
+      %th.hidden-xs.hidden-sm Company
       %th.hidden-xs.hidden-sm Departure Site
       %th.hidden-xs.hidden-sm Work Site
       %th.hidden-xs.hidden-sm Start Date
@@ -21,8 +21,8 @@
         %td.hidden-xs.hidden-sm=link_to 'edit', edit_project_path( project ), :class => 'btn btn-default btn-xs'
         %td=link_to 'view', project_path( project ), :class => 'btn btn-info btn-xs'
         %th=link_to project.name, project
-        %td.hidden-xs.hidden-sm=project.oil_co
         %td.hidden-xs.hidden-sm=project.customer
+        %td.hidden-xs.hidden-sm=project.oil_co
         %td.hidden-xs.hidden-sm=project.departure_site
         %td.hidden-xs.hidden-sm=project.work_site
         %td.hidden-xs.hidden-sm=project.start_date
