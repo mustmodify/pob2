@@ -9,6 +9,8 @@
         =f.input :project_id, collection: Project.all, required: false
         =f.button :submit, 'Build Report'
 
+  =link_to "Get PDF", url_for(params.merge(:controller => 'reports', :action => 'year_end', format: :pdf)), class: 'btn btn-primary btn-block'
+
 %table.table
   %thead
     %tr

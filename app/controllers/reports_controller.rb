@@ -32,5 +32,12 @@ class ReportsController < ApplicationController
 
   def year_end
     @report = YearEndReport.new( params[:year_end_report] )
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'year_end', layout: 'application.pdf'
+      end
+    end
   end
 end
