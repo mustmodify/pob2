@@ -14,10 +14,9 @@
   =f.input :bag_weight
   =f.input :status, collection: ['Prospect', 'Active', 'Terminated']
   =f.input :eligible_for_rehire, as: :select
+  =f.input :picture
   -if @employee.picture.file?
-    .col-sm-offset-3=image_tag @employee.picture.url(:thumb)
-  -else
-    =f.input :picture
+    .col-sm-offset-3{style: 'padding: 0 8px 10px;'}=image_tag @employee.picture.url(:thumb)
 
   %legend Phone Numbers
 
