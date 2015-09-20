@@ -28,3 +28,4 @@
             =link_to 'Edit', edit_employee_compliment_path( @employee, compliment ), :class => 'btn btn-xs btn-default'
             =link_to 'Delete', employee_compliment_path(@employee, compliment), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'}, :class => 'btn btn-xs btn-danger'
 
+=will_paginate @compliments, :renderer => BootstrapPagination::Rails

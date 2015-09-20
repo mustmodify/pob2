@@ -19,3 +19,5 @@
           =departure_site.name
         %td=departure_site.category
         %td=simple_format departure_site.details
+
+=will_paginate @departure_sites, :renderer => BootstrapPagination::Rails

@@ -29,3 +29,5 @@
               .text-muted No Image Available
           %td=link_to 'Edit', edit_employee_reprimand_path( @employee, reprimand ), :class => 'btn btn-xs btn-default'
           %td=link_to 'Delete', employee_reprimand_path(@employee, reprimand), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'}, :class => 'btn btn-xs btn-danger'
+
+=will_paginate @reprimands, :renderer => BootstrapPagination::Rails

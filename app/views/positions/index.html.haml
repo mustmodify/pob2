@@ -14,3 +14,5 @@
       %tr
         %td=position.name
         %td=position.employees.count
+
+=will_paginate @positions, :renderer => BootstrapPagination::Rails

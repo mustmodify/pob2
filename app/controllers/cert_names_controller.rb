@@ -1,4 +1,8 @@
 class CertNamesController < CRUDController
+  def index
+    @cert_names = CertName.order(:name)
+  end
+
   def target_on_create
     cert_names_path
   end
