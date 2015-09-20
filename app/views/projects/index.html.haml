@@ -27,3 +27,4 @@
         %td.hidden-xs.hidden-sm=project.work_site
         %td.hidden-xs.hidden-sm=project.start_date
         %td=project.end_date
+=will_paginate @projects, :renderer => BootstrapPagination::Rails
