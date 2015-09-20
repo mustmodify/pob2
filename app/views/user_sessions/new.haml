@@ -32,8 +32,6 @@
         .spacer
         = f.button 'Sign In', :class => 'btn btn-primary'
 
-=javascript_include_tag 'detect_ie'
-
 :javascript
   window.onload = function() 
   {
@@ -44,11 +42,4 @@
     }
   
     Focus();
-  
-    v = window.detect_ie();
-    if( v !== undefined && v < 9 )
-    {
-      var el = document.getElementById('exploder');
-      el.className = "fixed";
-    }
   };
