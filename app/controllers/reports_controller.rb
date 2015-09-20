@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
 
   def calendar
     respond_to do |format|
-      format.html { render :layout => 'blank'}
+      format.html { render :layout => 'wide'}
       format.json { render :json => CrewChangeReport.search(params[:start], params[:end]).to_json }
     end
   end

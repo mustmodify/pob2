@@ -13,6 +13,7 @@
   %body{class: [params['controller'], params['action']].join(' ')}
     .visible-xs
       .mobile
+    = render :partial => 'layouts/navigation'
     .container
       = yield
   %footer
