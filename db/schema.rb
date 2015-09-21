@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915201031) do
+ActiveRecord::Schema.define(version: 20150921190147) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "project_id",  limit: 4
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20150915201031) do
     t.string   "street1",               limit: 255
     t.string   "street2",               limit: 255
     t.string   "city",                  limit: 255
-    t.string   "state",                 limit: 2
+    t.string   "state",                 limit: 2,   default: "LA"
     t.string   "zipcode",               limit: 5
     t.string   "ident_issuer",          limit: 255
     t.string   "ident_number",          limit: 255
