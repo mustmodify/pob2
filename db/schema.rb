@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921190147) do
+ActiveRecord::Schema.define(version: 20150922141055) do
 
   create_table "assignments", force: :cascade do |t|
-    t.integer "project_id",  limit: 4
-    t.integer "employee_id", limit: 4
-    t.integer "position_id", limit: 4
-    t.decimal "daily_rate",            precision: 10
+    t.integer "project_id",    limit: 4
+    t.integer "employee_id",   limit: 4
+    t.integer "position_id",   limit: 4
+    t.decimal "rate",                    precision: 10
+    t.string  "rate_interval", limit: 8
   end
 
   add_index "assignments", ["project_id", "employee_id", "position_id"], name: "index_assignments_on_project_id_and_employee_id_and_position_id", using: :btree
@@ -42,9 +43,10 @@ ActiveRecord::Schema.define(version: 20150921190147) do
   end
 
   create_table "competencies", force: :cascade do |t|
-    t.integer  "employee_id", limit: 4
-    t.integer  "position_id", limit: 4
-    t.decimal  "rate",                  precision: 10
+    t.integer  "employee_id",   limit: 4
+    t.integer  "position_id",   limit: 4
+    t.decimal  "rate",                    precision: 10
+    t.string   "rate_interval", limit: 8,                default: "day"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -119,7 +121,8 @@ ActiveRecord::Schema.define(version: 20150921190147) do
     t.integer  "project_id",       limit: 4
     t.integer  "employee_id",      limit: 4
     t.integer  "position_id",      limit: 4
-    t.decimal  "daily_rate",                     precision: 10
+    t.decimal  "rate",                           precision: 10
+    t.string   "rate_interval",    limit: 8
     t.decimal  "hours_per_day",                  precision: 10
     t.date     "onboarding_date"
     t.date     "offboarding_date"

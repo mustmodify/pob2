@@ -22,6 +22,11 @@ class Job < ActiveRecord::Base
     (offboarding_date - onboarding_date).to_i if offboarding_date
   end
 
+  def pay
+    p = Pay.new(rate: self.rate, rate_interval: self.rate_interval)
+    p unless p.blank?
+  end
+
   def to_s
     "#{employee.to_s} from #{onboarding_date.to_s} to #{offboarding_date.to_s}"
   end

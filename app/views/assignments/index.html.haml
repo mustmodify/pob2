@@ -11,17 +11,17 @@
     %thead
       %tr
         %th Employee
-        %th Position 
-        %th Rate
-        %th Normal Rate
-        %th 
+        %th Position
+        %th Pay
+        %th Normal Pay
+        %th
     %tbody
       -@assignments.sort_by{|ass| ass.employee.first_name}.each do |assignment|
-        %tr 
+        %tr
           %th=assignment.employee
           %td=assignment.position
-          %td=number_to_currency( assignment.daily_rate )
-          %td=number_to_currency( assignment.normal_rate )
+          %td=assignment.pay
+          %td=assignment.normal_pay
           %td
             =link_to 'edit', edit_project_assignment_path( @project, assignment ), :class => 'btn btn-default btn-xs btn-block'
             =link_to 'delete', project_assignment_path( @project, assignment ), :class => 'btn btn-warning btn-xs btn-block', :method => :delete, :data => {:confirm => 'Are you sure?'}

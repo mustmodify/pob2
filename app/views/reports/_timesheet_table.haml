@@ -3,10 +3,10 @@
     %tr
       %th Project
       %th Position
-      %th Employee 
-      %th Date 
-      %th Hours 
-      %th Rate per Day
+      %th Employee
+      %th Date
+      %th Hours
+      %th Pay
   %tbody
     -@timesheet.jobs.each do |job|
       -job.dates.each do |day|
@@ -16,7 +16,7 @@
           %td=job.employee
           %td=day
           %td=job.hours_per_day
-          %td=job.rate_per_day
+          %td=job.pay
       /%tr
       /  %td=job.project
       /  %td=job.position

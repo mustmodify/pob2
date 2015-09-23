@@ -16,6 +16,11 @@ describe Assignment do
     dup.should_not be_valid
   end
 
+  it 'requires interval if a rate is specified' do
+    FactoryGirl.build(:assignment, rate: 100, rate_interval: nil).should_not be_valid
+    FactoryGirl.build(:assignment, rate: 100, rate_interval: 'day').should be_valid
+  end
+
   it 'CAN prevent assigning employees to roles for which they are not qualified' do
     a = FactoryGirl.build(:assignment)
     a.should be_valid

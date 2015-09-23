@@ -2,5 +2,6 @@
   =f.association :project
   =f.association :employee, :collection => Employee.active.alphabetical
   =f.association :position
-  =f.input :daily_rate
+  =f.input :rate, hint: "Leave blank to use the employee's regular pay"
+  =f.input :rate_interval, label: 'per', collection: PAY_INTERVALS
   =f.button :submit

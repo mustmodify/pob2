@@ -17,8 +17,9 @@
           =cf.hidden_field :position_id
           =cf.object.try(&:position)
         %td
-          =cf.text_field :rate
-          \/ day
+          =cf.text_field :rate, :class => 'rate_field'
+          per
+          =cf.select :rate_interval, PAY_INTERVALS
         %td
           -if cf.object.id
             %label

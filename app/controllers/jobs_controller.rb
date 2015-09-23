@@ -26,6 +26,6 @@ class JobsController < CRUDController
   end
 
   def local_params
-    params.fetch(:job, {}).permit(:onboarding_date, :offboarding_date, :project_id, :employee_id, :position_id, :daily_rate, :hours_per_day, :note)
+    params.fetch(:job, {}).permit(:onboarding_date, :offboarding_date, :project_id, :employee_id, :position_id, :rate, :rate_interval, :hours_per_day, :note)
   end
 end

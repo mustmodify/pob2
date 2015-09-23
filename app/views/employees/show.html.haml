@@ -71,7 +71,7 @@
             -@employee.competencies.each do |competency|
               %li
                 =competency.position.name
-                ="(#{number_to_currency(competency.rate)})"
+                =competency.pay
       %tr
         %td Address
         %td

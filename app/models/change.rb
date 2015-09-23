@@ -47,7 +47,8 @@ class Change < Valuable
       project_id: job.project_id,
       employee_id: job.employee_id,
       position_id: job.position_id,
-      daily_rate: job.daily_rate,
+      rate: job.rate,
+      rate_interval: job.rate_interval,
       hours_per_day: hours,
 
       onboarding_date: onb,

@@ -10,7 +10,7 @@ class POBSummaryReport < Valuable
     has_value :end_date
 
     has_value :hours_per_day
-    has_value :rate_per_day
+    has_value :pay, :klass => Pay
 
     has_value :onboarding_date
     has_value :offboarding_date
@@ -75,7 +75,7 @@ class POBSummaryReport < Valuable
         :start_date => [job.onboarding_date, self.start_date].compact.max,
         :end_date => [job.offboarding_date, self.end_date].compact.min,
         :hours_per_day => job.hours_per_day,
-        :rate_per_day => job.daily_rate || job.assignment.try(&:daily_rate) || job.competency.try(:rate),
+        :pay => job.pay || job.assignment.try(&:pay) || job.competency.try(:pay),
         :onboarding_date => job.onboarding_date,
         :offboarding_date => job.offboarding_date,
       )

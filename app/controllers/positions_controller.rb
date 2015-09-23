@@ -5,6 +5,6 @@ class PositionsController < CRUDController
   end
 
   def local_params
-    params.require(:position).permit(:name, :rate)
+    params.require(:position).permit(:name)
   end
 end

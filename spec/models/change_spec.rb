@@ -12,7 +12,7 @@ describe Change do
   end
 
   it 'breaks off the last day of a job' do
-    job = FactoryGirl.create(:job, onboarding_date: '2012-02-12', offboarding_date: '2012-02-20', hours_per_day: 12)
+    job = FactoryGirl.create(:job, onboarding_date: '2012-02-12', offboarding_date: '2012-02-20', hours_per_day: 12, rate: 20, rate_interval: 'day')
 
     making_change = lambda do
       Change.new(job: job, date: '2012-02-19', hours_worked: '8', note: 'La la la la la').fire
@@ -25,7 +25,7 @@ describe Change do
       tail_job.project_id.should == job.project_id
       tail_job.employee_id.should == job.employee_id
       tail_job.position_id.should == job.position_id
-      tail_job.daily_rate.should == job.daily_rate
+      tail_job.pay.rate.should == job.rate
       tail_job.hours_per_day.should == 8
       tail_job.note.should == 'La la la la la'
       tail_job.onboarding_date.should == Date.parse('2012-02-19')

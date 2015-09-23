@@ -57,8 +57,15 @@ class NestedCRUDController < ApplicationController
   def update
     set_parent
     set_record model.update( params[:id], local_params )
+
     respond_to do |format|
-      format.html { redirect_to target_on_update }
+      format.html {
+        if instance.valid?
+          redirect_to target_on_update
+        else
+          render :action => 'edit'
+        end
+      }
       format.json { render :json => instance.to_json }
       format.xml  { render :xml => instance.to_xml }
     end

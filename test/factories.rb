@@ -4,7 +4,8 @@ FactoryGirl.define do
     association :employee
     association :position
 
-    daily_rate 150
+    rate 150
+    rate_interval 'day'
   end
 
   factory :cert do
@@ -23,6 +24,7 @@ FactoryGirl.define do
     association :employee
     association :position
     rate 100
+    rate_interval 'day'
   end
 
   factory :employee do
