@@ -34,7 +34,7 @@
 
   %legend Identification
 
-  =f.input :ident_issuer, :label => 'Issuer', :hint => 'Country or State'
+  =f.input :ident_issuer, :label => 'Issuer', collection: US_STATES
   =f.input :ident_number, :label => 'Number'
   =f.input :ident_issue_date, :label => 'Date Issued', :as => :dated
   =f.input :ident_expiration_date, :label => 'Expiration Date', :as => :dated
