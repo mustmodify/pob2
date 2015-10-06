@@ -2,7 +2,15 @@ class NextAvailabilityPresenter < Valuable
   has_value :employee
 
   def last_job
-    @last_job ||= Job.where(employee_id: employee.id).order('onboarding_date desc').limit(1).first
+    @last_job ||= Job.where(employee_id: employee.id).order('onboarding_date').limit(1).last
+  end
+
+  def next_job
+    @next_job ||= Job.where(employee_id: employee.id).where('onboarding_date > ?', Date.today).order('onboarding_date').limit(1).first
+  end
+
+  def date_of_next_commitment
+    next_job && next_job.onboarding_date
   end
 
   def date_of_availability
@@ -10,7 +18,7 @@ class NextAvailabilityPresenter < Valuable
   end
 
   def immediate?
-    date_of_availability.try(&:past?) || date_of_availability.nil?
+    date_of_next_commitment.nil?
   end
 
   def known?
@@ -24,8 +32,8 @@ class NextAvailabilityPresenter < Valuable
   def to_s
     if immediate?
       'Available Now'
-    elsif known?
-      date_of_availability.to_s
+    elsif date_of_next_commitment
+      "Until #{date_of_next_commitment}"
     else
       'Offboarding date not set.'
     end
