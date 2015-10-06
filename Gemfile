@@ -23,7 +23,6 @@ gem 'simple_form'
 gem 'valuable'
 gem 'warden'
 gem 'wicked_pdf' # html2pdf
-gem 'wkhtmltopdf-binary'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
