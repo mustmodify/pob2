@@ -3,7 +3,7 @@ class PhoneNumber < String
     super(value.to_s)
   end
 
-  def valid?
+  def full_number?
     has_ten_digits?
   end
 
@@ -20,6 +20,10 @@ class PhoneNumber < String
   end
 
   def to_s
-    "(#{self[0..2]}) #{self[3..5]}-#{self[6..9]}" if valid?
+    if full_number?
+      "(#{self[0..2]}) #{self[3..5]}-#{self[6..9]}"
+    elsif self.length > 0
+      "#{self[0..2]}-#{self[2..-1]}"
+    end
   end
 end
