@@ -2,7 +2,7 @@ class CertsController < NestedCRUDController
 
   def index
     @employee = Employee.find params[:employee_id]
-    @certs = @employee.certs.joins(:cert_name).order('cert_names.name')
+    @certs = @employee.certs
   end
 
   def target_on_create

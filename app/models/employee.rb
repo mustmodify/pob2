@@ -5,7 +5,7 @@ class Employee < ActiveRecord::Base
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/ 
 
   has_many :assignments
-  has_many :certs
+  has_many :certs, -> { joins(:cert_name).order('cert_names.name') }
   has_many :compliments
   has_many :contacts
   has_many :jobs
