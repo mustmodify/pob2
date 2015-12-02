@@ -16,8 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      warden.set_user( @user )
-      redirect_to root_path
+      redirect_to users_path
     else
       render :action => "new"
     end
