@@ -12,10 +12,9 @@
 
   .spacer
 
-  -if @pob_summary.show_results
-    =link_to "Get PDF", url_for(params.merge(:controller => 'reports', :action => 'pob_summary')), class: 'btn btn-primary btn-block'
-.spacer
-.spacer
+-if @pob_summary.show_results
+  =link_to "Get PDF", url_for(params.merge(:controller => 'reports', :action => 'pob_summary', format: :pdf)), class: 'btn btn-info pull-right'
+  .spacer
 
 %table.table
   %thead
