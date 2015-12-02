@@ -6,16 +6,19 @@
 %table.table.table-striped
   %thead
     %tr
+      %th
       %th Name
       %th Details
+      %th
   %tbody
     -@work_sites.each do |work_site|
       %tr
         %td
           =link_to 'edit', edit_work_site_path( work_site ), :class => 'btn btn-default btn-xs'
-          &nbsp;
-          &nbsp;
-          =work_site.name
+        %td=work_site.name
         %td=simple_format work_site.details
+        %td
+          -if work_site.removable?
+            =link_to 'delete', work_site_path( work_site ), :class => 'btn btn-warning btn-xs', :data => {:confirm => 'Are you sure?'}, :method => :delete
 
 =will_paginate @work_sites, :renderer => BootstrapPagination::Rails

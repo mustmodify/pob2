@@ -8,11 +8,15 @@
     %tr 
       %td Name
       %td Employee Count
+      %td
 
   %tbody
     -@positions.each do |position|
       %tr
         %td=position.name
         %td=position.employees.count
+        %td
+          -if position.removable?
+            =link_to 'delete', position_path( position ), :class => 'btn btn-warning btn-xs', :data => {:confirm => 'Are you sure?'}, :method => :delete
 
 =will_paginate @positions, :renderer => BootstrapPagination::Rails

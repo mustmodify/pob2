@@ -6,3 +6,7 @@
 -@cert_names.each do |cert_name|
   %li
     =cert_name.name
+    -if cert_name.removable?
+      =link_to 'delete', cert_name_path( cert_name ), class: 'btn btn-warning btn-xs', action: :delete, data: {confirm: 'Are you sure?'}
+    -else
+      =" (in use)"

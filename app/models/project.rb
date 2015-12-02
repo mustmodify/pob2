@@ -16,6 +16,10 @@ class Project < ActiveRecord::Base
 
   has_phone_number :phone
 
+  def removable?
+    assignments.empty? && jobs.empty?
+  end
+
   def to_s
     name
   end
