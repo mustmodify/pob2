@@ -7,6 +7,7 @@
   %thead
     %tr
       %th
+      %th Status
       %th Name
       %th Email
       %th Last Seen
@@ -14,6 +15,7 @@
     - @users.each do |user|
       %tr
         %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-default btn-xs'
+        %td=status_label user
         %td= h user.name
         %td= h user.email
         %td= h user.last_request_at.try(:to_date) || 'Never'

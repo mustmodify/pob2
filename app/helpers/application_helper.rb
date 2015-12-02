@@ -7,6 +7,21 @@ module ApplicationHelper
     page_title.not.blank?
   end
 
+  def status_label(object, options = {})
+    "<span class='label #{class_for_status_label(object.status)} #{options[:class]}'>#{object.status}</span>".html_safe
+  end
+
+  def class_for_status_label( status )
+    case status
+    when 'Active'
+      'label-success'
+    when 'Disabled'
+      'label-inverse'
+    else
+      'label-info'
+    end
+  end
+
   def row_id_for( object )
     "#{object.class.name.tableize}_#{object.id}"
   end

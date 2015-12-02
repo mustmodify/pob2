@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  def status
+    active ? 'Active' : 'Disabled'
+  end
+
   def to_s
     email
   end
