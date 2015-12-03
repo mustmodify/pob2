@@ -44,8 +44,12 @@ class YearEndReport < Valuable
     data.map(&:hours).sum
   end
 
+  def ready?
+    year.to_i > 1900
+  end
+
   def data
-    @data ||= results.map{|result| Datum.new(result) }
+    @data ||= ready? ? results.map{|result| Datum.new(result) } : []
   end
 
   def persisted?
