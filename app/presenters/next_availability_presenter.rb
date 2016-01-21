@@ -9,6 +9,10 @@ class NextAvailabilityPresenter < Valuable
     @next_job ||= Job.where(employee_id: employee.id).where('onboarding_date > ?', Date.today).order('onboarding_date').limit(1).first
   end
 
+  def current?
+    Job.where(employee_id: employee.id).where('onboarding_date <= ? AND offboarding_date >= ?', Date.today, Date.today).any?
+  end
+
   def date_of_next_commitment
     next_job && next_job.onboarding_date
   end
@@ -30,7 +34,9 @@ class NextAvailabilityPresenter < Valuable
   end
  
   def to_s
-    if immediate?
+    if current?
+      'On a Job'
+    elsif immediate?
       'Available Now'
     elsif date_of_next_commitment
       "Until #{date_of_next_commitment}"
