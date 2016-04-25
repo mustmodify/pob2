@@ -46,6 +46,10 @@ module AppAuthorization
         end
         format.xml  { render :xml => '<errors><error>No User Authorization</error></errors>', :status => :unauthorized }
         format.json { redirect_to user_session_path(format: :json) }
+        format.all {
+          store_location
+          redirect_to new_user_session_path
+        }
       end
 
       return false
