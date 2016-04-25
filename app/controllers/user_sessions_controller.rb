@@ -78,7 +78,8 @@ class UserSessionsController < ApplicationController
   end
 
   def render_require_user(options = {})
-    options[:json] = UserSessionEndpoint.new(:context => view_context).to_json
+#    options[:json] = UserSessionEndpoint.new(:context => view_context).to_json
+    options[:json] = {error: 'who even are you?'}
     render options
   end
 end
