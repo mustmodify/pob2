@@ -17,7 +17,6 @@ namespace :db do
 
     desc "run after importing production so things will go smoothly"
     task :sanitize => :environment do
-      Q.tell %|UPDATE employees SET profile_file_name = NULL, profile_content_type = NULL, profile_file_size = NULL|
     end
 
 
