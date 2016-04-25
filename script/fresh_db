@@ -1,0 +1,2 @@
+bundle exec rake db:drop db:create db:dev:load db:migrate db:dev:sanitize db:test:clone
+
