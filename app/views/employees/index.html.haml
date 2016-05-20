@@ -13,7 +13,7 @@
     .panel-body
       =simple_form_for @search, method: :get, url: employees_path do |f|
         =f.input :cert_expiration_period, :collection => {nil => nil, '30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}, required: false
-        =f.input :project_id, :collection => Project.all.order('name').map{|project| [project.name, project.id]}, required: false
+        =f.input :project_id, :collection => Project.visible.order('name').map{|project| [project.name, project.id]}, required: false
         =f.input :position_id, :collection => Position.all.map{|position| [position.name, position.id]}, required: false, hint: 'based on assignments, not competence'
         =f.input :status, collection: ['Prospect', 'Active', 'Terminated'], required: false
         =f.input :include_those_needing_transport, as: :radio_buttons
