@@ -4,6 +4,18 @@ class EmployeesController < CRUDController
     @employees = @search.results.alphabetical.paginate(page: params[:page])
   end
 
+  def destroy
+    @employee = Employee.find(params[:id])
+    if @employee.jobs.empty?
+      @employee.destroy
+      flash[:notice] = "Deleted employee #{@employee.name}"
+      redirect_to employees_path
+    else
+      flash[:warning] = "Can't delete an employee who has been assigned jobs."
+      redirect_to @employee
+    end
+  end
+
   def model
     Employee.alphabetical
   end

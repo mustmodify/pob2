@@ -26,6 +26,8 @@
   =link_to 'Reprimands', employee_reprimands_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Restrictions', employee_restrictions_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Screenings', employee_screenings_path( @employee ), :class => 'btn btn-block btn-default'
+  .spacer
+  =link_to 'Delete', employee_path(@employee), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'}, :class => 'btn btn-danger btn-block'
 
 .row
   .col-sm-4
