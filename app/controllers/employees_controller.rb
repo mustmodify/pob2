@@ -4,6 +4,18 @@ class EmployeesController < CRUDController
     @employees = @search.results.alphabetical.paginate(page: params[:page])
   end
 
+  def create
+    @employee = Employee.new( local_params )
+
+    if( @employee.doppelgangers.not.empty? && @employee.not.confirmed )
+      render :action => 'confirmation'
+    elsif @employee.save
+      redirect_to target_on_create
+    else
+      render action: 'new'
+    end
+  end
+
   def destroy
     @employee = Employee.find(params[:id])
     if @employee.jobs.empty?

@@ -18,6 +18,11 @@ class Employee < ActiveRecord::Base
   has_many :competencies
   accepts_nested_attributes_for :competencies, allow_destroy: true, reject_if: proc { |attributes| attributes['rate'].blank? }
 
+  attr_accessor :confirmed
+  def doppelgangers
+    @dop ||= Employee.where(last_name: self.last_name, dob: self.dob)
+  end
+
   has_and_belongs_to_many :positions, :join_table => :competencies
 
   has_phone_number :cell_phone

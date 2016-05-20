@@ -1,6 +1,9 @@
 =simple_form_for @employee, wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
   %legend Details
 
+  -if @employee.doppelgangers.not.empty? && @employee.not.persisted?
+    .alert.alert-warning
+      =f.input :confirmed, as: :boolean, label: 'not a duplicate employee'
   =f.input :first_name
   =f.input :middle_name
   =f.input :last_name
