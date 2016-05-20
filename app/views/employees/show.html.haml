@@ -86,11 +86,17 @@
       %tr
         %td Identification
         %td
+          -if @employee.ident_expiration_date && @employee.ident_expiration_date.past?
+            .label.label-danger Expired
+          -elsif @employee.ident_expiration_date && @employee.ident_expiration_date < 3.months.from_now
+            .label.label-warning Expires Soon
+
+
           -if @employee.ident_number
             =@employee.ident_issuer
             =@employee.ident_number
             -if @employee.ident_expiration_date
-              ="( exp in #{time_ago_in_words(@employee.ident_expiration_date)} )"
+              ="( exp #{@employee.ident_expiration_date} )"
           -else
             .text-muted Unknown
       %tr
