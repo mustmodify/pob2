@@ -1,7 +1,7 @@
 %a{href: employee_path(employee)}
   .row.employee
     .col-sm-4
-      .thumb.xs-hidden=image_tag employee.picture.url(:thumb)
+      .thumb.hidden-xs=image_tag employee.picture.url(:thumb)
       .availability.label-full
         -if employee.status == 'Terminated'
           .label.label-warning Terminated
