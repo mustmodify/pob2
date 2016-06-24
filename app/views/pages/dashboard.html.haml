@@ -1,1 +1,11 @@
+:css
+  h1.title {
+    border-top: 3px solid lightblue;
+    border-bottom: 3px solid lightblue;
+  }
+
+%h1.title Projects with Employees Onboard
+=render :partial => 'projects/overview', :collection => @ongoing_projects, :as => :project
+
+%h1.title Other Active Projects
 =render :partial => 'projects/overview', :collection => @projects, :as => :project

@@ -29,13 +29,14 @@
     %tbody
       =render :partial => 'jobs/jobs', locals:  {jobs: @recent_jobs}
 
-  -if @current_job
+  -if @current_jobs
     %thead
       %tr
         %th{colspan: 9}
-          %h4 Current Job
+          %h4 Current
     %tbody
-      =render :partial => 'jobs/jobs', locals:  {jobs: [@current_job]}
+      =render :partial => 'jobs/jobs', locals:  {jobs: @current_jobs}
+      / only one job for an employee, but can be many for a project
 
   -if @upcoming_jobs.not.empty?
     %thead
