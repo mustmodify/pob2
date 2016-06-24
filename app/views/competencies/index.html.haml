@@ -17,7 +17,7 @@
           =cf.hidden_field :position_id
           =cf.object.try(&:position)
         %td
-          =cf.text_field :rate, :class => 'rate_field'
+          =cf.text_field :rate, value: number_with_precision(cf.object.rate, precision: 2), :class => 'rate_field'
           per
           =cf.select :rate_interval, PAY_INTERVALS
         %td

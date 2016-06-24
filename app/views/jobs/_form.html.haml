@@ -4,7 +4,7 @@
   =f.association :project
   =f.association :employee, :collection => Employee.active.order(:first_name, :last_name)
   =f.association :position
-  =f.input :rate, hint: 'leave blank to use the normal rate'
+  =f.input :rate, hint: 'leave blank to use the normal rate', input_html: {value: number_with_precision(f.object.rate, precision: 2)}
   =f.input :rate_interval, label: 'per', collection: PAY_INTERVALS, hint: 'leave blank to use the normal rate'
   =f.input :hours_per_day, default: 12
 

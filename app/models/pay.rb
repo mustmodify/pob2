@@ -6,7 +6,11 @@ class Pay < Valuable
     !rate
   end
 
+  def rate_with_precision
+    sprintf("%.2f", rate)
+  end
+
   def to_s
-    "$ #{rate} per #{rate_interval}" unless blank? 
+    "$ #{rate_with_precision} per #{rate_interval}" unless blank?
   end
 end

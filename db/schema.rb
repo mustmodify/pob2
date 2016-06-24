@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922141055) do
+ActiveRecord::Schema.define(version: 20160624143753) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "project_id",    limit: 4
     t.integer "employee_id",   limit: 4
     t.integer "position_id",   limit: 4
-    t.decimal "rate",                    precision: 10
+    t.decimal "rate",                    precision: 10, scale: 2
     t.string  "rate_interval", limit: 8
   end
 
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20150922141055) do
   create_table "competencies", force: :cascade do |t|
     t.integer  "employee_id",   limit: 4
     t.integer  "position_id",   limit: 4
-    t.decimal  "rate",                    precision: 10
-    t.string   "rate_interval", limit: 8,                default: "day"
+    t.decimal  "rate",                    precision: 10, scale: 2
+    t.string   "rate_interval", limit: 8,                          default: "day"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20150922141055) do
     t.integer  "project_id",       limit: 4
     t.integer  "employee_id",      limit: 4
     t.integer  "position_id",      limit: 4
-    t.decimal  "rate",                           precision: 10
+    t.decimal  "rate",                           precision: 10, scale: 2
     t.string   "rate_interval",    limit: 8
     t.decimal  "hours_per_day",                  precision: 10
     t.date     "onboarding_date"
