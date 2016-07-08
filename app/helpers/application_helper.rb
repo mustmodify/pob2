@@ -46,4 +46,8 @@ module ApplicationHelper
         end
       end
   end
+
+  def selectable_employees
+    (Employee.active.alphabetical + [nil] + Employee.terminated.alphabetical).map{|e| e ? [e.name, e.id] : [nil, nil]}
+  end
 end

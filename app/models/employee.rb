@@ -31,6 +31,7 @@ class Employee < ActiveRecord::Base
 
   scope :alphabetical, -> {order(:first_name, :last_name)}
   scope :active, -> {where(status: 'Active')}
+  scope :terminated, -> {where(status: 'Terminated')}
 
   def phone_numbers
     {}.tap do |out|

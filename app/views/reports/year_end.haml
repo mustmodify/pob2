@@ -5,7 +5,7 @@
     .panel-body
       =simple_form_for @report, :url => '/reports/year_end', wrapper: :vertical_form do |f|
         =f.input :year, collection: ((Date.today.year - 3)..(Date.today.year)).to_a, required: true, include_blank: false
-        =f.input :employee_id, collection: Employee.alphabetical, required: false
+        =f.input :employee_id, collection: selectable_employees, required: false
         =f.input :project_id, collection: Project.all, required: false
         =f.button :submit, 'Build Report'
 
