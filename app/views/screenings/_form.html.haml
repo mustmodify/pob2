@@ -1,4 +1,5 @@
 =simple_form_for [@employee, @screening], wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
+  =f.input :category, collection: Screening::CATEGORIES
   =f.input :date, as: :dated
   =f.input :outcome, collection: ['Positive', 'Negative']
   =f.input :image
