@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Pay do
   it 'emits human-readable values' do
-    Pay.new(rate: 100, rate_interval: 'day').to_s.should == '$ 100 per day'
+    Pay.new(rate: 100, rate_interval: 'day').to_s.should == '$ 100.00 per day'
   end
 
   it 'emits nothing for human-readable value when blank' do
