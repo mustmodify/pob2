@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708160441) do
+ActiveRecord::Schema.define(version: 20160708161538) do
 
   create_table "assignments", force: :cascade do |t|
-    t.integer "project_id",    limit: 4
-    t.integer "employee_id",   limit: 4
-    t.integer "position_id",   limit: 4
-    t.decimal "rate",                    precision: 10, scale: 2
-    t.string  "rate_interval", limit: 8
+    t.integer  "project_id",    limit: 4
+    t.integer  "employee_id",   limit: 4
+    t.integer  "position_id",   limit: 4
+    t.decimal  "rate",                      precision: 10, scale: 2
+    t.string   "rate_interval", limit: 8
+    t.string   "po_number",     limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "assignments", ["project_id", "employee_id", "position_id"], name: "index_assignments_on_project_id_and_employee_id_and_position_id", using: :btree
