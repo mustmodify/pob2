@@ -33,7 +33,7 @@ class YearEndReport < Valuable
     # Needs to be unioned with a query that handles jobs overlapping the beginning and end of the year.
     @results ||= Q.ask %|
       select project_id, employee_id, sum(hours) as hours, sum(days) as days FROM
-        (select project_id, employee_id, DATEDIFF(offboarding_date, onboarding_date) as days, (DATEDIFF(offboarding_date, onboarding_date) * hours_per_day) as hours FROM jobs WHERE YEAR(onboarding_date) = #{self.year} AND YEAR(offboarding_date) = YEAR(onboarding_date)) as indata GROUP BY employee_id, project_id|
+        (select project_id, employee_id, DATEDIFF(offboarding_date, onboarding_date) as days, (DATEDIFF(offboarding_date, onboarding_date) * hours_per_day) as hours FROM jobs WHERE YEAR(onboarding_date) = #{self.year} AND YEAR(offboarding_date) = YEAR(onboarding_date) AND project_id = #{self.project_id.to_i} AND employee_id = #{self.employee_id}) as indata GROUP BY employee_id, project_id|
   end
 
   def total_days
