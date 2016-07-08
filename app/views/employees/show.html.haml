@@ -118,7 +118,7 @@
                 %b=restriction.title
                 =restriction.description
 
-    %h2 Jobs:
+    %h2 Recent Jobs:
     %table.table
       -POBSummaryReport.new(employee_id: @employee.id, :start_date => 1.month.ago.to_date).data.each do |datum|
         %tr
