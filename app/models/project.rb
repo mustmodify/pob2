@@ -16,6 +16,8 @@ class Project < ActiveRecord::Base
 
   has_phone_number :phone
 
+  scope :alphabetical, -> {order(:name)}
+
   def removable?
     assignments.empty? && jobs.empty?
   end
