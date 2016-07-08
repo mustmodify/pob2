@@ -3,20 +3,28 @@
 -content_for :options do
   =link_to 'New Position', new_position_path, :class => 'btn btn-primary btn-block'
 
+.alert.alert-info
+  %b Heads Up!
+  The numbers below may not add up to the total number of employees because one employee can have more than one position.
+
 %table.table.table-striped
   %thead
     %tr 
-      %td Name
-      %td Employee Count
-      %td
+      %th Name
+      %th Employee Count
+      %th
 
   %tbody
     -@positions.each do |position|
       %tr
         %td=position.name
-        %td=position.employees.count
+        %td=position.employees.active.count
         %td
           -if position.removable?
             =link_to 'delete', position_path( position ), :class => 'btn btn-warning btn-xs', :data => {:confirm => 'Are you sure?'}, :method => :delete
-
+  %tfoot
+    %tr
+      %th All Active Employees
+      %th=Employee.active.count
+      %th
 =will_paginate @positions, :renderer => BootstrapPagination::Rails
