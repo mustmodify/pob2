@@ -24,7 +24,7 @@ class CRUDController < ApplicationController
   end
 
   def new
-    set_record model.new
+    set_record model.new( local_params )
   end
 
   def edit

@@ -9,10 +9,11 @@
 
 %table.table.table-striped
   %thead
-    %tr 
+    %tr
       %th Name
       %th Employee Count
       %th
+      %th Customary Certs
 
   %tbody
     -@positions.each do |position|
@@ -22,6 +23,14 @@
         %td
           -if position.removable?
             =link_to 'delete', position_path( position ), :class => 'btn btn-warning btn-xs', :data => {:confirm => 'Are you sure?'}, :method => :delete
+        %td
+          -position.customary_certs.each do |cc|
+            %li=cc.cert_name
+          =link_to position_customary_certs_path(position) do
+            -if position.customary_certs.empty?
+              .btn.btn-info.btn-xs Add
+            -else
+              .btn.btn-info.btn-xs Change
   %tfoot
     %tr
       %th All Active Employees

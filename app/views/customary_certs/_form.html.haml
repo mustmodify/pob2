@@ -1,0 +1,4 @@
+=simple_form_for @customary_cert, url: position_customary_certs_path(params[:position_id]) do |f|
+  =f.association :position
+  =f.association :cert_name, :collection => CertName.order(:name)
+  =f.submit "Save", class: 'btn btn-success'

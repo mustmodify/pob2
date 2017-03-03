@@ -29,7 +29,10 @@ Rails.application.routes.draw do
 
   resources :notes
   resources :oil_cos
-  resources :positions
+  resources :positions do
+    resources :customary_certs, shallow: true
+  end
+
   resources :projects do
     resources :assignments
     resources :jobs

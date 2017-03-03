@@ -1,0 +1,15 @@
+-page_title "Customary Certs for #{@position.name}"
+
+-content_for :options do
+  =link_to "New #{model.name}", new_position_customary_cert_path(@position), :class => 'btn btn-primary btn-block'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+      %th Cert Name 
+  %tbody
+    -@customary_certs.each do |customary_cert|
+      %tr
+        %td=link_to 'remove', customary_cert_path(customary_cert), :method => :delete, :class => 'btn btn-default btn-xs'
+        %td=customary_cert.cert_name
