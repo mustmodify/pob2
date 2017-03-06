@@ -4,6 +4,6 @@ class CustomersController < CRUDController
   end
 
   def local_params
-    params.require(:customer).permit(:name)
+    params.fetch(:customer, {}).permit(:name)
   end
 end

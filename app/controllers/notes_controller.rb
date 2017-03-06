@@ -9,6 +9,6 @@ class NotesController < CRUDController
   end
 
   def local_params
-    params.require(:note).permit(:body, :employee_id).merge(:author_id => current_user.id)
+    params.fetch(:note, {}).permit(:body, :employee_id).merge(:author_id => current_user.id)
   end
 end

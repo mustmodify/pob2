@@ -4,6 +4,6 @@ class DepartureSitesController < CRUDController
   end
 
   def local_params
-    params.require(:departure_site).permit(:name, :category, :details)
+    params.fetch(:departure_site, {}).permit(:name, :category, :details)
   end
 end

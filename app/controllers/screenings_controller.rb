@@ -4,7 +4,7 @@ class ScreeningsController < NestedCRUDController
   end 
 
   def local_params
-    params.require(:screening).permit(:category, :outcome, :date, :image).merge(employee_id: params[:employee_id])
+    params.fetch(:screening, {}).permit(:category, :outcome, :date, :image).merge(employee_id: params[:employee_id])
   end
 
 end

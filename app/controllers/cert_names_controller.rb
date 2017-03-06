@@ -8,6 +8,6 @@ class CertNamesController < CRUDController
   end
 
   def local_params
-    params.require(:cert_name).permit(:name)
+    params.fetch(:cert_name, {}).permit(:name)
   end
 end

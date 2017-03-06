@@ -10,6 +10,6 @@ class CertsController < NestedCRUDController
   end
 
   def local_params
-    params.require(:cert).permit(:cert_name_id, :expires_on, :image).merge(:employee_id => @employee.id)
+    params.fetch(:cert, {}).permit(:cert_name_id, :expires_on, :image).merge(:employee_id => @employee.id)
   end
 end

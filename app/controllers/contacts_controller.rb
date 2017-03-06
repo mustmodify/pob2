@@ -9,6 +9,6 @@ class ContactsController < NestedCRUDController
   end
 
   def local_params
-    params.require(:contact).permit(:name, :relationship, :home_phone, :cell_phone, :alt_phone).merge(:employee_id => @employee.id)
+    params.fetch(:contact, {}).permit(:name, :relationship, :home_phone, :cell_phone, :alt_phone).merge(:employee_id => @employee.id)
   end
 end

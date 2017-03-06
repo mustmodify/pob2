@@ -5,6 +5,6 @@ class OilCosController < CRUDController
   end
 
   def local_params
-    params.require(:oil_co).permit(:name)
+    params.fetch(:oil_co, {}).permit(:name)
   end
 end

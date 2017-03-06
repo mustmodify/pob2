@@ -4,6 +4,6 @@ class WorkSitesController < CRUDController
   end
 
   def local_params
-    params.require(:work_site).permit(:name, :details)
+    params.fetch(:work_site, {}).permit(:name, :details)
   end
 end

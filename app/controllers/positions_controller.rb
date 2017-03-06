@@ -1,10 +1,15 @@
 class PositionsController < CRUDController 
 
+  def show
+    @position = Position.find(params[:id])
+    render :layout => 'fluid'
+  end
+
   def target_on_create
     positions_path
   end
 
   def local_params
-    params.require(:position).permit(:name)
+    params.fetch(:position, {}).permit(:name)
   end
 end

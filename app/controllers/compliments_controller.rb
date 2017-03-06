@@ -4,7 +4,7 @@ class ComplimentsController < NestedCRUDController
   end 
 
   def local_params
-    params.require(:compliment).permit(:date, :note, :image).merge(employee_id: params[:employee_id])
+    params.fetch(:compliment, {}).permit(:date, :note, :image).merge(employee_id: params[:employee_id])
   end
 
 end

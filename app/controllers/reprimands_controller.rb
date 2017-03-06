@@ -5,6 +5,6 @@ class ReprimandsController < NestedCRUDController
   end
 
   def local_params
-    params.require(:reprimand).permit(:reprimand_category_id, :date, :note, :image).merge(:employee_id => @employee.id)
+    params.fetch(:reprimand, {}).permit(:reprimand_category_id, :date, :note, :image).merge(:employee_id => @employee.id)
   end
 end
