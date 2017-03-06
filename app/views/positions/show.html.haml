@@ -34,17 +34,24 @@
             %td
               -cert = employee.certs.find{|cert| cert.cert_name_id == cert_name.id}
               -if cert.nil?
-                .label.label-info No Docs
+                =link_to new_employee_cert_path(employee, cert: {cert_name_id: cert_name.id} ) do
+                  .label.label-info
+                    No Docs
               -elsif cert.expires_on && cert.expires_on > 45.days.from_now
-                =cert.expires_on
+                =link_to employee_cert_path(employee, cert) do
+                  =cert.expires_on
               -elsif cert.expires_on && cert.expires_on > 30.days.from_now
-                .label.label-primary
-                  =cert.expires_on
+                =link_to employee_cert_path(employee, cert) do
+                  .label.label-primary
+                    =cert.expires_on
               -elsif cert.expires_on && cert.expires_on > Date.today 
-                .label.label-warning
-                  =cert.expires_on
+                =link_to employee_cert_path(employee, cert) do
+                  .label.label-warning
+                    =cert.expires_on
               -elsif cert.expires_on
-                .label.label-danger
-                  =cert.expires_on
+                =link_to employee_cert_path(employee, cert) do
+                  .label.label-danger
+                    =cert.expires_on
               -else
-                .label.label-default No Expiry
+                =link_to employee_cert_path(employee, cert) do
+                  .label.label-default No Expiry

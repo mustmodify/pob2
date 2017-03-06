@@ -1,0 +1,17 @@
+-missing_customary_cert_names.each do |cert_name|
+  .col-sm-4
+    .panel.panel-info.panel-simple.certificate
+      .panel-body
+        .pull-right
+          =link_to new_employee_cert_path(@employee, cert: {cert_name_id: cert_name.id} ) do
+            %span.text-muted.glyphicon.glyphicon-wrench
+            &nbsp;
+
+        %h4
+          .cert-heading.no-margin=cert_name
+        %center.cert-image
+          .text-centered.text-muted.glyphicon.glyphicon-question-sign{'style' => 'font-size: 6em;'}
+          %hr
+          This cert is required for #{cert_name.customary_certs.map(&:position).map(&:name).join(', ')}
+        %center.cert-expiration
+          &nbsp; 

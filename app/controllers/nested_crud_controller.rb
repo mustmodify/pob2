@@ -27,7 +27,7 @@ class NestedCRUDController < ApplicationController
 
   def new
     set_parent
-    set_record model.new
+    set_record model.new(local_params)
   end
 
   def edit

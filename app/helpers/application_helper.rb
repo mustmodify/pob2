@@ -50,4 +50,10 @@ module ApplicationHelper
   def selectable_employees
     (Employee.active.alphabetical + [nil] + Employee.terminated.alphabetical).map{|e| e ? [e.name, e.id] : [nil, nil]}
   end
+
+  def missing_customary_cert_names
+    required_cert_name_ids = CustomaryCert.where(position_id: @employee.position_ids).pluck(:cert_name_id).uniq
+    missing_cert_name_ids = (required_cert_name_ids - @certs.map(&:cert_name_id))
+    CertName.where(id: missing_cert_name_ids)
+  end
 end
