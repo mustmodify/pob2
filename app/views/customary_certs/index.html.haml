@@ -9,7 +9,7 @@
       %th
       %th Cert Name 
   %tbody
-    -@customary_certs.each do |customary_cert|
+    -@customary_certs.joins(:cert_name).order('cert_names.name').each do |customary_cert|
       %tr
         %td=link_to 'remove', customary_cert_path(customary_cert), :method => :delete, :class => 'btn btn-default btn-xs'
         %td=customary_cert.cert_name

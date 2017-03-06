@@ -24,8 +24,8 @@
           -if position.removable?
             =link_to 'delete', position_path( position ), :class => 'btn btn-warning btn-xs', :data => {:confirm => 'Are you sure?'}, :method => :delete
         %td
-          -position.customary_certs.each do |cc|
-            %li=cc.cert_name
+          -position.cert_names.order(:name).each do |cc|
+            %li=cc
           =link_to position_customary_certs_path(position) do
             -if position.customary_certs.empty?
               .btn.btn-info.btn-xs Add
