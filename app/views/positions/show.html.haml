@@ -1,0 +1,50 @@
+%h1
+  %b="Certs for #{@position.name} Position"
+  %span.text-muted as of #{Date.today}
+
+.panel.panel-body
+  Key:
+  .label.label-info No Docs
+  .label.label-primary Expires in 30 to 45 days
+  .label.label-warning Expires in 30 days or less days
+  .label.label-danger Expired 
+  .label.label-default No Expiration 
+
+  .spacer 
+  .spacer 
+
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Status
+        -@position.cert_names.each do |cert_name|
+          %th=cert_name
+    %tbody
+      -@position.employees.active.alphabetical.each do |employee|
+        %tr
+          %th
+            =employee.name
+            .line=employee.cell_phone
+          %td
+            .availability.label-full
+              =render employee.next_availability
+          
+          -@position.cert_names.each do |cert_name|
+            %td
+              -cert = employee.certs.find{|cert| cert.cert_name_id == cert_name.id}
+              -if cert.nil?
+                .label.label-info No Docs
+              -elsif cert.expires_on && cert.expires_on > 45.days.from_now
+                =cert.expires_on
+              -elsif cert.expires_on && cert.expires_on > 30.days.from_now
+                .label.label-primary
+                  =cert.expires_on
+              -elsif cert.expires_on && cert.expires_on > Date.today 
+                .label.label-warning
+                  =cert.expires_on
+              -elsif cert.expires_on
+                .label.label-danger
+                  =cert.expires_on
+              -else
+                .label.label-default No Expiry

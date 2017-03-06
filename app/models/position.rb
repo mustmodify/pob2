@@ -4,7 +4,7 @@ class Position < ActiveRecord::Base
   has_many :jobs
   has_many :competencies
   has_many :customary_certs
-  has_many :certs, :through => :customary_certs
+  has_many :cert_names, :through => :customary_certs
 
   def removable?
     employees.empty? && jobs.empty? && competencies.empty?
