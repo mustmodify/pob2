@@ -33,6 +33,8 @@ class Employee < ActiveRecord::Base
   scope :active, -> {where(status: 'Active')}
   scope :terminated, -> {where(status: 'Terminated')}
 
+  validates_format_of :email, :with => EMAIL_PATTERN, :message => "doesn't look like an email address"
+
   def phone_numbers
     {}.tap do |out|
       out['Home'] = self.home_phone if self.home_phone.not.blank?
