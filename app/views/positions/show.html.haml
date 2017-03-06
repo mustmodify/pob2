@@ -24,7 +24,7 @@
       -@position.employees.active.alphabetical.each do |employee|
         %tr
           %th
-            =employee.name
+            =link_to employee.name, employee
             .line=employee.cell_phone
           %td
             .availability.label-full
