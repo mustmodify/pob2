@@ -4,11 +4,10 @@
 
 .panel.panel-body
   Key:
-  .label.label-info No Docs
+  .label.label-danger No Docs
   .label.label-primary Expires in 30 to 45 days
   .label.label-warning Expires in 30 days or less days
   .label.label-danger Expired 
-  .label.label-default No Expiration 
 
   .spacer 
   .spacer 
@@ -35,7 +34,7 @@
               -cert = employee.certs.find{|cert| cert.cert_name_id == cert_name.id}
               -if cert.nil?
                 =link_to new_employee_cert_path(employee, cert: {cert_name_id: cert_name.id} ) do
-                  .label.label-info
+                  .label.label-danger
                     No Docs
               -elsif cert.expires_on && cert.expires_on > 45.days.from_now
                 =link_to employee_cert_path(employee, cert) do
@@ -54,4 +53,4 @@
                     =cert.expires_on
               -else
                 =link_to employee_cert_path(employee, cert) do
-                  .label.label-default No Expiry
+                  No Expiry
