@@ -1,3 +1,12 @@
+:css
+  .label-blank { background-color: white; color: inherit; }
+
+  @media print {
+    a[href]:after {
+      content: none !important;
+    }
+  }
+}
 %h1
   %b="Certs for #{@position.name} Position"
   %span.text-muted as of #{Date.today}
@@ -7,10 +16,10 @@
   .label.label-danger No Docs
   .label.label-primary Expires in 30 to 45 days
   .label.label-warning Expires in 30 days or less days
-  .label.label-danger Expired 
+  .label.label-danger Expired
 
-  .spacer 
-  .spacer 
+  .spacer
+  .spacer
 
   %table.table
     %thead
@@ -23,12 +32,12 @@
       -@position.employees.active.alphabetical.each do |employee|
         %tr
           %th
-            =link_to employee.name, employee
+            %nobr=link_to employee.name, employee
             .line=employee.cell_phone
           %td
             .availability.label-full
               =render employee.next_availability
-          
+
           -@position.cert_names.each do |cert_name|
             %td
               -cert = employee.certs.find{|cert| cert.cert_name_id == cert_name.id}
@@ -43,7 +52,7 @@
                 =link_to employee_cert_path(employee, cert) do
                   .label.label-primary
                     =cert.expires_on
-              -elsif cert.expires_on && cert.expires_on > Date.today 
+              -elsif cert.expires_on && cert.expires_on > Date.today
                 =link_to employee_cert_path(employee, cert) do
                   .label.label-warning
                     =cert.expires_on
@@ -53,4 +62,4 @@
                     =cert.expires_on
               -else
                 =link_to employee_cert_path(employee, cert) do
-                  No Expiry
+                  .label.label-blank No Date
