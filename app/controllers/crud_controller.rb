@@ -50,11 +50,22 @@ class CRUDController < ApplicationController
   end
 
   def update
-    set_record model.update( params[:id], local_params )
-    respond_to do |format|
-      format.html { redirect_to target_on_update }
-      format.json { render :json => instance.to_json }
-      format.xml  { render :xml => instance.to_xml }
+    set_record model.find(params[:id])
+
+    if( instance.update_attributes( local_params )
+      respond_to do |format|
+        format.html { redirect_to target_on_update }
+        format.json { render :json => instance.to_json }
+        format.xml  { render :xml => instance.to_xml }
+      end
+    else
+      respond_to do |format|
+        format.html { render action: 'edit' }
+        format.json { render :json => instance.errors, :status => :unprocessable_enti
+ty }
+        format.xml { render :xml => instance.errors, :status => :unprocessable_entity
+ }
+      end
     end
   end
 
