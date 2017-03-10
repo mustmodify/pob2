@@ -1,6 +1,6 @@
 Rails.application.config.middleware.use Warden::Manager do |manager|
   # manager.default_strategies :session, :password, :perishable_token, :persistence_token
-  manager.default_strategies [:perishable_token, :password, :cookie]
+  manager.default_strategies [:perishable_token, :password]
   manager.intercept_401 = false # when go_away renders :status => 401, warden ignores what it rendered and kicks you back out to the login page.
 
   manager.failure_app = lambda { |env| Rails.logger.warn "[AUTH] Failed to authenticate. Going to user_sessions#challenge."; UserSessionsController.action(:challenge).call(env) }
@@ -17,15 +17,7 @@ end
 Warden::Manager.after_set_user do |user, auth, opts|
   if( user.login_count.blank? )
     user.update_attribute( :login_count, 1 )
-  else
-    user.update_attribute( :login_count, user.login_count + 1 )
   end
-
-  Rack::Request.new(auth.env).cookies['user.remember.token'] = user.persistence_token
-end
-
-Warden::Manager.before_logout :scoper => :user do |user, auth, opts|
-  Rack::Request.new(auth.env).cookies['user.remember.token'] = ""
 end
 
 Warden::Strategies.add(:password) do
@@ -45,6 +37,8 @@ Warden::Strategies.add(:password) do
       fail "Invalid email or password"
     elsif user.authenticate( passwd )
       Rails.logger.warn("[AUTH] User #{user.email} authenticated with a password.")
+      user.login_count ||= 0
+      user.update_attribute( :login_count, user.login_count + 1 )
       success! user
     else
       Rails.logger.warn("[AUTH] Bad Password")
@@ -106,29 +100,6 @@ Warden::Strategies.add(:perishable_token) do
     else
       Rails.logger.warn("[AUTH] No Such User")
       fail "Invalid email or password"
-    end
-  end
-end
-
-Warden::Strategies.add(:cookie) do
-  Rails.logger.warn("[AUTH] Authenticating user via cookie")
-
-  def cookie_token
-    Rack::Request.new(auth.env).cookies['user.remember.token']
-  end
-
-  def valid?
-    cookie_token.not.blank?
-  end
-
-  def authenticate!
-    if user = User.where(persistence_token: cookie_token).first
-      user.login_count ||= 0
-      user.update_attribute(:login_count, user.login_count + 1)
-
-      success! user
-    else
-      fail! "Could not log in"
     end
   end
 end
