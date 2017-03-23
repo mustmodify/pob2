@@ -1,4 +1,4 @@
--missing_customary_cert_names.each do |cert_name|
+-missing_customary_cert_names.order(:name).each do |cert_name|
   .col-sm-4
     .panel.panel-info.panel-simple.certificate
       .panel-body
