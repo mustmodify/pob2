@@ -88,7 +88,7 @@
         %td
           -if @employee.ident_expiration_date && @employee.ident_expiration_date.past?
             .label.label-danger Expired
-          -elsif @employee.ident_expiration_date && @employee.ident_expiration_date < 3.months.from_now
+          -elsif @employee.ident_expiration_date && @employee.ident_expiration_date < 3.months.from_now.to_date
             .label.label-warning Expires Soon
 
 

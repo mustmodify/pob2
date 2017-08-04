@@ -52,6 +52,8 @@
                   .label.label-danger
                     No Docs
               -elsif cert.expires_on && cert.expires_on > 45.days.from_now
+                / If this fails but employees#show works, change this line
+                / to 45.days.from_now.to_date
                 =link_to employee_cert_path(employee, cert) do
                   =cert.expires_on
               -elsif cert.expires_on && cert.expires_on > 30.days.from_now
