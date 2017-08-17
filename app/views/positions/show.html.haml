@@ -51,7 +51,7 @@
                 =link_to new_employee_cert_path(employee, cert: {cert_name_id: cert_name.id} ) do
                   .label.label-danger
                     No Docs
-              -elsif cert.expires_on && cert.expires_on > 45.days.from_now
+              -elsif cert.expires_on && cert.expires_on > 45.days.from_now.to_date
                 / If this fails but employees#show works, change this line
                 / to 45.days.from_now.to_date
                 =link_to employee_cert_path(employee, cert) do
