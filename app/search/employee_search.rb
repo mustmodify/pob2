@@ -15,6 +15,10 @@ class EmployeeSearch < Valuable
       scope = scope.where('certs.expires_on < ?', Time.now + cert_expiration_period)
     end
 
+    if position_id
+      scope = scope.joins(:competencies).where('competencies.position_id = ?', position_id)
+    end
+
     if !self.include_those_needing_transport
       scope = scope.where('transportation_needed = ? OR transportation_needed IS NULL', false)
     end

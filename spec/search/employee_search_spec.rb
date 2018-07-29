@@ -20,6 +20,17 @@ describe EmployeeSearch do
     EmployeeSearch.new(cert_expiration_period: 30.days.to_i).results.length.should == 1
   end
 
+  it 'filters by position through competency' do
+    jen = FactoryGirl.create(:employee)
+    john = FactoryGirl.create(:employee)
+    working_girl = FactoryGirl.create(:position)
+    FactoryGirl.create(:competency, employee: jen, position: working_girl)
+
+    results = EmployeeSearch.new(position_id: working_girl.id).results
+    results.should include(jen)
+    results.should_not include(john)
+  end
+
   it 'filters by whether transport is required' do
     jen = FactoryGirl.create(:employee, transportation_needed: true)
     EmployeeSearch.new(include_those_needing_transport: false).results.should_not include(jen)
