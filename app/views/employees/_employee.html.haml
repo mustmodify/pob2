@@ -29,3 +29,7 @@
           =employee.date_of_last_screening
         -else
           %span.text-muted not on file
+      =form_for employee, url: employee_path(employee, redirect_to: root_path(page: params[:page])), html: {class: 'form-inline disable-link'} do |f|
+        .form-group.form-group-sm.form-group-small
+          =f.text_field :assignment, class: 'form-control clearable', placeholder: 'Assignment', onClick: "this.setSelectionRange(0, this.value.length); return(false);"
+        =f.submit "Save", class: 'btn btn-default btn-sm'

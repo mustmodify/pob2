@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180729183329) do
+ActiveRecord::Schema.define(version: 20180729205609) do
 
   create_table "cert_names", force: :cascade do |t|
     t.string "name", limit: 255
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20180729183329) do
     t.integer  "body_weight",           limit: 4
     t.integer  "bag_weight",            limit: 4
     t.string   "status",                limit: 15,  default: "Active"
+    t.string   "assignment",            limit: 250
     t.boolean  "eligible_for_rehire"
     t.string   "cell_phone",            limit: 255
     t.string   "home_phone",            limit: 255

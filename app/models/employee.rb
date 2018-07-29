@@ -1,5 +1,7 @@
 class Employee < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
+  validates_length_of :assignment, maximum: 250
+
 
   has_attached_file :picture, :styles => { :medium => "225x225>", :thumb => "100x100>" }, :default_url => "/missing_employee_picture/:style.png"
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/ 
