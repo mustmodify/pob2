@@ -16,43 +16,18 @@
         #navbar-section-1.navbar-left
           %ul.nav.navbar-nav
             %li
-              =link_to 'Calendar', "/reports/calendar" 
-            %li
-              =link_to 'Employees', employees_path
-            %li
-              =link_to 'Projects', projects_path
+              =link_to 'Employees', root_path
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                Etc 
+                Etc
                 %b.caret
               %ul.dropdown-menu
                 %li
                   =link_to 'Cert Names', cert_names_path
                 %li
-                  =link_to 'Customers', customers_path
-                %li
-                  =link_to 'Departure Sites', departure_sites_path
-                %li
-                  =link_to 'Companies', oil_cos_path
-                %li
                   =link_to 'Positions', positions_path
                 %li
-                  =link_to 'Projects', projects_path
-                %li
                   =link_to 'Users', users_path
-                %li
-                  =link_to 'Work Sites', work_sites_path
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                Reports
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  =link_to 'POB Summary', '/reports/pob_summary'
-                %li
-                  =link_to 'Timesheets', '/reports/timesheet'
-                %li
-                  =link_to 'Year End Report', '/reports/year_end'
 
         #navbar-section-2.navbar-right
           %ul.nav.navbar-nav

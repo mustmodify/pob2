@@ -3,19 +3,12 @@ class EmployeeSearch < Valuable
   include ActiveModel::Conversion
 
   has_value :cert_expiration_period, :klass => :integer
-  has_value :project_id, :klass => :integer
   has_value :position_id, :klass => :integer
   has_value :include_those_needing_transport, :parse_with => lambda {|x| x == true || x == "true"}, default: true
   has_value :status, default: 'Active'
 
   def results
     scope = Employee.where('1=1').group('employees.id')
-
-    if self.project_id || self.position_id
-      scope = scope.joins(:assignments)
-      scope = scope.where('assignments.project_id = ?', self.project_id) if project_id
-      scope = scope.where('assignments.position_id = ?', self.position_id) if position_id
-    end
 
     if self.cert_expiration_period
       scope = scope.joins(:certs)

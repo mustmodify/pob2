@@ -1,13 +1,4 @@
 FactoryGirl.define do
-  factory :assignment do
-    association :project
-    association :employee
-    association :position
-
-    rate 150
-    rate_interval 'day'
-  end
-
   factory :cert do
     association :employee
     association :cert_name
@@ -32,19 +23,7 @@ FactoryGirl.define do
     last_name 'Watzke'
   end
 
-  factory :job do
-    association :project
-    association :employee
-    association :position
-    onboarding_date { 3.days.ago }
-    offboarding_date { 3.days.ago }
-  end
-
   factory :position do
     name {"#{String.random(5)} Position"}
-  end
-
-  factory :project do
-    name { "#{String.random(5)} Project" }
   end
 end

@@ -22,7 +22,6 @@
   =link_to 'Competencies', employee_competencies_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Compliments', employee_compliments_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Contacts', employee_contacts_path( @employee ), :class => 'btn btn-block btn-default'
-  =link_to 'Jobs', employee_jobs_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Reprimands', employee_reprimands_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Restrictions', employee_restrictions_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Screenings', employee_screenings_path( @employee ), :class => 'btn btn-block btn-default'
@@ -117,15 +116,3 @@
               %li
                 %b=restriction.title
                 =restriction.description
-
-    %h2 Recent Jobs:
-    %table.table
-      -POBSummaryReport.new(employee_id: @employee.id, :start_date => 1.month.ago.to_date).data.each do |datum|
-        %tr
-          %td=datum.project.name
-          %td=datum.position.name
-          %td
-            =datum.onboarding_date.to_s(:md)
-            to
-            =datum.offboarding_date.to_s(:md)
-    =link_to 'More Details', employee_jobs_path(@employee), :class => 'btn btn-info btn-sm'

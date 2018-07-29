@@ -20,24 +20,6 @@ describe EmployeeSearch do
     EmployeeSearch.new(cert_expiration_period: 30.days.to_i).results.length.should == 1
   end
 
-  it 'filters by assigned project' do
-    jen = FactoryGirl.create(:employee)
-    project = FactoryGirl.create(:project)
-
-    EmployeeSearch.new(project_id: project.id).results.should_not include(jen)
-  end
-
-  it 'filters by assigned position' do
-    jen = FactoryGirl.create(:employee)
-    project = FactoryGirl.create(:project)
-    clown = FactoryGirl.create(:position, name: 'clown')
-    chef = FactoryGirl.create(:position)
-
-    FactoryGirl.create(:assignment, position: chef, project: project)
-
-    EmployeeSearch.new(position_id: clown.id).results.should_not include(jen)
-  end
-
   it 'filters by whether transport is required' do
     jen = FactoryGirl.create(:employee, transportation_needed: true)
     EmployeeSearch.new(include_those_needing_transport: false).results.should_not include(jen)

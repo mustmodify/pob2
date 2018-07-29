@@ -2,15 +2,15 @@ class NextAvailabilityPresenter < Valuable
   has_value :employee
 
   def last_job
-    @last_job ||= Job.where(employee_id: employee.id).order('onboarding_date').limit(1).last
+    @last_job ||= nil
   end
 
   def next_job
-    @next_job ||= Job.where(employee_id: employee.id).where('onboarding_date > ?', Date.today).order('onboarding_date').limit(1).first
+    @next_job ||= nil
   end
 
   def current?
-    Job.where(employee_id: employee.id).where('onboarding_date <= ? AND offboarding_date >= ?', Date.today, Date.today).any?
+    false
   end
 
   def date_of_next_commitment

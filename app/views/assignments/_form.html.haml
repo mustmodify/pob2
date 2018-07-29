@@ -1,8 +1,0 @@
-=simple_form_for [parent_instance, instance], wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
-  =f.association :project
-  =f.association :employee, :collection => Employee.active.alphabetical
-  =f.association :position
-  =f.input :rate, input_html: {value: number_with_precision(f.object.rate, precision: 2)}, hint: "Leave blank to use the employee's regular pay"
-  =f.input :rate_interval, label: 'per', collection: PAY_INTERVALS
-  =f.input :po_number
-  =f.button :submit

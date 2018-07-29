@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301145603) do
-
-  create_table "assignments", force: :cascade do |t|
-    t.integer  "project_id",    limit: 4
-    t.integer  "employee_id",   limit: 4
-    t.integer  "position_id",   limit: 4
-    t.decimal  "rate",                      precision: 10, scale: 2
-    t.string   "rate_interval", limit: 8
-    t.string   "po_number",     limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "assignments", ["project_id", "employee_id", "position_id"], name: "index_assignments_on_project_id_and_employee_id_and_position_id", using: :btree
+ActiveRecord::Schema.define(version: 20180729183329) do
 
   create_table "cert_names", force: :cascade do |t|
     t.string "name", limit: 255
@@ -83,16 +70,6 @@ ActiveRecord::Schema.define(version: 20170301145603) do
     t.datetime "updated_at"
   end
 
-  create_table "customers", force: :cascade do |t|
-    t.string "name", limit: 255
-  end
-
-  create_table "departure_sites", force: :cascade do |t|
-    t.string "name",     limit: 255
-    t.string "category", limit: 255
-    t.text   "details",  limit: 65535
-  end
-
   create_table "employees", force: :cascade do |t|
     t.string   "first_name",            limit: 255
     t.string   "middle_name",           limit: 255
@@ -127,20 +104,6 @@ ActiveRecord::Schema.define(version: 20170301145603) do
     t.datetime "updated_at",                                           null: false
   end
 
-  create_table "jobs", force: :cascade do |t|
-    t.integer  "project_id",       limit: 4
-    t.integer  "employee_id",      limit: 4
-    t.integer  "position_id",      limit: 4
-    t.decimal  "rate",                           precision: 10, scale: 2
-    t.string   "rate_interval",    limit: 8
-    t.decimal  "hours_per_day",                  precision: 10
-    t.date     "onboarding_date"
-    t.date     "offboarding_date"
-    t.text     "note",             limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "notes", force: :cascade do |t|
     t.integer  "employee_id", limit: 4
     t.text     "body",        limit: 65535
@@ -149,26 +112,8 @@ ActiveRecord::Schema.define(version: 20170301145603) do
     t.datetime "updated_at"
   end
 
-  create_table "oil_cos", force: :cascade do |t|
-    t.string "name", limit: 255
-  end
-
   create_table "positions", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string   "name",              limit: 255
-    t.integer  "oil_co_id",         limit: 4
-    t.integer  "customer_id",       limit: 4
-    t.integer  "departure_site_id", limit: 4
-    t.integer  "work_site_id",      limit: 4
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "email",             limit: 255
-    t.string   "phone",             limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -223,11 +168,6 @@ ActiveRecord::Schema.define(version: 20170301145603) do
     t.datetime "last_request_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "work_sites", force: :cascade do |t|
-    t.string "name",    limit: 255
-    t.text   "details", limit: 65535
   end
 
 end
