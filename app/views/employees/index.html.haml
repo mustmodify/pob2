@@ -15,7 +15,8 @@
         =f.input :cert_expiration_period, :collection => {'30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}, required: false
         =f.input :position_id, :collection => Position.all.map{|position| [position.name, position.id]}, required: false
         =f.input :status, collection: ['Prospect', 'Active', 'Terminated'], required: false
-        =f.input :include_those_needing_transport, as: :radio_buttons
+        =f.input :include_those_needing_transport, as: :radio_buttons, required: false
+        =f.input :include_assigned, as: :radio_buttons, required: false, label: 'Include Unavailable'
         =f.submit :search, :class => 'btn btn-info btn-block'
 
 -if @employees.empty?

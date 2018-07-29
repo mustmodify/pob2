@@ -31,6 +31,15 @@ describe EmployeeSearch do
     results.should_not include(john)
   end
 
+  it 'filters by availability' do
+    jen = FactoryGirl.create(:employee, assignment: 'busy now')
+    john = FactoryGirl.create(:employee)
+
+    results = EmployeeSearch.new(include_assigned: 'false').results
+    results.should_not include(jen)
+    results.should include(john)
+  end
+
   it 'filters by whether transport is required' do
     jen = FactoryGirl.create(:employee, transportation_needed: true)
     EmployeeSearch.new(include_those_needing_transport: false).results.should_not include(jen)
