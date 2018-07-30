@@ -1,8 +1,8 @@
 class NextAvailabilityPresenter < Valuable
   has_value :employee
 
-  def current?
-    !employee.assignment.blank?
+  def is_available?
+    employee.assignment.blank?
   end
 
   def to_partial_path
@@ -10,10 +10,10 @@ class NextAvailabilityPresenter < Valuable
   end
 
   def to_s
-    if current?
-      'Unavailable'
-    else
+    if is_available?
       'Available'
+    else
+      'Unavailable'
     end
   end
 end

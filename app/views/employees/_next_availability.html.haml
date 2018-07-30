@@ -1,4 +1,4 @@
--if next_availability.current?
-  .label.label-success=next_availability.to_s
+-if next_availability.is_available?
+  .label.label-available=next_availability.to_s
 -else
-  .label.label-warning=next_availability.to_s
+  .label.label-unavailable=next_availability.to_s
