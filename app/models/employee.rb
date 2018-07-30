@@ -30,7 +30,7 @@ class Employee < ActiveRecord::Base
   has_phone_number :home_phone
   has_phone_number :alt_phone
 
-  scope :alphabetical, -> {order(:first_name, :last_name)}
+  scope :alphabetical, -> {order(:last_name, :first_name)}
   scope :active, -> {where(status: 'Active')}
   scope :terminated, -> {where(status: 'Terminated')}
 
