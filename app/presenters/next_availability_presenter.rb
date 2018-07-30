@@ -2,7 +2,7 @@ class NextAvailabilityPresenter < Valuable
   has_value :employee
 
   def current?
-    employee.assignment.blank?
+    !employee.assignment.blank?
   end
 
   def to_partial_path
