@@ -5,6 +5,8 @@ class Position < ActiveRecord::Base
   has_many :customary_certs
   has_many :cert_names, :through => :customary_certs
 
+  scope :alphabetical, -> {order(:name)}
+
   def removable?
     employees.empty? && competencies.empty?
   end
