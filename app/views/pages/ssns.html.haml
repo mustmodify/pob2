@@ -2,8 +2,10 @@
 %p in batches of 100, as required by the drug test software.
 
 -Employee::STATUSES.each do |status|
-  =@employees.where(status: status).pluck(:ssn).each_slice(100) do |list|
-    .col-sm-4
-      %p
-        %legend #{status} Batch
-        =simple_format(list.join("\n"))
+  =@employees.where(status: status).each_slice(100) do |emp_list|
+    %legend #{status} Batch
+    .row
+      .col-md-2
+        =simple_format(emp_list.map(&:ssn).join("\n"))
+      .col-md-6
+        =simple_format(emp_list.map(&:name).join("\n"))
