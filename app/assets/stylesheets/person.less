@@ -1,3 +1,47 @@
+.assignment-form {
+  color: red;
+  textarea {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.employee-card {
+  .thumb img {
+    margin: 0 1rem 1rem 0;
+    width: 100%;
+  }
+
+  .name {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 767px) {
+  .employee-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    .employee-block {
+      flex: 1;
+      margin: 1rem;
+    }
+  }
+
+  .employee-card {
+    display: flex;
+
+    .employee-pic {
+      width: 100px;
+      margin-right: 10px;
+    }
+
+    .employee-details {
+      flex: 1;
+    }
+  }
+}
+
 .people.show {
   font-weight: 300;
 

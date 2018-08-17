@@ -21,12 +21,11 @@
 -if @employees.empty?
   .text-muted No employees matched your criteria.
 -else
-  .list
+  .employee-list
     -@employees.each do |employee|
-      .col-sm-6.employee-block
-        .panel.panel-simple
-          .panel-body
-            =render employee
+      .employee-block.panel.panel-simple
+        .panel-body
+          =render employee
 
 .clearfix
 
