@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :notes
-
+  resources :ops_notes
   resources :positions do
     resources :customary_certs, shallow: true
   end
