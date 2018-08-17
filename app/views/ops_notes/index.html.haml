@@ -13,12 +13,10 @@
 %ul
   -@ops_notes.each do |ops_note|
     .ops-note
-      .pull-right
       %li
         .body=ops_note.body
-        .text-muted
-          =time_ago_in_words (ops_note.created_at - 2.days)
-          ago
-          =link_to ops_note, data: {confirm: 'Are you sure?'}, method: :delete do
-            [Remove]
-
+        .meta.text-muted
+          =ops_note.author.try(:name)
+          =" @ "
+          =ops_note.created_at.strftime('%m/%d/%Y %I:%M %p')
+          =link_to "[Remove]", ops_note, data: {confirm: 'Are you sure?'}, method: :delete

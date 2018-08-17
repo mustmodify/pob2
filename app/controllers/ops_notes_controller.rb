@@ -7,7 +7,9 @@ class OpsNotesController < CRUDController
     notes = params[:ops_notes]
 
     notes.each do |note|
-      OpsNote.create(note.permit(:body))
+      ops_note = OpsNote.new(note.permit(:body))
+      ops_note.author = current_user
+      ops_note.save
     end
 
     redirect_to ops_notes_path
