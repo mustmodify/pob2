@@ -1,8 +1,9 @@
 %h1 SSN List
 %p in batches of 100, as required by the drug test software.
 
-=@ssns.each_slice(100) do |list|
-  .col-sm-4
-    %p
-      %legend Batch
-      =simple_format(list.join("\n"))
+-Employee::STATUSES.each do |status|
+  =@employees.where(status: status).pluck(:ssn).each_slice(100) do |list|
+    .col-sm-4
+      %p
+        %legend #{status} Batch
+        =simple_format(list.join("\n"))
