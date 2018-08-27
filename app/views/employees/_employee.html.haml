@@ -14,7 +14,20 @@
     -if employee.positions.empty?
       .text-muted No competencies set up
     -else
-      =employee.positions.map(&:to_s).join(', ')
+      -employee.competencies.each do |comp|
+        .competency
+          =comp.position.name
+          -if comp.rating == 'A'
+            .label.label-success A
+          -elsif comp.rating == 'B'
+            .label.label-info B
+          -elsif comp.rating == 'C'
+            .label.label-warning C
+          -elsif comp.rating == 'D'
+            .label D
+          -else
+            .label.label-danger Not Set
+
     .spacer
     -employee.phone_numbers.each do |label, number|
       .line
