@@ -48,15 +48,6 @@ describe EmployeeSearch do
     results.should include(john)
   end
 
-  it 'filters by whether transport is required' do
-    jen = FactoryGirl.create(:employee, transportation_needed: true)
-    EmployeeSearch.new(include_those_needing_transport: false).results.should_not include(jen)
-  end
-
-  it 'accepts transportation message' do
-    EmployeeSearch.new("include_those_needing_transport"=>"false").include_those_needing_transport.should == false
-  end
-
   it 'filters by status' do
     jen = FactoryGirl.create(:employee, status: 'Prospect')
     EmployeeSearch.new(status: 'Active').results.should_not include(jen)

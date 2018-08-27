@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def tabular_atts( employee )
-    atts = [:dob, :ssn, :nationality, :gsn, :transportation_needed, :body_weight, :bag_weight, :eligible_for_rehire]
+    atts = [:dob, :ssn, :nationality, :gsn, :body_weight, :bag_weight, :eligible_for_rehire]
     atts.map{|att| [att.to_s, employee.send(att)] }.
       reject{|x, y| y == nil || y == ''}.
       map do |name, value|
