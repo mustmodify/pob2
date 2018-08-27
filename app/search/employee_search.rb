@@ -32,7 +32,7 @@ class EmployeeSearch < Valuable
       scope = scope.where(status: self.status)
     end
 
-    scope
+    scope.alphabetical
   end
 
   def persisted?
