@@ -3,19 +3,25 @@
 -content_for :options do
   =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
 
-=form_for @employee do |f|
+.alert.alert-warning
+  %b Heads Up
+  You must enter both a rate AND a rating, or your changes won't stick!
+=simple_form_for @employee do |f|
   %table.table.table-striped
     %thead
       %th Position
+      %th Rating
       %th Rate
       %th
 
-    =f.fields_for :competencies do |cf|
+    =f.simple_fields_for :competencies do |cf|
       %tr
         %td
           =cf.hidden_field :id
           =cf.hidden_field :position_id
           =cf.object.try(&:position)
+        %td
+          =cf.select :rating, RATINGS, include_blank: true
         %td
           =cf.text_field :rate, value: number_with_precision(cf.object.rate, precision: 2), :class => 'rate_field'
           per

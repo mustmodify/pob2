@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817163147) do
+ActiveRecord::Schema.define(version: 20180827224305) do
 
   create_table "cert_names", force: :cascade do |t|
     t.string "name", limit: 255
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180817163147) do
     t.integer  "employee_id",   limit: 4
     t.integer  "position_id",   limit: 4
     t.decimal  "rate",                    precision: 10, scale: 2
+    t.string   "rating",        limit: 4
     t.string   "rate_interval", limit: 8,                          default: "day"
     t.datetime "created_at"
     t.datetime "updated_at"
