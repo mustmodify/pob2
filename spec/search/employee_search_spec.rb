@@ -21,14 +21,22 @@ describe EmployeeSearch do
   end
 
   it 'filters by position through competency' do
-    jen = FactoryGirl.create(:employee)
-    john = FactoryGirl.create(:employee)
+    jen = FactoryGirl.create(:employee, last_name: 'Abacus')
+    john = FactoryGirl.create(:employee, last_name: 'Bowling')
+    jane = FactoryGirl.create(:employee, last_name: 'Fowler')
+    ginesh = FactoryGirl.create(:employee, last_name: 'Ginesh')
+
     working_girl = FactoryGirl.create(:position)
-    FactoryGirl.create(:competency, employee: jen, position: working_girl)
+
+    FactoryGirl.create(:competency, employee: jen, position: working_girl, rating: "C")
+    FactoryGirl.create(:competency, employee: john, position: working_girl, rating: "A")
+    FactoryGirl.create(:competency, employee: jane, position: working_girl, rating: "B")
 
     results = EmployeeSearch.new(position_id: working_girl.id).results
     results.should include(jen)
-    results.should_not include(john)
+    results.should_not include(ginesh)
+
+    results.should == [john, jane, jen]
   end
 
   it 'filters by availability' do

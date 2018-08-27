@@ -32,7 +32,11 @@ class EmployeeSearch < Valuable
       scope = scope.where(status: self.status)
     end
 
-    scope.alphabetical
+    if self.position_id
+      scope.order('competencies.rating ASC')
+    else
+      scope.alphabetical
+    end
   end
 
   def persisted?
