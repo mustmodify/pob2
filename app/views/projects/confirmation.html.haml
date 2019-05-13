@@ -1,0 +1,10 @@
+-page_title 'Confirm Employee'
+
+-content_for :outside do
+  .panel.panel-warning.panel-body
+    %h3
+      We already have an employee with this last name and DOB. Please make sure that it's a different employee. If not, check the box below and resubmit.
+  
+      -@employee.doppelgangers.each do |emp|
+        %li=link_to emp.name, emp
+=render :partial => 'form'

@@ -1,0 +1,9 @@
+=simple_form_for @project, wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
+  =f.input :name
+  =f.input :active
+  =f.input :client
+  %legend Site Contact if available
+  =f.input :email
+  =f.input :phone
+
+  =f.button :submit

@@ -81,7 +81,7 @@ ty }
   end
 
   def target_on_destroy
-    {:controller => params[:controller], :action => :index} 
+    {:controller => params[:controller], :action => :index}
   end
 
   def target_on_update

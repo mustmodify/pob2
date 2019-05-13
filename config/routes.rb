@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :customary_certs, shallow: true
   end
 
+  resources :projects
+
   resources :reprimands
   resource :search
   resources :user_sessions

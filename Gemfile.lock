@@ -234,6 +234,3 @@ DEPENDENCIES
   web-console (~> 2.0)
   wicked_pdf
   will_paginate-bootstrap
-
-BUNDLED WITH
-   1.10.5

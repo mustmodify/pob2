@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180827224305) do
+ActiveRecord::Schema.define(version: 20190513195429) do
 
   create_table "cert_names", force: :cascade do |t|
     t.string "name", limit: 255
@@ -106,6 +106,24 @@ ActiveRecord::Schema.define(version: 20180827224305) do
     t.datetime "updated_at",                                           null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.integer  "project_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "action",     limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer  "project_id",  limit: 4
+    t.integer  "employee_id", limit: 4
+    t.integer  "position_id", limit: 4
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.integer  "employee_id", limit: 4
     t.text     "body",        limit: 65535
@@ -123,6 +141,16 @@ ActiveRecord::Schema.define(version: 20180827224305) do
 
   create_table "positions", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "active",                 default: true
+    t.string   "client",     limit: 255
+    t.string   "email",      limit: 120
+    t.string   "phone",      limit: 25
     t.datetime "created_at"
     t.datetime "updated_at"
   end
