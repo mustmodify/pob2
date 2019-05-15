@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190515173253) do
+ActiveRecord::Schema.define(version: 20190515220832) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "project_id",  limit: 4
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20190515173253) do
 
   create_table "positions", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.string   "color",      limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
