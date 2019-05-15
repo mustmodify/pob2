@@ -9,7 +9,7 @@ namespace :db do
 
     if config
       puts "creating public/#{stamp}.sql"
-      `mysqldump #{config['database']} -u#{config['username']} -p#{config['password']} > public/#{stamp}.sql`
+      `mysqldump #{config['database']} -u#{config['username']} "-p#{config['password']}" > public/#{stamp}.sql`
     end
   end
 
@@ -28,11 +28,11 @@ namespace :db do
       config_file = YAML.load_file('config/database.yml')
       config = config_file['development']
 
-      if config 
+      if config
         puts "loading #{file}"
-        `mysql #{config['database']} -u#{config['username']} -p#{config['password']} < #{file}`
+        `mysql #{config['database']} -u#{config['username']} "-p#{config['password']}" < #{file}`
       end
     end
   end
-end            
+end
 
