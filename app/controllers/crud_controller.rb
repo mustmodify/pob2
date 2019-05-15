@@ -77,7 +77,7 @@ ty }
   private
 
   def target_on_create
-    params[:redirect_to] || polymorphic_path( instance )
+    params[:return_to] || polymorphic_path( instance )
   end
 
   def target_on_destroy
