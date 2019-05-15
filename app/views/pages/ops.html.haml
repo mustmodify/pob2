@@ -27,7 +27,7 @@
               %svg.tile{viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg"}
                 %circle{cx: "50", cy: "50", r: "50", fill: assignment.position.color, stroke: 'black'}
                   %title=assignment.position.name
-              =link_to assignment_path(assignment), {method: :delete, class: 'delete-assignment'} do
+              =link_to assignment_path(assignment, return_to: request.path), {method: :delete, class: 'delete-assignment'} do
                 &times;
-              =link_to "#{assignment.employee.name})", edit_assignment_path(assignment, return_to: request.path)
+              =link_to "#{assignment.employee.name}", edit_assignment_path(assignment, return_to: request.path)
 
