@@ -2,7 +2,7 @@ class Employee < ActiveRecord::Base
   STATUSES = ['Active', 'Terminated', 'Prospect']
 
   validates_presence_of :first_name, :last_name
-  validates_length_of :assignment, maximum: 250
+  validates_length_of :alerts, maximum: 250
 
 
   has_attached_file :picture, :styles => { :medium => "225x225>", :thumb => "100x100>" }, :default_url => "/missing_employee_picture/:style.png"

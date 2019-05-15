@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20190515173253) do
     t.integer  "body_weight",           limit: 4
     t.integer  "bag_weight",            limit: 4
     t.string   "status",                limit: 15,  default: "Active"
-    t.string   "assignment",            limit: 250
+    t.string   "alerts",                limit: 250
     t.boolean  "eligible_for_rehire"
     t.string   "cell_phone",            limit: 255
     t.string   "home_phone",            limit: 255
