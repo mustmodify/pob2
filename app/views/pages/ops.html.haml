@@ -6,9 +6,13 @@
       .body
         -@employees.each do |employee|
           %li.employee
-            =employee.name
+            =link_to employee.name, employee
             -if !employee.alerts.blank?
               %span.text-info (#{employee.alerts})
+            -employee.competencies.each do |comp|
+              %svg.tile{viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg"}
+                %circle{cx: "50", cy: "50", r: "50", fill: comp.position.color, stroke: 'black'}
+                  %title=comp.position.name
 
   .project-space
     -@projects.each do |project|
