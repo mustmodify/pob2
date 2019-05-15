@@ -1,0 +1,62 @@
+.card {
+  background-color: white;
+  margin: 1rem;
+  border: 1px solid lightgrey;
+  box-shadow: 2px 2px 5px lightgrey;
+
+  .heading {
+    font-weight: bold;
+  }
+
+  .heading, .body {
+    padding: 1rem;
+  }
+
+  .heading + .body {
+    padding-top: 0;
+  }
+}
+
+.opsboard {
+  display: flex;
+
+  .inactive-employee-space {
+    flex: 1;
+    .employees-card {
+      height: 85vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+
+  .project-space {
+    flex: 4;
+
+    column-gap: 5px;
+    column-width: 180px;
+
+    height: 90vh;
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    .project-card {
+      flex: 1;
+
+      a.delete-assignment {
+        float: right;
+        padding-left: 1em;
+      }
+
+      .tile { max-width: 1rem; }
+
+      .add_employee_btn {
+        font-size: 3rem;
+        line-height: 1.6rem;
+      }
+    }
+  }
+}

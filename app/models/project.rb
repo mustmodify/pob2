@@ -8,4 +8,7 @@ class Project < ActiveRecord::Base
   def to_s
     [client, name].join(' / ')
   end
+
+  scope :sorted, -> {order('client, name')}
+  scope :active, -> {where(active: true)}
 end

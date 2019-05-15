@@ -2,4 +2,7 @@
 
 =simple_form_for @position do |f|
   =f.input :name
+  =f.input :color, collection: RAINBOW
   =f.submit
+
+=render partial: 'rainbow'

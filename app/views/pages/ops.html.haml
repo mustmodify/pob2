@@ -1,0 +1,29 @@
+.opsboard
+  .inactive-employee-space
+    .card.employees-card
+      .heading
+        Available
+      .body
+        -@employees.each do |employee|
+          %li.employee
+            =employee.name
+            -if !employee.alerts.blank?
+              %span.text-info (#{employee.alerts})
+
+  .project-space
+    -@projects.each do |project|
+      .card.project-card
+        .heading
+          .pull-right
+            =link_to "+", new_assignment_path(assignment: {project_id: project.id}, return_to: request.path), class: "add_employee_btn"
+          =link_to project.to_s, edit_project_path(project)
+        .body
+          -project.assignments.each do |assignment|
+            .line
+              %svg.tile{viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg"}
+                %circle{cx: "50", cy: "50", r: "50", fill: assignment.position.color, stroke: 'black'}
+                  %title=assignment.position.name
+              =link_to assignment_path(assignment), {method: :delete, class: 'delete-assignment'} do
+                &times;
+              =link_to "#{assignment.employee.name})", edit_assignment_path(assignment, return_to: request.path)
+
