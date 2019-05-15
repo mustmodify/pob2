@@ -1,0 +1,12 @@
+#! /bin/bash
+
+export HOME=/home/jw
+export RAILS_ENV=development
+
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+
+
+cd /projects/mako/pob2
+
+bundle exec puma -C /projects/mako/pob2/config/puma.development.config
