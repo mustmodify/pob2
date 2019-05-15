@@ -8,6 +8,10 @@
         .label.label-default Prospect
       -else
         =render employee.next_availability
+
+    -if employee.assignment
+      .my-assignment
+        %b=employee.assignment.project.to_s
   .employee-details
     .name=employee.name
 
