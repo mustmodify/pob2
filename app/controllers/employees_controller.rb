@@ -18,12 +18,12 @@ class EmployeesController < CRUDController
 
   def destroy
     @employee = Employee.find(params[:id])
-    if @employee.jobs.empty?
+    if @employee.assignments.empty?
       @employee.destroy
       flash[:notice] = "Deleted employee #{@employee.name}"
       redirect_to employees_path
     else
-      flash[:warning] = "Can't delete an employee who has been assigned jobs."
+      flash[:warning] = "Can't delete an employee who is currently assigned to a project"
       redirect_to @employee
     end
   end

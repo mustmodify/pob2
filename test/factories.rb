@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :assignment do
+    association :employee
+    association :project
+    association :position
+  end
+
   factory :cert do
     association :employee
     association :cert_name
@@ -25,5 +31,10 @@ FactoryGirl.define do
 
   factory :position do
     name {"#{String.random(5)} Position"}
+  end
+
+  factory :project do
+    name { String.random(5) }
+    client { String.random(5) }
   end
 end

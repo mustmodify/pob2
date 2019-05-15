@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'logout' => 'user_sessions#destroy'
   get 'ssns', to: 'pages#ssns'
 
+  resources :assignments
   resources :cert_names
   resources :customers
 

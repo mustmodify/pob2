@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190513195429) do
+ActiveRecord::Schema.define(version: 20190515173253) do
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer  "project_id",  limit: 4
+    t.integer  "employee_id", limit: 4
+    t.integer  "position_id", limit: 4
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cert_names", force: :cascade do |t|
     t.string "name", limit: 255
@@ -110,16 +120,6 @@ ActiveRecord::Schema.define(version: 20190513195429) do
     t.integer  "project_id", limit: 4
     t.integer  "user_id",    limit: 4
     t.string   "action",     limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "jobs", force: :cascade do |t|
-    t.integer  "project_id",  limit: 4
-    t.integer  "employee_id", limit: 4
-    t.integer  "position_id", limit: 4
-    t.date     "start_date"
-    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
