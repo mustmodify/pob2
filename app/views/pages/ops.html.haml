@@ -10,9 +10,9 @@
     .card.employees-card
       .body
         %select#position-filter
-          %option{value: nil} Show All
+          %option{value: ''} Show All
           -Position.alphabetical.map do |position|
-            %option{value: position.id}=position.name
+            %option{value: position.id, "#{params[:position_id] == position.id.to_s ? 'selected' : 'notselected'}" => 'selected'}=position.name
       -POOLS.each do |pool|
         .heading
           =pool
