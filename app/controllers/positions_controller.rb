@@ -1,4 +1,8 @@
-class PositionsController < CRUDController 
+class PositionsController < CRUDController
+
+  def index
+    @positions = Position.alphabetical
+  end
 
   def show
     @position = Position.find(params[:id])
