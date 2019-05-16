@@ -4,6 +4,7 @@ class ProjectUpdateService < Valuable
   has_value :current_user
 
   def remember_changes
+    @now_inactive = project.active_changed? && (project.active == false)
     @change_messages = ChangeNote.for(project).map(&:to_s)
   end
 
@@ -23,6 +24,9 @@ class ProjectUpdateService < Valuable
 
     project.save.tap do |success|
       note_changes
+      if @now_inactive
+	project.assignments.destroy_all
+      end
     end
   end
 end
