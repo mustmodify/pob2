@@ -9,6 +9,13 @@
   =f.input :last_name
   =f.input :dob, as: :dated, label: 'DOB'
   =f.input :email
+  =f.input :picture
+  -if @employee.picture.file?
+    .col-sm-offset-3{style: 'padding: 0 8px 10px;'}=image_tag @employee.picture.url(:thumb)
+  =f.input :pool, collection: POOLS
+
+  %legend Other Details
+
   =f.input :nationality
   =f.input :ssn, label: 'SSN'
   =f.input :gsn, :label => 'GSN'
@@ -16,9 +23,8 @@
   =f.input :bag_weight
   =f.input :status, collection: ['Prospect', 'Active', 'Terminated']
   =f.input :eligible_for_rehire, as: :select
-  =f.input :picture
-  -if @employee.picture.file?
-    .col-sm-offset-3{style: 'padding: 0 8px 10px;'}=image_tag @employee.picture.url(:thumb)
+
+  =f.input :last_worked_on, hint: 'Usually set by the system... but you can set it here if you want.'
 
   %legend Phone Numbers
 

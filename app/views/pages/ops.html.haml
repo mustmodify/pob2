@@ -1,16 +1,31 @@
+-content_for :scripts do
+  :javascript
+    $(function() {
+      $('#position-filter').change(function() {
+        window.location = "#{request.path}?position_id=" + this.value;
+      });
+    })
 .opsboard
   .inactive-employee-space
     .card.employees-card
-      .heading
-        Available
       .body
-        -@employees.each do |employee|
-          %li.employee
-            =link_to employee.name, employee
-            -if !employee.alerts.blank?
-              %span.text-info (#{employee.alerts})
-            -employee.competencies.each do |comp|
-              =render partial: 'pages/tile', locals: {position: comp.position}
+        %select#position-filter
+          %option{value: nil} Show All
+          -Position.alphabetical.map do |position|
+            %option{value: position.id}=position.name
+      -POOLS.each do |pool|
+        .heading
+          =pool
+        .body
+          -@employees.where(pool: pool).order('last_worked_on ASC').each do |employee|
+            %li.employee
+              =link_to employee.name, employee
+              -if !employee.alerts.blank?
+                %span.text-info (#{employee.alerts})
+              -if !employee.last_worked_on.blank?
+                %span.text-info=employee.last_worked_on.to_s
+              -employee.competencies.each do |comp|
+                =render partial: 'pages/tile', locals: {position: comp.position}
 
   .project-space
     -@projects.each do |project|

@@ -64,6 +64,6 @@ ty }
   end
 
   def local_params
-    params.fetch(:employee, {}).permit(:first_name, :middle_name, :last_name, :confirmed, :home_phone, :cell_phone, :alt_phone, :email, :dob, :nationality, :ssn, :gsn, :body_weight, :bag_weight, :status, :eligible_for_rehire, :picture, :street1, :street2, :city, :state, :zipcode, :ident_issuer, :ident_number, :ident_issue_date, :ident_expiration_date, :alerts, :competencies_attributes => [:id, :position_id, :rating, :rate, :rate_interval, :_destroy], :position_ids => [])
+    params.fetch(:employee, {}).permit(:first_name, :middle_name, :last_name, :confirmed, :home_phone, :cell_phone, :alt_phone, :email, :dob, :last_worked_on, :pool, :nationality, :ssn, :gsn, :body_weight, :bag_weight, :status, :eligible_for_rehire, :picture, :street1, :street2, :city, :state, :zipcode, :ident_issuer, :ident_number, :ident_issue_date, :ident_expiration_date, :alerts, :competencies_attributes => [:id, :position_id, :rating, :rate, :rate_interval, :_destroy], :position_ids => [])
   end
 end
