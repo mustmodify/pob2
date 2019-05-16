@@ -31,7 +31,9 @@ class EmployeesController < CRUDController
   def update
     set_record model.find(params[:id])
 
-    if instance.update_attributes( local_params )
+    svc = EmployeeUpdateService.new(employee: instance, changes: local_params)
+
+    if svc.fire
       respond_to do |format|
         format.html { redirect_to target_on_update }
         format.json { render :json => instance.to_json }
