@@ -1,3 +1,6 @@
+:css
+  .tile { width: 30px; }
+
 -page_title 'Positions'
 
 -content_for :options do
@@ -20,11 +23,17 @@
     -@positions.each do |position|
       %tr
         %td=render :partial => 'pages/tile', locals: {position: position}
-        %td=link_to position.name, position
-        %td=position.employees.active.count
         %td
-          -if position.removable?
-            =link_to 'delete', position_path( position ), :class => 'btn btn-warning btn-xs', :data => {:confirm => 'Are you sure?'}, :method => :delete
+          %h3=position.name
+          .line
+            =link_to "Cert Grid", position
+            |
+            =link_to "Edit", edit_position_path(position)
+            -if position.removable?
+              =link_to 'delete', position_path( position ), :class => 'btn btn-warning btn-xs', :data => {:confirm => 'Are you sure?'}, :method => :delete
+
+        %td
+          %h3=position.employees.active.count
         %td
           -position.cert_names.order(:name).each do |cc|
             %li=cc
@@ -35,6 +44,7 @@
               .btn.btn-info.btn-xs Change
   %tfoot
     %tr
+      %th
       %th All Active Employees
       %th=Employee.active.count
       %th
