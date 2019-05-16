@@ -7,7 +7,12 @@ class PagesController < ApplicationController
 
   def ops
     @projects = Project.active.sorted
-    @employees = Employee.active.available.alphabetical
+    if(params[:position_id])
+      @employees = Employee.active.available.alphabetical.joins('left outer join competencies ON competencies.employee_id = employees.id').where('competencies.position_id = ?', params[:position_id])
+    else
+      @employees = Employee.active.available.alphabetical
+    end
+
     render layout: 'fluid'
   end
 end
