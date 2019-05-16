@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'mako2'
 set :repo_url, 'git@bitbucket.org:mustmodify/mako2.git'
-set :chruby_ruby, 'rbx-2.5.2'
+set :chruby_ruby, 'ruby-2.2.9'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
