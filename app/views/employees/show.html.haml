@@ -43,6 +43,13 @@
         -else
           .label.label-danger DO NOT Rehire
     .spacer
+    %h4 Competencies
+    %table.table.table-striped
+      -@employee.competencies.includes(:position).each do |comp|
+        %tr
+          %td=comp.position.name
+          %td=comp.rating
+          %td=number_to_currency comp.rate
     %h4 Notes
     -if @employee.notes.any?
       =render @employee.notes
