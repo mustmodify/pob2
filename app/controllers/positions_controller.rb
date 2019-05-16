@@ -14,6 +14,6 @@ class PositionsController < CRUDController
   end
 
   def local_params
-    params.fetch(:position, {}).permit(:name)
+    params.fetch(:position, {}).permit(:name, :color)
   end
 end
