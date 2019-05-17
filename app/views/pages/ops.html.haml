@@ -1,10 +1,24 @@
 -content_for :scripts do
   :javascript
-    $(function() {
-      $('#position-filter').change(function() {
-        window.location = "#{request.path}?position_id=" + this.value;
+    function drop(event, pool) {
+      var url = event.dataTransfer.getData("employee_location");
+    console.log([url, pool]);
+      $.ajax({
+        type: 'PUT',
+        url: url,
+        data: {employee: {pool: pool}},
+        dataType: 'JSON',
       });
-    })
+
+      window.location = window.location;
+    }
+
+    function allowDrop(ev) { ev.preventDefault(); }
+
+    function drag(event, url) {
+      event.dataTransfer.setData("employee_location", url);
+    }
+
 .opsboard
   .inactive-employee-space
     .card.employees-card
@@ -14,18 +28,19 @@
           -Position.alphabetical.map do |position|
             %option{value: position.id, "#{params[:position_id] == position.id.to_s ? 'selected' : 'notselected'}" => 'selected'}=position.name
       -POOLS.each do |pool|
-        .heading
-          =pool
-        .body
-          -@employees.where(pool: pool).order('last_worked_on ASC').each do |employee|
-            %li.employee
-              =link_to employee.name, employee
-              -if !employee.alerts.blank?
-                %span.text-info (#{employee.alerts})
-              -if !employee.last_worked_on.blank?
-                %span.text-info=employee.last_worked_on.to_s
-              -employee.competencies.each do |comp|
-                =render partial: 'pages/tile', locals: {position: comp.position}
+        .employee-pool{ondragover: "allowDrop(event)", ondrop: "drop(event, '#{pool}')"}
+          .heading
+            =pool
+          .body
+            -@employees.where(pool: pool).order('last_worked_on ASC').each do |employee|
+              %li.employee{id: employee.id, draggable: 'true', ondragstart: "drag(event, '#{employee_path(employee)}')"}
+                =link_to employee.name, employee
+                -if !employee.alerts.blank?
+                  %span.text-info (#{employee.alerts})
+                -if !employee.last_worked_on.blank?
+                  %span.text-info=employee.last_worked_on.to_s
+                -employee.competencies.each do |comp|
+                  =render partial: 'pages/tile', locals: {position: comp.position}
 
   .project-space
     -@projects.each do |project|
