@@ -1,1 +1,1 @@
-POOLS = ['Star', 'Explorer', 'Neutral', 'Poor']
+POOLS = ['New', 'Call First', 'Neutral', 'Last Resort', 'Medical']
