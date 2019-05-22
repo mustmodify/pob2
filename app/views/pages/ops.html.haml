@@ -2,6 +2,12 @@
   :javascript
     window.setTimeout(function(){ window.location = window.location }, 5 * 60 * 1000);
 
+    $(function() {
+      $('#position-filter').change(function() {
+        window.location = "#{request.path}?position_id=" + this.value;
+      });
+    });
+
     function drop(event, pool) {
       var url = event.dataTransfer.getData("employee_location");
       $.ajax({
