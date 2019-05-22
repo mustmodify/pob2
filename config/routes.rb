@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     resources :customary_certs, shallow: true
   end
 
-  resources :projects
+  resources :projects do
+    get 'inactive', on: :collection
+  end
 
   resources :reprimands
   resource :search

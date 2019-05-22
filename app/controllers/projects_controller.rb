@@ -5,6 +5,10 @@ class ProjectsController < CRUDController
     @projects = Project.order('client, name').where(active: (params[:status] == 'active')).paginate(page: params[:page], per_page: 10)
   end
 
+  def inactive
+    @projects = Project.order('client, name').where(active: false)
+  end
+
   def create
     @project = Project.new(local_params)
 
