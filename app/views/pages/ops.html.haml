@@ -1,8 +1,9 @@
 -content_for :scripts do
   :javascript
+    window.setTimeout(function(){ window.location = window.location }, 5 * 60 * 1000);
+
     function drop(event, pool) {
       var url = event.dataTransfer.getData("employee_location");
-    console.log([url, pool]);
       $.ajax({
         type: 'PUT',
         url: url,
