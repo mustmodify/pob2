@@ -15,7 +15,14 @@
 
 
 -if @projects.empty?
-  .text-muted No projects to show
+  .alert.alert-info
+    -if params[:status] == 'active'
+      No active projects to show at this time.
+    -elsif params[:status] && params[:status] != 'active'
+      No inactive projects to show at this time.
+    -else
+      No projects to show at this time.
+
 -else
   %table.table.table-striped
     %thead
@@ -41,6 +48,8 @@
             .line=project.email
         %td
           =link_to 'edit', edit_project_path(project)
+          -if !project.active
+            =button_to('Activate', project_path(project, {project: {active: true}}), method: 'put', class: 'btn btn-xs btn-link', form: {style: 'display: inline-block'})
 
 .clearfix
 
