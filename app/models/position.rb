@@ -11,6 +11,17 @@ class Position < ActiveRecord::Base
     employees.empty? && competencies.empty?
   end
 
+  def color
+    c = read_attribute(:color)
+    if c.nil?
+      nil
+    elsif c.to_s[0] == '#'
+      c
+    elsif c.length == 6
+      "##{c}"
+    end
+  end
+
   def to_s
     name
   end

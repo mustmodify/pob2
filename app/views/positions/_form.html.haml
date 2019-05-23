@@ -3,5 +3,5 @@
   /=f.input :division
   .form-group.position_color
     %label.control-label.optional{for: 'position_color'} Color
-    =f.color_field :color
+    =f.text_field :color, class: 'jscolor'
   =f.submit
