@@ -34,7 +34,7 @@
           %option{value: ''} Show All
           -Position.alphabetical.map do |position|
             %option{value: position.id, "#{params[:position_id] == position.id.to_s ? 'selected' : 'notselected'}" => 'selected'}=position.name
-        =link_to "Restore", projects_path(status: 'inactive')
+        =link_to "Jobs", projects_path(status: 'inactive')
       -POOLS.each do |pool|
         .employee-pool{ondragover: "allowDrop(event)", ondrop: "drop(event, '#{pool}')"}
           .heading
