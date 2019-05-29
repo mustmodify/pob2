@@ -24,7 +24,8 @@
   =f.input :status, collection: ['Prospect', 'Active', 'Terminated']
   =f.input :eligible_for_rehire, as: :select
 
-  =f.input :last_worked_on, hint: 'Usually set by the system... but you can set it here if you want.'
+  -if @employee.persisted?
+    =f.input :last_worked_on, as: :dated
 
   %legend Phone Numbers
 
