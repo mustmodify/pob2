@@ -9,7 +9,13 @@ class Search < Valuable
   end
 
   def employee_results
-    Employee.where("first_name LIKE '#{safe_term}%' or last_name LIKE '#{safe_term}%'")
+    if term =~ /^\d{4,9}$/
+      Employee.where("cell_phone LIKE '%#{safe_term}' or home_phone LIKE '%#{safe_term}' or alt_phone LIKE '%#{safe_term}'")
+    elsif term =~ /^\d{10}$/
+      Employee.where("cell_phone LIKE '#{safe_term}' or home_phone LIKE '#{safe_term}' or alt_phone LIKE '#{safe_term}'")
+    else
+      Employee.where("first_name LIKE '#{safe_term}%' or last_name LIKE '#{safe_term}%'")
+    end
   end
 
   def results
