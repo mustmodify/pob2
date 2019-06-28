@@ -50,6 +50,14 @@
           %td=comp.position.name
           %td=comp.rating
           %td=number_to_currency comp.rate
+
+
+    =form_for @employee, html: {class: 'alerts-form'} do |f|
+      =f.text_area :alerts, class: 'form-control clearable', placeholder: 'Alerts', onClick: "this.setSelectionRange(0, this.value.length); return(false);"
+      =f.submit "Update Alert", class: 'btn btn-info pull-right btn-sm'
+
+    .spacer
+    .spacer
     %h4 Notes
     -if @employee.notes.any?
       =render @employee.notes
@@ -58,6 +66,8 @@
     .spacer
     .spacer
     =render :partial => 'note_form'
+    .spacer
+    .spacer
   .col-sm-8
     %h2 Summary
     -@employee.phone_numbers.each do |label, value|
