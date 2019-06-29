@@ -47,6 +47,8 @@ class UserSessionsController < ApplicationController
     warden.authenticate
 
     if( current_user )
+      cookies.signed.permanent['remember_me'] = current_user.persistence_token
+
       respond_to do |format|
         format.json { render_welcome }
         format.html { redirect_back_or_default(root_path) }
@@ -64,6 +66,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     warden.logout
+    cookies.signed.permanent['remember_me'] = ""
 
     respond_to do |format|
       format.html { redirect_back_or_default new_user_session_url }
