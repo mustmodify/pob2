@@ -41,7 +41,7 @@ describe EmployeeSearch do
 
   it 'filters by availability' do
     jen = FactoryGirl.create(:employee)
-    FactoryGirl.create(:assignment, employee: jen
+    FactoryGirl.create(:assignment, employee: jen)
     john = FactoryGirl.create(:employee)
 
     results = EmployeeSearch.new(include_assigned: 'false').results
