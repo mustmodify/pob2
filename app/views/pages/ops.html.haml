@@ -26,10 +26,10 @@
       event.dataTransfer.setData("employee_location", url);
     }
 
+=render partial: 'position_count'
 .opsboard
   .inactive-employee-space
     .card.employees-card
-      =render partial: 'position_count'
       .body
         %select#position-filter
           %option{value: ''} Show All
