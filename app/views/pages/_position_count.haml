@@ -3,4 +3,4 @@
     -if pos.assignments.count > 0
       .position-status
         =render partial: 'pages/tile', locals: {position: pos}
-        .position-assignment-count=pos.assignments.count
+        %span.position-assignment-count=pos.assignments.count
