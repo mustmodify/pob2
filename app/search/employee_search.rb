@@ -20,7 +20,7 @@ class EmployeeSearch < Valuable
     end
 
     if !include_assigned
-      scope = scope.joins('LEFT OUTER JOINS assignments ON assignments.employee_id = employees.id').where("assignments.id IS NULL")
+      scope = scope.joins('LEFT OUTER JOIN assignments ON assignments.employee_id = employees.id').where("assignments.id IS NULL")
     end
 
     if self.status.not.blank?
