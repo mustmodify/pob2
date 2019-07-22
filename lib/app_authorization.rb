@@ -66,7 +66,7 @@ module AppAuthorization
   end
 
   def store_location
-    session[:return_to] = request.url unless params[:controller] == 'user_sessions'
+    session[:return_to] = request.url unless params[:controller] == 'user_sessions' || request.method == 'POST'
   end
 
   def redirect_back_or_default(default = dashboard_path)

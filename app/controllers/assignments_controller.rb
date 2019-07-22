@@ -1,4 +1,11 @@
 class AssignmentsController < CRUDController
+  def show
+    # This happens when someone tries to change an assignment but
+    # they were logged out and then when they log back in, they get
+    # GET instead of POST/PUT/DELETE.
+    redirect_to request.referrer || params[:return_to] || root_path
+  end
+
   def destroy
     @assignment = Assignment.find(params[:id])
     @assignment.employee.update_attribute(:last_worked_on, Date.today)
