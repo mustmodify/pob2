@@ -4,7 +4,7 @@ class Screening < ActiveRecord::Base
   CATEGORIES = ['Alcohol', 'Drug', 'Physical']
   OUTCOMES = ['Pass', 'Fail', 'Med Hold']
 
-  has_attached_file :image, :default_url => "/images/:style/missing.png"
+  has_attached_file :image, :default_url => "/assets/file-missing.png"
   validates_attachment_content_type :image, :content_type => [/\Aimage\/.*\Z/, 'application/pdf']
   validates_presence_of :outcome
 
