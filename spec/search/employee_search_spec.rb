@@ -40,8 +40,10 @@ describe EmployeeSearch do
   end
 
   it 'filters by availability' do
+    dentist = FactoryGirl.create(:position)
     jen = FactoryGirl.create(:employee)
-    FactoryGirl.create(:assignment, employee: jen)
+    FactoryGirl.create(:competency, employee: jen, position: dentist)
+    FactoryGirl.create(:assignment, employee: jen, position: dentist)
     john = FactoryGirl.create(:employee)
 
     results = EmployeeSearch.new(include_assigned: 'false').results

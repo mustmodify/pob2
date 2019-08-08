@@ -22,6 +22,7 @@ FactoryGirl.define do
     association :position
     rate 100
     rate_interval 'day'
+    rating 'A'
   end
 
   factory :employee do
