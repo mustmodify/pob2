@@ -2,8 +2,8 @@ class Project < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :client
 
-  has_many :events
-  has_many :assignments
+  has_many :events, :dependent => :destroy
+  has_many :assignments, :dependent => :destroy
 
   def to_s
     [client, name].join(' / ')

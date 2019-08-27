@@ -32,6 +32,7 @@
         %th Name
         %th Contact
         %th
+        %th
     -@projects.each do |project|
       %tr
         %td
@@ -46,6 +47,8 @@
             .line=project.phone
           -if project.email
             .line=project.email
+        %td
+          =link_to 'details', project_path(project)
         %td
           =link_to 'edit', edit_project_path(project)
           -if !project.active

@@ -43,4 +43,8 @@ class ProjectsController < CRUDController
   def target_on_create
     projects_path(status: @project.active ? 'active' : 'inactive')
   end
+
+  def target_on_destroy
+    projects_path
+  end
 end

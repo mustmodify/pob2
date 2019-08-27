@@ -20,4 +20,8 @@ class Assignment < ActiveRecord::Base
   def must_not_be_termed
     self.errors.add(:employee_id, "must be an active employee") if employee && employee.status != 'Active'
   end
+
+  def to_s
+    "#{self.employee.name} as #{self.position.name} from #{self.created_at.to_date.to_s}"
+  end
 end
