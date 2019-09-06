@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190808163910) do
+ActiveRecord::Schema.define(version: 20190906171815) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "project_id",  limit: 4
@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 20190808163910) do
     t.boolean  "active",                 default: true
     t.string   "client",     limit: 255
     t.string   "email",      limit: 120
-    t.string   "phone",      limit: 25
+    t.string   "phone",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
