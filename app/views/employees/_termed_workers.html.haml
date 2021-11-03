@@ -1,0 +1,4 @@
+-if employee.last_worked_on.present?
+  .text-primary
+    %b Last Worked: #{employee.last_worked_on.to_s(:mdy)}
+    %br (#{time_ago_in_words(employee.last_worked_on)} ago)
