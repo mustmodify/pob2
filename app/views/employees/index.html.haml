@@ -7,15 +7,20 @@
 -content_for :options do
   =link_to "New Employee", new_employee_path, class: 'btn btn-primary btn-block'
   .spacer
-  .panel.panel-info
-    .panel-heading
-      Search Criteria
-    .panel-body
-      =simple_form_for @search, method: :get, url: employees_path do |f|
+  =simple_form_for @search, method: :get, url: employees_path do |f|
+    .panel.panel-info
+      .panel-heading
+        Search Criteria
+      .panel-body
         =f.input :cert_expiration_period, :collection => {'30 Days' => 30.days.to_i, '90 Days' => 90.days.to_i}, required: false
         =f.input :position_id, :collection => Position.alphabetical.map{|position| [position.name, position.id]}, required: false
         =f.input :status, collection: ['Prospect', 'Active', 'Terminated'], required: false
         =f.input :include_assigned, as: :radio_buttons, required: false, label: 'Include Unavailable'
+      .panel-heading
+        Sort
+      .panel-body
+        =f.input :sort, collection: {'Last Name' => 'last_name asc', 'First Name' => 'first_name asc', 'Last Worked' => 'last_worked_on desc'}
+      .panel-body
         =f.submit :search, :class => 'btn btn-info btn-block'
 
 -if @employees.empty?

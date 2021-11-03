@@ -7,6 +7,8 @@ class EmployeeSearch < Valuable
   has_value :include_assigned, :parse_with => lambda {|x| x == true || x == "true"}, default: true
   has_value :status, default: 'Active'
 
+  has_value :sort, default: 'last_name asc'
+
   def results
     scope = Employee.where('1=1').group('employees.id')
 
@@ -27,10 +29,20 @@ class EmployeeSearch < Valuable
       scope = scope.where(status: self.status)
     end
 
-    if self.position_id
+    if self.sort.not.blank?
+      scope.order(self.sort)
+    elsif self.position_id
       scope.order('competencies.rating ASC')
     else
       scope.alphabetical
+    end
+  end
+
+  def special_details
+    if self.sort == 'last_worked_on desc'
+      'termed_workers'
+    else
+      nil
     end
   end
 

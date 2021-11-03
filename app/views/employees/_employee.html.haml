@@ -15,7 +15,9 @@
   .employee-details
     .name=employee.name
 
-    -if employee.positions.empty?
+    -if !@search.special_details.blank?
+      =render partial: @search.special_details, locals: {employee: employee}
+    -elsif employee.positions.empty?
       .text-muted No competencies set up
     -else
       -employee.competencies.each do |comp|

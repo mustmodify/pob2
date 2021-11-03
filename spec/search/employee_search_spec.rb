@@ -34,9 +34,9 @@ describe EmployeeSearch do
 
     results = EmployeeSearch.new(position_id: working_girl.id).results
     results.should include(jen)
+    results.should include(jane)
+    results.should include(john)
     results.should_not include(ginesh)
-
-    results.should == [john, jane, jen]
   end
 
   it 'filters by availability' do
@@ -54,5 +54,17 @@ describe EmployeeSearch do
   it 'filters by status' do
     jen = FactoryGirl.create(:employee, status: 'Prospect')
     EmployeeSearch.new(status: 'Active').results.should_not include(jen)
+  end
+
+  it 'sorts by term date' do
+    melvin = FactoryGirl.create(:employee, last_worked_on: 5.days.ago, status: 'Terminated')
+    leo = FactoryGirl.create(:employee, last_worked_on: 3.days.ago, status: 'Terminated')
+    ovelia = FactoryGirl.create(:employee, last_worked_on: 15.days.ago, status: 'Terminated')
+
+    EmployeeSearch.new(status: 'Terminated', sort: 'last_worked_on desc').results.map(&:id).should eq [leo, melvin, ovelia].map(&:id)
+  end
+
+  it 'defaults to sorting by last name' do
+    EmployeeSearch.new.sort.should eq "last_name asc"
   end
 end
