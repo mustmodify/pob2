@@ -42,7 +42,7 @@ class Employee < ActiveRecord::Base
   validates_format_of :email, :with => EMAIL_PATTERN, :message => "doesn't look like an email address", :allow_blank => true
 
   def vaxd?
-    certs.where(cert_name_id: CertName.covid.id).exist?
+    certs.where(cert_name_id: CertName.covid.id).any?
   end
 
   def phone_numbers
