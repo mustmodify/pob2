@@ -1,4 +1,13 @@
--if employee.last_worked_on.present?
-  .text-primary
-    %b Last Worked: #{employee.last_worked_on.to_s(:mdy)}
+.text-primary
+  Last Worked:
+  -if employee.last_worked_on.present?
+    %b #{employee.last_worked_on.to_s(:mdy)}
     %br (#{time_ago_in_words(employee.last_worked_on)} ago)
+  -else
+    %b Not Recorded
+  %p
+    Eligible for Rehire
+    -if employee.eligible_for_rehire.nil?
+      %b Not Selected
+    -else
+      %b #{employee.eligible_for_rehire ? 'Yes' : 'No'}

@@ -60,8 +60,9 @@ describe EmployeeSearch do
     melvin = FactoryGirl.create(:employee, last_worked_on: 5.days.ago, status: 'Terminated')
     leo = FactoryGirl.create(:employee, last_worked_on: 3.days.ago, status: 'Terminated')
     ovelia = FactoryGirl.create(:employee, last_worked_on: 15.days.ago, status: 'Terminated')
+    olivander = FactoryGirl.create(:employee, last_worked_on: nil, status: 'Terminated')
 
-    EmployeeSearch.new(status: 'Terminated', sort: 'last_worked_on desc').results.map(&:id).should eq [leo, melvin, ovelia].map(&:id)
+    EmployeeSearch.new(status: 'Terminated', sort: 'last_worked_on desc').results.map(&:id).should eq [leo, melvin, ovelia, olivander].map(&:id)
   end
 
   it 'defaults to sorting by last name' do
