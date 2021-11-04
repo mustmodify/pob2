@@ -38,7 +38,10 @@
         .label.label-default Prospect
       -else
         .label.label-warning Terminated
-        -if @employee.eligible_for_rehire
+
+        -if @employee.eligible_for_rehire.nil?
+          .label.label-info ?
+        -elsif @employee.eligible_for_rehire
           .label.label-default Can Rehire
         -else
           .label.label-danger DO NOT Rehire
