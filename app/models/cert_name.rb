@@ -12,4 +12,7 @@ class CertName < ActiveRecord::Base
     certs.empty?
   end
 
+  def self.covid
+    @covid ||= CertName.where(name: "COVID-19 Vaccination Record").first!
+  end
 end
