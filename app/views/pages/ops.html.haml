@@ -43,9 +43,9 @@
           .body
             -@employees.where(pool: pool).order('last_worked_on ASC').each do |employee|
               %li.employee{id: employee.id, draggable: 'true', ondragstart: "drag(event, '#{employee_path(employee)}')"}
-                =link_to employee.name, employee
                 -if employee.vaxd?
-                  .label.label-success Vaxd
+                  %span.text-warning &starf;
+                =link_to employee.name, employee
                 -if !employee.alerts.blank?
                   %span.text-info (#{employee.alerts})
                 -if !employee.last_worked_on.blank?
