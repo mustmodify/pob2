@@ -7,9 +7,12 @@ class AssignmentsController < CRUDController
   end
 
   def destroy
-    @assignment = Assignment.find(params[:id])
-    @assignment.employee.update_attribute(:last_worked_on, Date.today)
-    @assignment.destroy
+    @assignment = Assignment.find_by_id(params[:id])
+
+    if @assignment
+      @assignment.employee.update_attribute(:last_worked_on, Date.today)
+      @assignment.destroy
+    end
 
     redirect_to target_on_destroy
   end
