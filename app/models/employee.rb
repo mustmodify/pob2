@@ -45,6 +45,10 @@ class Employee < ActiveRecord::Base
     certs.where(cert_name_id: CertName.covid.id).any?
   end
 
+  def us_citizen?
+    nationality == 'US'
+  end
+
   def phone_numbers
     {}.tap do |out|
       out['Home'] = self.home_phone if self.home_phone.not.blank?

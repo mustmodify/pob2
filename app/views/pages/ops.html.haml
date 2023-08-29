@@ -44,7 +44,9 @@
             -@employees.where(pool: pool).order('last_worked_on ASC').each do |employee|
               %li.employee{id: employee.id, draggable: 'true', ondragstart: "drag(event, '#{employee_path(employee)}')"}
                 -if employee.vaxd?
-                  %span.text-warning &starf;
+                  %span.text-warning=CROSS_SYMBOL
+                -if !employee.us_citizen?
+                  %span.text-warning=FLAG_SYMBOL
                 =link_to employee.name, employee
                 -if !employee.alerts.blank?
                   %span.text-info (#{employee.alerts})
