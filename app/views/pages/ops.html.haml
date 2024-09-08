@@ -63,10 +63,9 @@
             =link_to "+", new_assignment_path(assignment: {project_id: project.id}, return_to: request.path), class: "add_employee_btn"
           =link_to project.to_s, edit_project_path(project)
         .body
-          -project.assignments.each do |assignment|
+          -project.current_assignments.each do |assignment|
             .line
               =render partial: 'pages/tile', locals: {position: assignment.position}
-              =link_to assignment_path(assignment, return_to: request.path), {method: :delete, class: 'delete-assignment'} do
-                &times;
+              =render partial: 'pages/stop', locals: {assignment: assignment}
               =link_to "#{assignment.employee.name}", edit_assignment_path(assignment, return_to: request.path)
 

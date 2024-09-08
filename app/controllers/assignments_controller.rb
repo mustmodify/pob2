@@ -6,6 +6,13 @@ class AssignmentsController < CRUDController
     redirect_to request.referrer || params[:return_to] || root_path
   end
 
+  def create
+    @assignment = Assignment.new(local_params)
+    @assignment.start_date ||= Date.today
+
+    redirect_to target_on_create
+  end
+
   def destroy
     @assignment = Assignment.find_by_id(params[:id])
 
@@ -24,6 +31,6 @@ class AssignmentsController < CRUDController
   end
 
   def local_params
-    params.fetch(:assignment, {}).permit(:employee_id, :project_id, :position_id)
+    params.fetch(:assignment, {}).permit(:employee_id, :project_id, :position_id, :start_date, :end_date)
   end
 end
