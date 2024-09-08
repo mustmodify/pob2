@@ -18,6 +18,7 @@ class Employee < ActiveRecord::Base
   has_many :reprimands
   has_many :restrictions # isn't that always the way?
   has_many :screenings
+  has_many :time_entries
   has_many :expired_certs, -> { where('expires_on < ?', Date.today) }, :class_name => 'Cert'
 
   has_many :competencies

@@ -10,11 +10,14 @@
         =render employee.next_availability
 
   .col-sm-8
-    %h3
-      %strong=link_to employee.name, employee
-      -if employee.positions.not.empty?
-        =employee.positions.map(&:to_s).join(', ')
-    .spacer
+    .row
+      .col-sm-10
+        %h3
+          %strong=link_to employee.name, employee
+          -if employee.positions.not.empty?
+            =employee.positions.map(&:to_s).join(', ')
+      .col-sm-2
+        =link_to 'Add Time', new_employee_time_entry_path(employee), class: 'btn btn-default btn-sm'
 
     .row
       .col-sm-6

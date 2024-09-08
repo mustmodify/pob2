@@ -1,0 +1,13 @@
+-content_for :options do
+  .spacer
+  .spacer
+  .spacer
+  =link_to "Time Entry List", employee_time_entries_path(@employee), class: 'btn btn-default btn-block'
+  =link_to "Employee Record", employee_path(@employee), class: 'btn btn-default btn-block'
+  =link_to "Time Analysis", employee_time_analysis_path(@employee), class: 'btn btn-default btn-block'
+
+%h1
+  New Time Entry for #{@employee.name}
+
+=render partial: 'time_entries/form', locals: { time_entry: @time_entry }
+

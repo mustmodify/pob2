@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190906171815) do
+ActiveRecord::Schema.define(version: 20240908202829) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "project_id",  limit: 4
@@ -194,6 +194,16 @@ ActiveRecord::Schema.define(version: 20190906171815) do
     t.string  "image_file_name",    limit: 255
     t.string  "image_content_type", limit: 255
     t.integer "image_file_size",    limit: 4
+  end
+
+  create_table "time_entries", force: :cascade do |t|
+    t.integer  "employee_id",   limit: 4
+    t.integer  "assignment_id", limit: 4
+    t.date     "date"
+    t.decimal  "hours",                       precision: 10, default: 12
+    t.text     "notes",         limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,25 @@
+-content_for :options do
+  .spacer
+  .spacer
+  .spacer
+  =link_to "Add Time Entry", new_employee_time_entry_path(@employee), class: 'btn btn-default btn-block'
+  =link_to "Employee Record", employee_path(@employee), class: 'btn btn-default btn-block'
+  =link_to "Time Analysis", employee_time_analysis_path(@employee), class: 'btn btn-default btn-block'
+
+%h1 Time Entries for #{@employee.name}
+
+%table.table
+  %thead
+    %tr
+      %th Date
+      %th Project
+      %th Hours
+      %th Notes
+  -@employee.time_entries.order('date desc').each do |time_entry|
+    %tr
+      %td=time_entry.date.to_s(:mdy)
+      %td=time_entry.assignment.try(:project) || 'unknown'
+      %td=time_entry.hours
+      %td=time_entry.notes
+
+=will_paginate @time_entries, :renderer => BootstrapPagination::Rails

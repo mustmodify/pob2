@@ -21,7 +21,15 @@ class Assignment < ActiveRecord::Base
     self.errors.add(:employee_id, "must be an active employee") if employee && employee.status != 'Active'
   end
 
+  def time_period
+    if start_date && end_date
+      "from #{self.start_date.to_s(:mdy)} to #{self.end_date.to_s(:mdy)}"
+    elsif start_date
+      "started #{self.start_date.to_s(:mdy)}"
+    end
+  end
+
   def to_s
-    "#{self.employee.name} as #{self.position.name} from #{self.created_at.to_date.to_s}"
+    "#{self.employee.name} as #{self.position.name} on #{self.project.to_s} #{time_period}"
   end
 end

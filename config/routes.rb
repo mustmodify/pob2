@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :reprimands
     resources :restrictions
     resources :screenings
+    resources :time_entries
+    resource :time_analysis
   end
 
   resources :notes
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :reprimands
   resource :search
+  resources :time_entries
   resources :user_sessions
   resources :users
 end
