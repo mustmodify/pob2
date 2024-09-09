@@ -3,7 +3,7 @@ class TimeEntriesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @assignments = @employee.assignments.order('id desc').limit(3)
 
-    @time_entry = @employee.time_entries.build(assignment: @assignments.first)
+    @time_entry = @employee.time_entries.build(assignment: @assignments.first, hours: 12)
   end
 
   def create

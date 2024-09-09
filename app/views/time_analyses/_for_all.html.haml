@@ -1,0 +1,39 @@
+%h1 Time Analysis for All Employees
+
+%h3 Yearly
+
+%table.table
+  %thead
+    %tr
+      %td Year
+      %td Employee
+      %td Project
+      %td Hours
+      %td Portion
+  -@yearly_results.each do |row|
+    %tr
+      %td=row.year
+      %td=row.employee_name
+      %td=row.project_name
+      %td=row.project_hours
+      %td=row.percentage_of_total
+
+%h3 Quarterly
+
+%table.table
+  %thead
+    %tr
+      %td Year
+      %td Quarter
+      %td Employee
+      %td Project
+      %td Hours
+      %td Portion
+  -@quarterly_results.each do |row|
+    %tr
+      %td=row.year
+      %td=row.quarter
+      %td=row.employee_name
+      %td=row.project_name
+      %td=row.project_hours
+      %td=row.percentage_of_total

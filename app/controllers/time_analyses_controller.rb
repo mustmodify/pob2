@@ -1,8 +1,8 @@
 class TimeAnalysesController < ApplicationController
   def show
-    @employee = Employee.find(params[:employee_id])
+    @employee = Employee.find_by_id(params[:employee_id])
 
-    @yearly_results = TimeAnalysisPresenter.yearly_results(@employee.id)
-    @quarterly_results = TimeAnalysisPresenter.quarterly_results(@employee.id)
+    @yearly_results = TimeAnalysisPresenter.yearly_results(params[:employee_id])
+    @quarterly_results = TimeAnalysisPresenter.quarterly_results(params[:employee_id])
   end
 end

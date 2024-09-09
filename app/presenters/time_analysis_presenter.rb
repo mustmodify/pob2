@@ -1,5 +1,6 @@
 class TimeAnalysisPresenter < Valuable
   has_value :employee_id
+  has_value :employee_name
   has_value :project_name
   has_value :year
   has_value :quarter
@@ -18,6 +19,7 @@ class TimeAnalysisPresenter < Valuable
     Q.ask %|
       SELECT
         e.id as employee_id,
+        CONCAT(CONCAT(e.first_name, ' '), e.last_name) as employee_name,
         p.name as project_name,
         eph.year,
         eph.project_hours,
@@ -52,7 +54,7 @@ class TimeAnalysisPresenter < Valuable
       JOIN
         projects p ON eph.project_id = p.id
       ORDER BY
-        e.id, eph.year, p.id;
+        eph.year, e.last_name, e.first_name, eph.project_hours
 
     |
   end
@@ -77,6 +79,7 @@ class TimeAnalysisPresenter < Valuable
     Q.ask %|
       SELECT
         e.id as employee_id,
+        CONCAT(CONCAT(e.first_name, ' '), e.last_name) as employee_name,
         p.name as project_name,
         eph.year,
         eph.quarter,
@@ -114,7 +117,7 @@ class TimeAnalysisPresenter < Valuable
         projects p ON eph.project_id = p.id
       #{simpler_conditions}
       ORDER BY
-        e.id, eph.year, eph.quarter, p.id;
+        eph.year, eph.quarter, e.last_name, e.first_name, eph.project_hours
 
     |
   end
