@@ -6,6 +6,11 @@ class AssignmentsController < CRUDController
     redirect_to request.referrer || params[:return_to] || root_path
   end
 
+  def new
+    @assignment = Assignment.new(local_params)
+    @assignment.start_date = Date.today
+  end
+
   def create
     @assignment = Assignment.new(local_params)
     @assignment.start_date ||= Date.today

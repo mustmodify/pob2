@@ -1,9 +1,18 @@
 =simple_form_for time_entry, wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
   =f.input :employee_id, collection: Employee.alphabetical.active
   =f.input :assignment_id, collection: @employee.assignments.order('id desc').map{|a| [a.to_s, a.id]}, hint: 'optional but helpful. If there is no assignment, just leave this blank.'
-  =f.input :date, as: :string
-  =f.input :hours
-  =f.input :notes
+  /=f.input :date, as: :string
+  /=f.input :hours
+  /=f.input :notes
+
+  -if time_entry.assignment
+    -time_entry.assignment.days.each do |day|
+      .form-group
+        .col-md-4
+        .col-md-2
+          %label=day
+        .col-md-4
+          %input{type: 'text', value: 12}
 
   =f.button :submit
 

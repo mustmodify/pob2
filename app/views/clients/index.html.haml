@@ -1,0 +1,53 @@
+-page_title 'Client List'
+
+:css
+  .radio-clunky input {
+    margin-left: 0px !important;
+  }
+
+-content_for :options do
+  =link_to "New Client", new_client_path, class: 'btn btn-primary btn-block'
+  -if params[:status] == 'active'
+    =link_to "View Inactive", clients_path(status: 'inactive'), class: 'btn btn-info btn-block'
+  -else
+    =link_to "View Active", clients_path(status: 'active'), class: 'btn btn-info btn-block'
+  .spacer
+
+
+-if @clients.empty?
+  .alert.alert-info
+    -if params[:status] == 'active'
+      No active clients to show at this time.
+    -elsif params[:status] && params[:status] != 'active'
+      No inactive clients to show at this time.
+    -else
+      No clients to show at this time.
+
+-else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+        %th Name
+        %th Projects
+        %th
+        %th
+    -@clients.each do |client|
+      %tr
+        %td
+          -if client.active
+            .label.label-success Active
+          -else
+            .label.label-default Inactive
+        %td=client.name
+        %td=client.projects.count
+        %td
+          =link_to 'details', client_path(client)
+        %td
+          =link_to 'edit', edit_client_path(client)
+          -if !client.active
+            =button_to('Activate', client_path(client, {client: {active: true}}), method: 'put', class: 'btn btn-xs btn-link', form: {style: 'display: inline-block'})
+
+.clearfix
+
+=will_paginate @clients, :renderer => BootstrapPagination::Rails

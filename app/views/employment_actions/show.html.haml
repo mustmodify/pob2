@@ -1,0 +1,26 @@
+-page_title "#{@employee.name} Compliments"
+
+-content_for :options do
+  =link_to 'Back to Employee', employee_path( @employee ), :class => 'btn btn-default btn-block'
+  =link_to 'Add Entry', new_employee_history_path( @employee ), :class => 'btn btn-primary btn-block'
+
+-if @employee.actions.empty?
+  .text-muted No actions on file!
+-else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Date
+        %th Description
+        %th
+        %th
+    %tbody
+      -@employee.actions.each do |action|
+        %tr
+          %td=action.date
+          %td=action.action
+          %td=simple_format action.notes
+          %td
+            =link_to 'Edit', edit_employee_history_path( @employee, action ), :class => 'btn btn-xs btn-default'
+            =link_to 'Delete', employment_action_path(action), method: :delete, data: {confirm: 'Are you sure? This action can not be undone.'}, :class => 'btn btn-xs btn-danger'
+

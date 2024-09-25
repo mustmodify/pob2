@@ -1,10 +1,10 @@
 class TimeAnalysisPresenter < Valuable
   has_value :employee_id
   has_value :employee_name
-  has_value :project_name
+  has_value :client_name
   has_value :year
   has_value :quarter
-  has_value :project_hours
+  has_value :hours
   has_value :percentage_of_total
 
   def self.yearly_data(employee_id)
@@ -20,41 +20,43 @@ class TimeAnalysisPresenter < Valuable
       SELECT
         e.id as employee_id,
         CONCAT(CONCAT(e.first_name, ' '), e.last_name) as employee_name,
-        p.name as project_name,
+        clients.name as client_name,
         eph.year,
-        eph.project_hours,
-        ROUND((eph.project_hours / eth.total_hours) * 100, 2) AS percentage_of_total
+        eph.hours,
+        ROUND((eph.hours / eth.total_hours) * 100, 2) AS percentage_of_total
       FROM
         (SELECT
            te.employee_id,
-           a.project_id,
+           p.client_id,
            YEAR(te.date) AS year,
-           SUM(te.hours) AS project_hours
+           SUM(te.hours) AS hours
          FROM
            time_entries te
          JOIN
            assignments a ON te.assignment_id = a.id
+         JOIN
+           projects p ON p.id = a.project_id
          #{conditions}
          GROUP BY
-           te.employee_id, a.project_id, YEAR(te.date)) eph
+           te.employee_id, p.client_id, YEAR(te.date)) eph
       JOIN
-        (SELECT
-           te.employee_id,
-           YEAR(te.date) AS year,
-           SUM(te.hours) AS total_hours
-         FROM
-           time_entries te
-         #{conditions}
-         GROUP BY
-           te.employee_id, YEAR(te.date)) eth
+        (  SELECT
+             te.employee_id,
+             YEAR(te.date) AS year,
+             SUM(te.hours) AS total_hours
+            FROM
+             time_entries te
+           #{conditions}
+           GROUP BY
+             te.employee_id, YEAR(te.date)) eth
         ON eph.employee_id = eth.employee_id AND eph.year = eth.year
       JOIN
         employees e ON eph.employee_id = e.id
         #{e_join}
       JOIN
-        projects p ON eph.project_id = p.id
+        clients ON eph.client_id = clients.id
       ORDER BY
-        eph.year, e.last_name, e.first_name, eph.project_hours
+        eph.year, e.last_name, e.first_name, eph.hours
 
     |
   end
@@ -80,25 +82,27 @@ class TimeAnalysisPresenter < Valuable
       SELECT
         e.id as employee_id,
         CONCAT(CONCAT(e.first_name, ' '), e.last_name) as employee_name,
-        p.name as project_name,
+        clients.name as client_name,
         eph.year,
         eph.quarter,
-        eph.project_hours,
-        ROUND((eph.project_hours / eth.total_hours) * 100, 2) AS percentage_of_total
+        eph.hours,
+        ROUND((eph.hours / eth.total_hours) * 100, 2) AS percentage_of_total
       FROM
         (SELECT
            te.employee_id,
-           a.project_id,
+           p.client_id,
            YEAR(te.date) AS year,
            QUARTER(te.date) AS quarter,
-           SUM(te.hours) AS project_hours
+           SUM(te.hours) AS hours
          FROM
            time_entries te
          JOIN
            assignments a ON te.assignment_id = a.id
+         JOIN
+           projects p ON p.id = a.project_id
          #{conditions}
          GROUP BY
-           te.employee_id, a.project_id, YEAR(te.date), QUARTER(te.date)) eph
+           te.employee_id, p.client_id, YEAR(te.date), QUARTER(te.date)) eph
       JOIN
         (SELECT
            te.employee_id,
@@ -114,10 +118,10 @@ class TimeAnalysisPresenter < Valuable
       JOIN
         employees e ON eph.employee_id = e.id
       JOIN
-        projects p ON eph.project_id = p.id
+        clients ON eph.client_id = clients.id
       #{simpler_conditions}
       ORDER BY
-        eph.year, eph.quarter, e.last_name, e.first_name, eph.project_hours
+        eph.year, eph.quarter, e.last_name, e.first_name, eph.hours
 
     |
   end

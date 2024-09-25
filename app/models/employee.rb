@@ -14,6 +14,7 @@ class Employee < ActiveRecord::Base
   has_many :certs, -> { joins(:cert_name).order('cert_names.name') }
   has_many :compliments
   has_many :contacts
+  has_many :actions, class_name: 'EmploymentAction'
   has_many :notes
   has_many :reprimands
   has_many :restrictions # isn't that always the way?

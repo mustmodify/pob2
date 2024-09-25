@@ -1,0 +1,50 @@
+-page_title @project.name
+:css
+  .project-status .label {
+    width: 100%;
+    display: block;
+  }
+
+-content_for :options do
+  =link_to 'Edit', edit_project_path( @project ), :class => 'btn btn-block btn-primary'
+  =link_to 'Delete', project_path( @project ), :method => :delete, :data => {:confirm => 'Are you sure? This will delete all assignments and notes and can not be undone.'}, :class => 'btn btn-block btn-danger'
+  =link_to 'Back to List', projects_path, class: 'btn btn-default btn-block'
+
+.row
+  .col-sm-5
+    %h3.project-status
+      -if @project.active
+        .label.label-success Active
+      -else
+        .label.label-default Inactive
+
+
+    %table.table
+      %tr
+        %td Client
+        %td=@project.client
+      %tr
+        %td Email
+        %td=@project.email
+      %tr
+        %td Phone
+        %td=@project.phone
+  .col-sm-7
+    %h4 Assignments
+    %ul
+      -@project.assignments.each do |ass|
+        %li
+          %b=ass.employee.name
+          as #{ass.position.name}
+          from #{ass.created_at.to_date.to_s}
+
+    -if @project.events.not.empty?
+      %h4 History
+      %ul
+        -@project.events.each do |event|
+          %li
+            =event.action
+            .text-muted
+              =event.created_at.to_date.to_s
+              by
+              =event.user.email

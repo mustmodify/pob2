@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :assignments
   resources :cert_names
+  resources :clients
   resources :customers
 
   resources :employees do
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     resources :competencies
     resources :compliments
     resources :contacts
+    resource :history, controller: :employment_actions
     resources :reprimands
     resources :restrictions
     resources :screenings
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
     resource :time_analysis
   end
 
+  resources :employment_actions
   resources :notes
   resources :ops_notes
   resources :positions do

@@ -47,7 +47,7 @@
                   %span.text-warning=CROSS_SYMBOL
                 -if !employee.us_citizen?
                   %span.text-warning=FLAG_SYMBOL
-                =link_to employee.name, employee
+                =link_to employee.name, employee, title: 'client1: 32%'
                 -if !employee.alerts.blank?
                   %span.text-info (#{employee.alerts})
                 -if !employee.last_worked_on.blank?

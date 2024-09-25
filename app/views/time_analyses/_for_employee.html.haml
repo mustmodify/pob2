@@ -12,8 +12,8 @@
   -@yearly_results.each do |row|
     %tr
       %td=row.year
-      %td=row.project_name
-      %td=row.project_hours
+      %td=row.client_name
+      %td=row.hours
       %td=row.percentage_of_total
 
 %h3 Quarterly
@@ -30,6 +30,6 @@
     %tr
       %td=row.year
       %td=row.quarter
-      %td=row.project_name
-      %td=row.project_hours
+      %td=row.client_name
+      %td=row.hours
       %td=row.percentage_of_total

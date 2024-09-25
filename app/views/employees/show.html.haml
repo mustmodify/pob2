@@ -22,6 +22,7 @@
   =link_to 'Competencies', employee_competencies_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Compliments', employee_compliments_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Contacts', employee_contacts_path( @employee ), :class => 'btn btn-block btn-default'
+  =link_to 'Employment History', employee_history_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Reprimands', employee_reprimands_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Restrictions', employee_restrictions_path( @employee ), :class => 'btn btn-block btn-default'
   =link_to 'Screenings', employee_screenings_path( @employee ), :class => 'btn btn-block btn-default'
@@ -76,10 +77,31 @@
   .col-sm-8
     %h2 Summary
     -@employee.phone_numbers.each do |label, value|
-      %h3 #{label}: #{value}
+      %h4 #{label}: #{value}
     -if @employee.email
-      %h3=link_to @employee.email, "mailto:#{@employee.email}"
-    %h3
+      %h4=link_to @employee.email, "mailto:#{@employee.email}"
+
+    .spacer
+    %h3 Recent Assignments
+    %table.table
+      %thead
+        %td Client
+        %td Project
+        %td Time Entries
+        %td Start
+        %td End
+        %td
+      -@employee.assignments.order('start_date desc').limit(5).each do |assignment|
+        %tr
+          %td=assignment.project.client
+          %td=assignment.project.name
+          %td=assignment.start_date && assignment.start_date.to_s(:mdy)
+          %td=assignment.end_date && assignment.end_date.to_s(:mdy)
+          %td=assignment.time_entries.count
+          %td
+            =link_to 'edit', edit_assignment_path(assignment, return_to: employee_path(@employee))
+    .spacer
+    %h3 Details
     %table.table.striped
       -tabular_atts(@employee).each do |n, v|
         %tr

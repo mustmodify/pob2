@@ -1,0 +1,8 @@
+=@employment_action.errors.full_messages.join(',')
+=simple_form_for @employment_action, url: employee_history_path(@employee), wrapper: :horizontal_form, html: {class: 'form-horizontal'} do |f|
+  =f.input :employee_id, as: :hidden
+  =f.input :date, as: :dated
+  =f.input :action, collection: EmploymentAction::ACTIONS
+  =f.input :notes
+
+  =f.button :submit

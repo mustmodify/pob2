@@ -1,0 +1,9 @@
+%a{href: project_path(project), class: 'project-card'}
+  .availability.label-full
+    -if project.active
+      .label.label-default Active
+    -elsif project.active
+      .label.label-warning Inactive
+
+  %h1=project.to_s
+  =link_to 'edit', edit_project_path(project), class: 'btn btn-default btn-xs'

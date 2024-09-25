@@ -1,0 +1,5 @@
+=form_for(Note.new(employee: @employee)) do |f|
+  =f.hidden_field :employee_id
+  =f.text_area :body, :class => 'note_body', :placeholder => 'Add a note', :required => true
+  =f.submit :class => 'btn btn-success btn-sm pull-right'
+

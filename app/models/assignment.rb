@@ -2,12 +2,21 @@ class Assignment < ActiveRecord::Base
   belongs_to :employee
   belongs_to :project
   belongs_to :position
+  has_many :time_entries
 
   validates_presence_of :employee_id, :project_id, :position_id
-  validates_uniqueness_of :employee_id, message: "is already assigned to a project."
+  #validates_uniqueness_of :employee_id, message: "is already assigned to a project."
 
   validate :must_have_competency
   validate :must_not_be_termed
+
+  def days
+    if start_date && end_date
+      (start_date..end_date).entries
+    else
+      []
+    end
+  end
 
   def employee_competency_list
     employee.competencies.map(&:position).map(&:name).join(', ')
