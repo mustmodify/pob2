@@ -1,50 +1,27 @@
--page_title @project.name
+-page_title @client.name
 :css
-  .project-status .label {
+  .client-status .label {
     width: 100%;
     display: block;
   }
 
 -content_for :options do
-  =link_to 'Edit', edit_project_path( @project ), :class => 'btn btn-block btn-primary'
-  =link_to 'Delete', project_path( @project ), :method => :delete, :data => {:confirm => 'Are you sure? This will delete all assignments and notes and can not be undone.'}, :class => 'btn btn-block btn-danger'
-  =link_to 'Back to List', projects_path, class: 'btn btn-default btn-block'
+  =link_to 'Edit', edit_client_path( @client ), :class => 'btn btn-block btn-primary'
+  =link_to 'Back to List', clients_path, class: 'btn btn-default btn-block'
 
 .row
   .col-sm-5
-    %h3.project-status
-      -if @project.active
+    %h3.client-status
+      -if @client.active
         .label.label-success Active
       -else
         .label.label-default Inactive
 
 
-    %table.table
-      %tr
-        %td Client
-        %td=@project.client
-      %tr
-        %td Email
-        %td=@project.email
-      %tr
-        %td Phone
-        %td=@project.phone
   .col-sm-7
-    %h4 Assignments
+    %h4 Projects
     %ul
-      -@project.assignments.each do |ass|
+      -@client.projects.each do |project|
         %li
-          %b=ass.employee.name
-          as #{ass.position.name}
-          from #{ass.created_at.to_date.to_s}
+          %b=link_to project.name, project
 
-    -if @project.events.not.empty?
-      %h4 History
-      %ul
-        -@project.events.each do |event|
-          %li
-            =event.action
-            .text-muted
-              =event.created_at.to_date.to_s
-              by
-              =event.user.email

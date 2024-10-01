@@ -18,7 +18,7 @@ class ClientsController < CRUDController
   def update
     @client = Client.find(params[:id])
 
-    if( ClientUpdateService.new(client: @client, changes: local_params, current_user: current_user).fire )
+    if @client.update(local_params)
       redirect_to target_on_update
     else
       render action: 'edit'

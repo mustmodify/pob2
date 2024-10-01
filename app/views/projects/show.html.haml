@@ -7,7 +7,6 @@
 
 -content_for :options do
   =link_to 'Edit', edit_project_path( @project ), :class => 'btn btn-block btn-primary'
-  =link_to 'Delete', project_path( @project ), :method => :delete, :data => {:confirm => 'Are you sure? This will delete all assignments and notes and can not be undone.'}, :class => 'btn btn-block btn-danger'
   =link_to 'Back to List', projects_path, class: 'btn btn-default btn-block'
 
 .row
