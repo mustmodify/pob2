@@ -1,6 +1,8 @@
 .position-status-list
   -Position.alphabetical.each do |pos|
-    -if pos.assignments.count > 0
+    -assignments = pos.assignments.current
+
+    -if assignments.count > 0
       .position-status
         =render partial: 'pages/tile', locals: {position: pos}
-        %span.position-assignment-count=pos.assignments.count
+        %span.position-assignment-count=assignments.count

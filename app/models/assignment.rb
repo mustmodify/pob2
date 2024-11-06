@@ -10,6 +10,8 @@ class Assignment < ActiveRecord::Base
   validate :must_have_competency
   validate :must_not_be_termed
 
+  scope :current, -> { where('end_date IS NULL') }
+
   def days
     if start_date && end_date
       (start_date..end_date).entries
