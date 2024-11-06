@@ -39,7 +39,10 @@ class Employee < ActiveRecord::Base
   scope :alphabetical, -> {order(:last_name, :first_name)}
   scope :active, -> {where(status: 'Active')}
   scope :terminated, -> {where(status: 'Terminated')}
-  scope :available, -> {joins('LEFT OUTER JOIN assignments ON assignments.employee_id = employees.id').where('assignments.id IS NULL')}
+  scope :available, -> {
+    joins('LEFT OUTER JOIN assignments ON assignments.employee_id = employees.id AND assignments.end_date IS NULL')
+    .where('assignments.id IS NULL')
+  }
 
   validates_format_of :email, :with => EMAIL_PATTERN, :message => "doesn't look like an email address", :allow_blank => true
 
